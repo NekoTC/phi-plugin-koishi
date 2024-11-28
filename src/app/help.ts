@@ -1,41 +1,35 @@
 import { Context, h, Schema } from 'koishi'
 import { } from 'koishi-plugin-puppeteer'
 import path from 'node:path'
-import { pluginResources } from '../model/path'
+import { infoPath, pluginResources } from '../components/pluginPath'
 import { Config } from '..'
 import getFile from '../model/getFile'
 import render from '../model/render'
 import getInfo from '../model/getInfo'
+import getBanGroup from '../model/getBanGroup'
+import { i18nList } from '../components/i18n'
 
 class help {
 
     constructor(ctx: Context, config: Config) {
-        ctx.middleware(async (session, next) => {
-            if (new RegExp(`/\\s*help`).test(session.content)) {
+        ctx.command('phi.help', '查看帮助', { authority: 0 }).action(async ({ session, next }) => {
 
-                let head = config.cmdhead
-                let helpGroup = getFile.FileReader(path.join(pluginResources, 'help.json'))
-                head = head.match(RegExp(head))[0]
-                session.send(await render.render(ctx, "help/help", {
-                    helpGroup: helpGroup,
-                    cmdHead: head || null,
-                    isMaster: session?.event?.member?.roles?.includes('owner'),
-                    background: getInfo.getill(getInfo.illlist[Math.floor(Math.random() * getInfo.illlist.length)]),
-                    theme: 'star'
-                }))
-                return;
-            } else {
+            if (session.guild && await getBanGroup.get(session.guildId, 'help')) {
+                session.text(i18nList.beGroupBan)
                 return next()
             }
+
+            let helpGroup = await getFile.FileReader(path.join(infoPath, 'help.json'))
+            // let pluginData = await get.getpluginData(e.user_id)
+            return session.send(await render.render(ctx, "help/help", {
+                helpGroup: helpGroup,
+                cmdHead: null,
+                isMaster: session?.event?.member?.roles?.includes('owner'),
+                background: getInfo.getill(getInfo.illlist[Math.floor(Math.random() * getInfo.illlist.length)]),
+                theme: 'star'
+            }))
         })
     }
 }
-
-namespace help {
-
-}
-
-
-
 
 export default help

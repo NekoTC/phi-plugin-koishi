@@ -1,4 +1,5 @@
 import { redisPath } from "./constNum.js"
+import { redis, banGroupId } from '../components/redis'
 
 export default new class getBanGroup {
 
@@ -8,8 +9,8 @@ export default new class getBanGroup {
      * @param {string} fnc 
      * @returns 
      */
-    async redis(group, fnc) {
-        return await redis.get(`${redisPath}:banGroup:${group}:${fnc}`) ? true : false
+    async redis(group: string, fnc: string) {
+        return await redis.get('phigrosBanGroup', { groupId: group })[banGroupId[fnc]] ? true : false
     }
 
     /**
@@ -18,7 +19,7 @@ export default new class getBanGroup {
      * @param {string} fnc 
      * @returns 
      */
-    async get(group, fnc) {
+    async get(group: string, fnc: string) {
         if (!group) {
             return false
         }

@@ -1,6 +1,6 @@
 
 import fs from 'fs'
-import { pluginPath } from '../model/path'
+import { pluginPath } from './pluginPath'
 const README_path = `${pluginPath}/README.md`
 
 let changelogs = []

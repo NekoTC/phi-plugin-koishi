@@ -1,15 +1,19 @@
 import { Context } from "koishi";
 
-export default new class Logger {
-    info(ctx: Context, msg: string) {
-        ctx.logger.info(msg)
-    }
+let logger: Context['logger']
 
-    error(ctx: Context, msg: string) {
-        ctx.logger.error(msg)
+export let Logger = new class log {
+    info(msg: string) {
+        logger.info(msg)
     }
+    error(msg: string) {
+        logger.error(msg)
+    }
+    warn(msg: string) {
+        logger.warn(msg)
+    }
+}
 
-    warn(ctx: Context, msg: string) {
-        ctx.logger.warn(msg)
-    }
+export function apply(ctx: Context) {
+    logger = ctx.logger
 }

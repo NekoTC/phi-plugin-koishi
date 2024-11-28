@@ -2,7 +2,7 @@ import fs from 'node:fs';
 import csv from 'csvtojson';
 import path from 'node:path';
 import YAML from 'yaml';
-import { logger } from '../index'
+import { Logger } from '../components/Logger';
 
 
 class readFile {
@@ -12,7 +12,7 @@ class readFile {
      * @param filePath 完整路径
      * @param style 强制设置文件格式
      */
-    async FileReader(filePath: string, style: string = undefined) {
+    async FileReader(filePath: string, style: string | 'JSON' | 'YAML' | 'CSV' | 'TXT' = undefined) {
         try {
             if (!fs.existsSync(filePath)) { return false }
             // console.info(filePath)
@@ -35,8 +35,8 @@ class readFile {
                 }
             }
         } catch (error) {
-            logger.warn(`[phi-plugin][${filePath}] 读取失败`)
-            logger.warn(error)
+            Logger.warn(`[phi-plugin][${filePath}] 读取失败`)
+            Logger.warn(error)
             return false
         }
     }
@@ -45,9 +45,9 @@ class readFile {
      * 存储文件
      * @param {string} filepath 文件名，含后缀
      * @param {any} data 目标数据
-     * @param {string} [style=undefined] 强制指定保存格式
+     * @param {string|'TXT'|'JSON'|'YAML'} [style=undefined] 强制指定保存格式
      */
-    async SetFile(filepath: string, data: any, style: string = undefined) {
+    async SetFile(filepath: string, data: any, style: string | 'JSON' | 'YAML' | 'TXT' = undefined) {
         try {
             const fatherPath = path.dirname(filepath)
             const fileName = path.basename(filepath)
@@ -72,7 +72,7 @@ class readFile {
                     fs.writeFileSync(filepath, data, 'utf8')
                 }
                 default: {
-                    // logger.error(`[phi-plugin][Set]不支持的文件格式`, style, filepath)
+                    // Logger.error(`[phi-plugin][Set]不支持的文件格式`, style, filepath)
                     fs.writeFileSync(filepath, data, 'utf8')
                     break
                 }
@@ -80,8 +80,8 @@ class readFile {
             return true
         } catch (error) {
             console.info(error)
-            logger.warn(`[phi-plugin]写入文件 ${filepath} 时遇到错误`)
-            logger.warn(error)
+            Logger.warn(`[phi-plugin]写入文件 ${filepath} 时遇到错误`)
+            Logger.warn(error)
             return false
         }
     }

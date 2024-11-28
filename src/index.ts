@@ -2,11 +2,12 @@ import { Context, Schema } from 'koishi'
 import { } from 'koishi-plugin-puppeteer'
 import help from './app/help'
 import { ConfigType } from './configType'
+import * as components from './components/index'
 
 export const name = 'phi-plugin'
 
 export const inject = {
-    required: ['puppeteer'],
+    required: ['puppeteer', 'database'],
 }
 
 export interface Config extends ConfigType { }
@@ -123,12 +124,10 @@ export const Config: Schema<Config> = Schema.intersect([
 
 ])
 
-export let cfg: ConfigType
 export let logger: Context['logger']
 
 export async function apply(ctx: Context, config: Config) {
-    cfg = config
-    logger = ctx.logger
     ctx.plugin(help, config)
+    ctx.plugin(components, config)
 }
 

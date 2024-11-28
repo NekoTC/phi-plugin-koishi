@@ -1,8 +1,10 @@
+import { Context } from 'koishi'
 import path from 'path'
 
+
 /**插件根目录 */
-export const pluginPath = __dirname.replace(/\\/g, '/').replace(/\/src\/model/, '')
-// const _path = process.cwd().replace(/\\/g, '/')
+export const pluginPath = __dirname.replace(/\\/g, '/').replace(/\/src\/components/, '')
+const _path = process.cwd().replace(/\\/g, '/')
 
 /**插件名 */
 export const pluginName = path.basename(path.join(import.meta.url, '../../'))
@@ -22,22 +24,6 @@ export const infoPath = path.join(pluginResources, 'info')
 export const DlcInfoPath = path.join(pluginResources, 'info', 'DLC')
 
 
-/**数据路径 */
-export const dataPath = path.join(pluginRoot, 'data')
-
-
-/**用户娱乐数据路径 */
-export const pluginDataPath = path.join(dataPath, 'pluginData')
-
-/**用户存档数据路径 */
-export const savePath = path.join(dataPath, 'saveData')
-
-/**用户设置路径 */
-export const configPath = path.join(pluginRoot, 'config', 'config')
-
-/**默认设置路径 */
-export const defaultPath = path.join(pluginRoot, 'config', 'default_config')
-
 /**默认图片路径 */
 export const imgPath = path.join(pluginResources, 'html', 'otherimg')
 
@@ -50,5 +36,25 @@ export const originalIllPath = path.join(pluginResources, 'original_ill')
 /**音频资源 */
 export const guessMicPath = path.join(pluginResources, 'splited_music')
 
+/**数据路径 */
+export let dataPath: string
+
+/**用户娱乐数据路径 */
+export let pluginDataPath: string
+
+/**用户存档数据路径 */
+export let savePath: string
+
 /**备份路径 */
-export const backupPath = path.join(pluginRoot, 'backup')
+export let backupPath: string
+
+export let tempPath: string
+
+export function apply(ctx: Context) {
+    dataPath = path.join(ctx.baseDir, 'data', 'Catrong@phi-plugin')
+    pluginDataPath = path.join(dataPath, 'pluginData')
+    savePath = path.join(dataPath, 'saveData')
+    backupPath = path.join(dataPath, 'backup')
+    tempPath = path.join(ctx.baseDir, 'temp', 'Catrong@phi-plugin')
+}
+

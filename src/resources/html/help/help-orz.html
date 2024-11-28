@@ -1,73 +1,68 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
 <head>
-    <link rel="stylesheet" href="./help.css">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <link rel="shortcut icon" href="#" />
+    <link rel="stylesheet" type="text/css" href="D:\code\koishi\koishi-app\external\phi-plugin\src\resources/html/common/common.css" />
+
+
+<link rel="stylesheet" href="D:\code\koishi\koishi-app\external\phi-plugin\src\resources/html/help/help.css">
+
+
+    <title>phi-plugin</title>
 </head>
 
-<body>
-    <div class="help_box">
-        <div class="help-group">——·查分·——</div>
-        <div class="line">
-            <div class="order">
-                <p>/pgr</p>
-            </div>
-            <div class="info_box">
-                <div class="up">
-                    <div class="num">7</div>
-                    <div class="song">/pgr [背景(可选)]</div>
-                    <div class="Master">Master</div>
-                </div>
-                <div class="down">
-                    <div class="desc">
-                        <p>获取 B19 成绩图，在主题不为 2 的情况下可以选择背景曲绘</p>
-                        <p>eg: /pgr&ensp;&ensp;&ensp;&ensp;eg: /pgr df</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="line">
-            <div class="order">
-                <p>/pgr</p>
-            </div>
-            <div class="info_box">
-                <div class="up">
-                    <div class="num">7</div>
-                    <div class="song">/pgr [背景(可选)]</div>
-                    <div class="Master">Master</div>
-                </div>
-                <div class="down">
-                    <div class="desc">
-                        <p>获取 B19 成绩图，在主题不为 2 的情况下可以选择背景曲绘</p>
-                        <p>eg: /pgr&ensp;&ensp;&ensp;&ensp;eg: /pgr df</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="line">
-            <div class="order">
-                <p>/pgr</p>
-            </div>
-            <div class="info_box">
-                <div class="up">
-                    <div class="num">7</div>
-                    <div class="song">/pgr [背景(可选)]</div>
-                    <div class="Master">Master</div>
-                </div>
-                <div class="down">
-                    <div class="desc">
-                        <p>获取 B19 成绩图，在主题不为 2 的情况下可以选择背景曲绘</p>
-                        <p>eg: /pgr&ensp;&ensp;&ensp;&ensp;eg: /pgr df</p>
-                        <img src="../otherimg/callBack.png" alt="">
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+<body class="elem-hydro default-mode  " style=transform:scale(1)>
 
-    <div class="createdbox">
-        <div class="phi-plugin">
-            <p>{{_plugin}}</p>
-        </div>
-        <div class="ver">
-            <p>{{Version.ver}}</p>
-        </div>
+
+
+<div class="background">
+
+    <img src="D:\code\koishi\koishi-app\external\phi-plugin\src\resources/html/otherimg/Star1.png" alt="">
+    <img src="D:\code\koishi\koishi-app\external\phi-plugin\src\resources/html/otherimg/Star2.png" alt=""
+        style="min-height: 0;width: 100%;height: auto;bottom: 0;filter: none;">
+
+</div>
+
+
+<div class="createdbox">
+    <div class="phi-plugin">
+        <p>Phi-Plugin</p>
     </div>
+    <div class="ver">
+        <p></p>
+    </div>
+</div>
+
+<canvas id="stars"></canvas>
+<script src="D:\code\koishi\koishi-app\external\phi-plugin\src\resources/html/common/star.js"></script>
+
+
+
+    <script>
+        function adjustFontSize() {
+            var a = document.getElementsByName('pvis')
+            for (var i = 0; i < a.length; ++i) {
+
+                const songName = a[i]
+
+                if (!songName) continue
+
+
+                var parentElement = songName.parentElement
+
+                while (songName.scrollWidth > parentElement.offsetWidth || songName.scrollHeight > parentElement.offsetHeight) {
+                    var style = window.getComputedStyle(songName, null).getPropertyValue('font-size')
+                    var fontSize = parseFloat(style);
+                    songName.style.fontSize = (fontSize - 1) + "px";
+                }
+            }
+        }
+        window.onload = adjustFontSize
+        window.onresize = adjustFontSize
+    </script>
 </body>
+
+</html>
