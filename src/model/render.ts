@@ -76,7 +76,7 @@ export default async function render(ctx: Context, app: Keys<tplName>, params: a
 
     /**保存模板文件 */
     let html = artTemplate.render(fs.readFileSync(data.tplFile, { encoding: 'utf-8' }), data)
-    await getFile.SetFile(path.join(tempPath, app, `${app}.html`), html, 'txt')
+    getFile.SetFile(path.join(tempPath, app, `${app}.html`), html, 'txt')
 
     await page.goto(path.join(tempPath, app, `${app}.html`), { waitUntil: 'networkidle2' })
     let time1 = Date.now()

@@ -30,9 +30,6 @@ export const imgPath = path.join(pluginResources, 'html', 'otherimg')
 /**用户图片路径 */
 export const ortherIllPath = path.join(pluginResources, 'otherill')
 
-/**原画资源 */
-export const originalIllPath = path.join(pluginResources, 'original_ill')
-
 /**音频资源 */
 export const guessMicPath = path.join(pluginResources, 'splited_music')
 
@@ -48,7 +45,14 @@ export let savePath: string
 /**备份路径 */
 export let backupPath: string
 
+/**临时文件路径 */
 export let tempPath: string
+
+/**缓存路径 */
+export let cachePath: string
+
+/**原画资源 */
+export let originalIllPath: string
 
 export function apply(ctx: Context) {
     dataPath = path.join(ctx.baseDir, 'data', 'Catrong@phi-plugin')
@@ -56,5 +60,7 @@ export function apply(ctx: Context) {
     savePath = path.join(dataPath, 'saveData')
     backupPath = path.join(dataPath, 'backup')
     tempPath = path.join(ctx.baseDir, 'temp', 'Catrong@phi-plugin')
+    cachePath = path.join(ctx.baseDir, 'cache', 'Catrong@phi-plugin')
+    originalIllPath = path.join(cachePath, 'original_ill')
 }
 

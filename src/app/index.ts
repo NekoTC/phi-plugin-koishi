@@ -6,6 +6,7 @@ import phiSstk from "./session"
 import phiSong from "./song"
 import phiJrrp from "./jrrp"
 import phiManage from "./manage"
+import phiDownload from "./download"
 import phiUserInfo from "./userInfo"
 
 export function apply(ctx: Context, cfg: Config) {
@@ -15,5 +16,6 @@ export function apply(ctx: Context, cfg: Config) {
     ctx.plugin(phiSong, cfg)
     ctx.plugin(phiJrrp, cfg)
     ctx.plugin(phiManage, cfg)
+    ctx.plugin(phiDownload, cfg)
     ctx.plugin(phiUserInfo, cfg)
 }
