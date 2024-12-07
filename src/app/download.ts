@@ -1,15 +1,11 @@
 import { Context, Session } from 'koishi'
 import { Config } from '..'
-import { createRequire } from "module";
 import { logger } from '../components/Logger';
 import lodash from "lodash";
 import fs from "fs";
 import { cachePath } from '../components/pluginPath';
+import { exec, execSync } from 'child_process';
 
-
-
-const require = createRequire(import.meta.url);
-const { exec, execSync } = require("child_process");
 
 let uping = false
 let isUp = false

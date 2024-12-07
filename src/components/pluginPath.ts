@@ -7,7 +7,7 @@ export const pluginPath = __dirname.replace(/\\/g, '/').replace(/\/src\/componen
 const _path = process.cwd().replace(/\\/g, '/')
 
 /**插件名 */
-export const pluginName = path.basename(path.join(import.meta.url, '../../'))
+export const pluginName = path.basename(path.join(pluginPath, '../../'))
 /**src 根目录 */
 export const pluginRoot = path.join(pluginPath, 'src')
 

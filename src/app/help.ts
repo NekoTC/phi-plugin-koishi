@@ -20,7 +20,7 @@ export default class phiHelp {
             session.send(await render(ctx, "help", {
                 helpGroup: helpGroup,
                 cmdHead: null,
-                isMaster: session?.user?.authority == 4,
+                isMaster: (session as any)?.user?.authority == 4,
                 background: getInfo.getill(getInfo.illlist[Math.floor(Math.random() * getInfo.illlist.length)]),
                 theme: 'star'
             }))
