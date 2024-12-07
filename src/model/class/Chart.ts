@@ -1,15 +1,25 @@
 
 export default class Chart {
 
-    level: number
-    difficulty: number
-    combo: number
-    charter: string
+    id?: string;
+    rank?: string;
+    charter: string;
+    difficulty: number;
+    tap: number;
+    drag: number;
+    hold: number;
+    flicke: number;
+    combo: number;
 
     constructor(data: any) {
-        this.level = Number(data.level)
-        this.difficulty = Number(data.difficulty)
-        this.combo = Number(data.combo)
+        this.id = data?.id
+        this.rank = data?.rank
         this.charter = data.charter
+        this.difficulty = Number(data.difficulty)
+        this.tap = Number(data.tap)
+        this.drag = Number(data.drag)
+        this.hold = Number(data.hold)
+        this.flicke = Number(data.flicke)
+        this.combo = Number(data.combo)
     }
 }

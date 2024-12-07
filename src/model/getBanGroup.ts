@@ -1,7 +1,8 @@
-import { redisPath } from "./constNum.js"
 import { redis, banGroupId } from '../components/redis'
+import allFnc from "./class/allFnc"
+import { Keys } from "koishi"
 
-export default new class getBanGroup {
+export default class getBanGroup {
 
     /**
      * 
@@ -9,8 +10,9 @@ export default new class getBanGroup {
      * @param {string} fnc 
      * @returns 
      */
-    async redis(group: string, fnc: string) {
-        return await redis.get('phigrosBanGroup', { groupId: group })[banGroupId[fnc]] ? true : false
+    static async redis(group: string, fnc: string) {
+        let res = await redis.get('phigrosBanGroup', { groupId: group })
+        return res[0] && res[0][fnc] ? true : false
     }
 
     /**
@@ -19,7 +21,7 @@ export default new class getBanGroup {
      * @param {string} fnc 
      * @returns 
      */
-    async get(group: string, fnc: string) {
+    static async get(group: string, fnc: Keys<allFnc>) {
         if (!group) {
             return false
         }
@@ -55,6 +57,7 @@ export default new class getBanGroup {
             case 'comrks':
             case 'tips':
             case 'lmtAcc':
+            case 'randClg':
                 return await this.redis(group, 'fnc')
             case 'tipgame':
                 return await this.redis(group, 'tipgame')
@@ -77,4 +80,4 @@ export default new class getBanGroup {
                 return false;
         }
     }
-}()
+}

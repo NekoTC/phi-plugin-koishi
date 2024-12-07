@@ -72,11 +72,11 @@
 body {
     font-family: 'PHI', 'NotoSansArabic', 'NotoSansSymbols2', 'NOTO', 'NotoSansJP', 'NotoSansKannada', 'NotoSansCanadianAboriginal', 'NotoColorEmoji-Regular', 'HIMALAYA', '吞弥恰俊', 'NotoSansMath-Regular';
     margin: 0;
-    background: url('../otherimg/phigros.png') center no-repeat;
+    background: url('../otherimg/phigros.png') no-repeat;
     background-size: cover;
     background-position: center;
     transform-origin: top left;
-    position: absolute;
+    position: relative;
 }
 
 .background {
@@ -162,9 +162,9 @@ body {
             color-stop(0.2, #f92),
             color-stop(0, #f22));
     color: transparent;
-    /* -webkit-background-clip: text;
+    -webkit-background-clip: text;
     -moz-background-clip: text;
-    -ms-background-clip: text */
+    -ms-background-clip: text
 }
 
 .common_ill {

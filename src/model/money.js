@@ -1,4 +1,4 @@
-import get from "./getdata.js";
+import get from "./getdata";
 
 export default new class money {
     async getNoteNum(user_id) {

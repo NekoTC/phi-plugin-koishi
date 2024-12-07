@@ -1,8 +1,7 @@
 import { Context, Schema } from 'koishi'
 import { } from 'koishi-plugin-puppeteer'
-import help from './app/help'
-import { ConfigType } from './configType'
 import * as components from './components/index'
+import * as app from './app/index'
 
 export const name = 'phi-plugin'
 
@@ -10,16 +9,86 @@ export const inject = {
     required: ['puppeteer', 'database'],
 }
 
-export interface Config extends ConfigType { }
+export interface Config {
+    /**渲染设置 */
+    /**在线曲绘来源 */
+    onLinePhiIllUrl: string,
+    /**渲染精度 */
+    renderScale: number,
+    /**渲染质量 */
+    randerQuality: number,
+    /**渲染超时时间 */
+    timeout: number,
+    /**等待超时时间 */
+    waitingTimeout: number,
+    /**并行渲染数量 */
+    renderNum: number,
+    /**B19最大限制 */
+    B19MaxNum: number,
+    /**历史成绩单日数量 */
+    HistoryDayNum: number,
+    /**历史成绩展示天数 */
+    HistoryDateNum: number,
+    /**历史成绩展示数量 */
+    HistoryScoreNum: number,
+    /** /list 最大数量 */
+    listScoreMaxNum: number,
+    /**系统设置 */
+    /**自动更新曲绘 */
+    autoPullPhiIll: boolean,
+    /**频道模式 */
+    isGuild: boolean,
+    /**绑定二维码 */
+    TapTapLoginQRcode: boolean,
+    /**命令头 */
+    cmdhead: string,
+    /**曲库类型 */
+    songSet: number,
+    /**猜曲绘设置 */
+    /**提示间隔 */
+    GuessTipCd: number,
+    /**猜曲绘撤回 */
+    GuessRecall: boolean,
+    /**开字母设置 */
+    /**字母条数 */
+    LetterNum: number,
+    /**发送曲绘 */
+    LetterIllustration: string,
+    /**翻开字母CD */
+    LetterRevealCd: number,
+    /**回答CD */
+    LetterGuessCd: number,
+    /**提示CD */
+    LetterTipCd: number,
+    /**最长时长 */
+    LetterTimeLength: number,
+    /**提示猜歌设置 */
+    /**提示CD */
+    GuessTipsTipCD: number,
+    /**提示条数 */
+    GuessTipsTipNum: number,
+    /**最长时长 */
+    GuessTipsTimeout: number,
+    /**额外时间 */
+    GuessTipsAnsTime: number,
+    /**其他设置 */
+    /**段位认证tk */
+    VikaToken?: string
+    // /**自定义设置 */
+    // /**自定义别名设置 */
+    // nickconfig?: { [key: string]: string[] },
+    // /**自定义曲目设置 */
+    // custominfo?: { [key: string]: { song: string, composer: string, illustration_big: string, illustrator: string, bpm: string, length: string, chapter: string, spinfo: string, can_t_be_guessill: boolean, can_t_be_letter: boolean, chart: { [key: string]: { difficulty: string, combo: string, charter: string, rgba: string } } } }
+}
 
 export const Config: Schema<Config> = Schema.intersect([
     /**渲染设置 */
     Schema.object({
         /**在线曲绘来源 */
         onLinePhiIllUrl: Schema.union([
-            Schema.const("https://gitee.com/Steveeee-e/phi-plugin-ill/raw/main").description("Gitee"),
-            Schema.const("https://github.com/Catrong/phi-plugin-ill/blob/main").description("Github"),
-            Schema.const("https://mirror.ghproxy.com/https://raw.githubusercontent.com/Catrong/phi-plugin-ill/main").description("mirror.ghproxy"),
+            Schema.const("https://gitee.com/Steveeee-e/phi-plugin-ill/raw/main/").description("Gitee"),
+            Schema.const("https://raw.githubusercontent.com/Catrong/phi-plugin-ill/refs/heads/main/").description("Github"),
+            Schema.const("https://ghp.ci/https://raw.githubusercontent.com/Catrong/phi-plugin-ill/refs/heads/main/").description("mirror.ghproxy"),
             Schema.string().description("Custom").default("https://mirror.ghproxy.com/https://raw.githubusercontent.com/Catrong/phi-plugin-ill/main")
         ]).default("https://gitee.com/Steveeee-e/phi-plugin-ill/raw/main").description("在线曲绘来源"),
         /**渲染精度 */
@@ -28,7 +97,7 @@ export const Config: Schema<Config> = Schema.intersect([
         randerQuality: Schema.number().min(50).max(100).step(1).role('slider').default(100).description("渲染质量"),
         /**渲染超时时间 */
         timeout: Schema.number().min(1000).max(120000).default(10000).description("渲染超时时间，超时后重启puppeteer，单位ms"),
-        /**等待超时时间 */
+        /**等待超时时间 （废弃） */
         waitingTimeout: Schema.number().min(1000).max(120000).default(10000).description("等待超时时间，超时后退出渲染队列，单位ms"),
         /**并行渲染数量 */
         renderNum: Schema.number().min(1).max(10).default(1).description("并行渲染数量"),
@@ -37,7 +106,7 @@ export const Config: Schema<Config> = Schema.intersect([
         /**历史成绩单日数量 */
         HistoryDayNum: Schema.number().min(2).max(10000).default(10).description("/update 展现历史成绩的单日最大数量，至少为2"),
         /**历史成绩展示天数 */
-        HistoryScoreDate: Schema.number().min(1).max(100).default(10).description("/update 展现历史成绩的最大天数"),
+        HistoryDateNum: Schema.number().min(1).max(100).default(10).description("/update 展现历史成绩的最大天数"),
         /**历史成绩展示数量 */
         HistoryScoreNum: Schema.number().min(10).max(10000).default(10).description("/update 展现历史成绩的最大数量"),
         /** /list 最大数量 */
@@ -127,7 +196,7 @@ export const Config: Schema<Config> = Schema.intersect([
 export let logger: Context['logger']
 
 export async function apply(ctx: Context, config: Config) {
-    ctx.plugin(help, config)
+    ctx.plugin(app, config)
     ctx.plugin(components, config)
 }
 

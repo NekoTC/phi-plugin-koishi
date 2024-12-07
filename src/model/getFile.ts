@@ -2,17 +2,18 @@ import fs from 'node:fs';
 import csv from 'csvtojson';
 import path from 'node:path';
 import YAML from 'yaml';
-import { Logger } from '../components/Logger';
+import { logger } from '../components/Logger';
 
 
-class readFile {
+
+export default class getFile {
 
     /**
      * 读取文件
      * @param filePath 完整路径
      * @param style 强制设置文件格式
      */
-    async FileReader(filePath: string, style: string | 'JSON' | 'YAML' | 'CSV' | 'TXT' = undefined) {
+    static FileReader(filePath: string, style: string | 'JSON' | 'YAML' | 'TXT' = undefined) {
         try {
             if (!fs.existsSync(filePath)) { return false }
             // console.info(filePath)
@@ -23,8 +24,11 @@ class readFile {
                 case 'JSON': {
                     return JSON.parse(fs.readFileSync(filePath, 'utf8'))
                 }
-                case 'CSV': {
-                    return (await csv().fromString(fs.readFileSync(filePath, 'utf8')))
+                // case 'CSV': {
+                //     return (await csv().fromString(fs.readFileSync(filePath, 'utf8')))
+                // }
+                case 'YAML': {
+                    return YAML.parse(fs.readFileSync(filePath, 'utf8'))
                 }
                 case 'TXT': {
                     return fs.readFileSync(filePath, 'utf8')
@@ -35,11 +39,17 @@ class readFile {
                 }
             }
         } catch (error) {
-            Logger.warn(`[phi-plugin][${filePath}] 读取失败`)
-            Logger.warn(error)
+            logger.warn(`[phi-plugin][${filePath}] 读取失败`)
+            logger.warn(error)
             return false
         }
     }
+
+
+    static async csvReader(filePath: string) {
+        return await csv().fromFile(filePath)
+    }
+
 
     /**
      * 存储文件
@@ -47,7 +57,7 @@ class readFile {
      * @param {any} data 目标数据
      * @param {string|'TXT'|'JSON'|'YAML'} [style=undefined] 强制指定保存格式
      */
-    async SetFile(filepath: string, data: any, style: string | 'JSON' | 'YAML' | 'TXT' = undefined) {
+    static SetFile(filepath: string, data: any, style: string | 'JSON' | 'YAML' | 'TXT' = undefined) {
         try {
             const fatherPath = path.dirname(filepath)
             const fileName = path.basename(filepath)
@@ -80,12 +90,25 @@ class readFile {
             return true
         } catch (error) {
             console.info(error)
-            Logger.warn(`[phi-plugin]写入文件 ${filepath} 时遇到错误`)
-            Logger.warn(error)
+            logger.warn(`[phi-plugin]写入文件 ${filepath} 时遇到错误`)
+            logger.warn(error)
+            return false
+        }
+    }
+
+
+    static DelFile(path: string) {
+        try {
+            if (!fs.existsSync(`${path}`)) { return false }
+            fs.unlink(`${path}`, (err) => {
+                if (err) throw err
+            })
+            return true
+        } catch (error) {
+            logger.warn(`[phi-plugin][${path}] 删除失败`)
+            logger.warn(error)
             return false
         }
     }
 
 }
-
-export default new readFile()

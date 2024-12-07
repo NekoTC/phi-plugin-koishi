@@ -1,0 +1,2711 @@
+{
+    "session": "000fy1hqpdnji8fpd0dsdpjgu",
+    "saveInfo": {
+        "createdAt": "2023-08-21T08:45:20.726Z",
+        "gameFile": {
+            "createdAt": "2024-11-03T12:25:12.136Z",
+            "key": "gamesaves/40WstDecz3YRAunAtpr46vYduKZlVnzH/.save",
+            "objectId": "67276ba896c1264791c9155d",
+            "updatedAt": "2024-11-03T12:25:12.136Z",
+            "url": "https://rak3ffdi.tds1.tapfiles.cn/gamesaves/40WstDecz3YRAunAtpr46vYduKZlVnzH/.save"
+        },
+        "modifiedAt": {
+            "__type": "Date",
+            "iso": "2024-11-03T12:25:11.328Z"
+        },
+        "objectId": "64e32420f522964381a5b3ef",
+        "summary": {
+            "updatedAt": "2024 Nov.03 20:26:29",
+            "saveVersion": 6,
+            "challengeModeRank": 345,
+            "rankingScore": 14.31688117980957,
+            "gameVersion": 115,
+            "avatar": "Xenolith",
+            "cleared": [
+                49,
+                91,
+                221,
+                9
+            ],
+            "fullCombo": [
+                16,
+                13,
+                78,
+                1
+            ],
+            "phi": [
+                4,
+                2,
+                2,
+                0
+            ]
+        },
+        "updatedAt": "2024 Nov.03 20:25:12",
+        "user": {
+            "__type": "Pointer",
+            "className": "_User",
+            "objectId": "64e2011a6ad4c36e8b47fe45"
+        },
+        "PlayerId": "火打鼓爱衣"
+    },
+    "gameRecord": {
+        "Glaciaxion.SunsetRay.0": [
+            {
+                "fc": true,
+                "score": 995227,
+                "acc": 99.46968841552734
+            },
+            null,
+            {
+                "fc": true,
+                "score": 1000000,
+                "acc": 100
+            }
+        ],
+        "EradicationCatastrophe.NceS.0": [
+            {
+                "fc": false,
+                "score": 976934,
+                "acc": 98.48066711425781
+            },
+            {
+                "fc": false,
+                "score": 881325,
+                "acc": 91.42500305175781
+            },
+            {
+                "fc": true,
+                "score": 997875,
+                "acc": 99.76390075683594
+            }
+        ],
+        "Credits.Frums.0": [
+            {
+                "fc": false,
+                "score": 939973,
+                "acc": 94.86702728271484
+            },
+            {
+                "fc": false,
+                "score": 924662,
+                "acc": 96.8873291015625
+            },
+            {
+                "fc": true,
+                "score": 985280,
+                "acc": 98.36448669433594
+            },
+            {
+                "fc": false,
+                "score": 888558,
+                "acc": 95.07052612304688
+            }
+        ],
+        "Dlyrotz.Likey.0": [
+            {
+                "fc": false,
+                "score": 930804,
+                "acc": 97.38520050048828
+            },
+            null,
+            {
+                "fc": true,
+                "score": 997303,
+                "acc": 99.7003402709961
+            }
+        ],
+        "EnginexStartmelodymix.CrossingSound.0": [
+            null,
+            null,
+            {
+                "fc": true,
+                "score": 985450,
+                "acc": 98.38336944580078
+            }
+        ],
+        "光.姜米條.0": [
+            {
+                "fc": true,
+                "score": 919036,
+                "acc": 91.00402069091797
+            },
+            {
+                "fc": false,
+                "score": 940353,
+                "acc": 97.17439270019531
+            },
+            {
+                "fc": true,
+                "score": 976847,
+                "acc": 98.86846923828125
+            }
+        ],
+        "Wintercube.CtymaxfeatNceS.0": [
+            null,
+            null,
+            {
+                "fc": true,
+                "score": 999570,
+                "acc": 99.95225524902344
+            }
+        ],
+        "Cipher20.TetrajectoryfeatCtymax.0": [
+            {
+                "fc": false,
+                "score": 960162,
+                "acc": 99.0648422241211
+            },
+            null,
+            {
+                "fc": false,
+                "score": 968900,
+                "acc": 99.06340026855469
+            }
+        ],
+        "混乱Confusion.OnlyMyBlackScore.0": [
+            null,
+            null,
+            {
+                "fc": false,
+                "score": 932326,
+                "acc": 98.80879211425781
+            }
+        ],
+        "FULiAUTOSHOOTER.MYUKKE.0": [
+            null,
+            null,
+            {
+                "fc": false,
+                "score": 895534,
+                "acc": 94.79834747314453
+            }
+        ],
+        "HumaN.SOTUI.0": [
+            null,
+            null,
+            {
+                "fc": true,
+                "score": 982942,
+                "acc": 98.10469055175781
+            }
+        ],
+        "PRAW.Bluewind.0": [
+            null,
+            null,
+            {
+                "fc": false,
+                "score": 936909,
+                "acc": 98.78736877441406
+            }
+        ],
+        "PixelRebelz.Normal1zer.0": [
+            null,
+            null,
+            {
+                "fc": false,
+                "score": 894187,
+                "acc": 95.61105346679688
+            }
+        ],
+        "Cereris.SunsetRayNceS.0": [
+            {
+                "fc": false,
+                "score": 966225,
+                "acc": 97.65306091308594
+            },
+            {
+                "fc": false,
+                "score": 926534,
+                "acc": 96.43367004394531
+            },
+            {
+                "fc": false,
+                "score": 923625,
+                "acc": 96.53117370605469
+            }
+        ],
+        "NonMelodicRagezMUGEdit.Normal1zer.0": [
+            {
+                "fc": true,
+                "score": 951888,
+                "acc": 94.65418243408203
+            },
+            {
+                "fc": false,
+                "score": 938741,
+                "acc": 97.85185241699219
+            },
+            {
+                "fc": false,
+                "score": 902887,
+                "acc": 96.50607299804688
+            }
+        ],
+        "SultanRage.MonstDeath.0": [
+            {
+                "fc": true,
+                "score": 988113,
+                "acc": 98.67923736572266
+            },
+            {
+                "fc": false,
+                "score": 937485,
+                "acc": 97.84429931640625
+            },
+            {
+                "fc": true,
+                "score": 988309,
+                "acc": 98.70103454589844
+            }
+        ],
+        "ClassMemories.AntistarfeatCtymax.0": [
+            {
+                "fc": false,
+                "score": 963193,
+                "acc": 98.5114517211914
+            },
+            {
+                "fc": false,
+                "score": 965227,
+                "acc": 98.1971435546875
+            },
+            {
+                "fc": true,
+                "score": 986281,
+                "acc": 98.47571563720703
+            }
+        ],
+        "SURREALISM.Itsuki.0": [
+            {
+                "fc": false,
+                "score": 930592,
+                "acc": 97.21893310546875
+            },
+            {
+                "fc": false,
+                "score": 947592,
+                "acc": 98.55516815185547
+            },
+            {
+                "fc": true,
+                "score": 991384,
+                "acc": 99.04267120361328
+            }
+        ],
+        "BonusTime.MegaloPaleWhite.0": [
+            null,
+            null,
+            {
+                "fc": true,
+                "score": 994971,
+                "acc": 99.44122314453125
+            }
+        ],
+        "ENERGYSYNERGYMATRIX.Tanchiky.0": [
+            {
+                "fc": true,
+                "score": 994400,
+                "acc": 99.37777709960938
+            },
+            {
+                "fc": false,
+                "score": 936017,
+                "acc": 97.7758560180664
+            },
+            {
+                "fc": true,
+                "score": 992020,
+                "acc": 99.11332702636719
+            },
+            null,
+            {
+                "fc": false,
+                "score": 836943,
+                "acc": 90.04877471923828
+            }
+        ],
+        "NYA.FLuoRiTe姜米條.0": [
+            {
+                "fc": false,
+                "score": 889385,
+                "acc": 93.81147003173828
+            },
+            {
+                "fc": false,
+                "score": 931624,
+                "acc": 96.7640151977539
+            },
+            {
+                "fc": true,
+                "score": 973041,
+                "acc": 97.0044937133789
+            }
+        ],
+        "JunXionBetweenLifeAndDeathVIPMix.1N6Fs.0": [
+            {
+                "fc": true,
+                "score": 991584,
+                "acc": 99.06488037109375
+            },
+            {
+                "fc": false,
+                "score": 929275,
+                "acc": 97.53794860839844
+            },
+            {
+                "fc": true,
+                "score": 984294,
+                "acc": 98.25485229492188
+            }
+        ],
+        "cryout.JuE.0": [
+            {
+                "fc": false,
+                "score": 917285,
+                "acc": 97.19457244873047
+            },
+            {
+                "fc": false,
+                "score": 956087,
+                "acc": 98.16634368896484
+            },
+            {
+                "fc": true,
+                "score": 996461,
+                "acc": 99.60674285888672
+            }
+        ],
+        "Reimei.影虎.0": [
+            {
+                "fc": true,
+                "score": 985462,
+                "acc": 98.38461303710938
+            },
+            {
+                "fc": false,
+                "score": 951545,
+                "acc": 94.80589294433594
+            },
+            {
+                "fc": false,
+                "score": 929003,
+                "acc": 97.75178527832031
+            }
+        ],
+        "尊師TheGuru.rider.0": [
+            {
+                "fc": false,
+                "score": 978044,
+                "acc": 99.02849578857422
+            },
+            {
+                "fc": false,
+                "score": 937858,
+                "acc": 97.36283111572266
+            },
+            {
+                "fc": false,
+                "score": 939106,
+                "acc": 97.18157196044922
+            }
+        ],
+        "Spasmodic.姜米條颶風元力上人.0": [
+            {
+                "fc": false,
+                "score": 886460,
+                "acc": 95.25117492675781
+            },
+            {
+                "fc": false,
+                "score": 930083,
+                "acc": 97.3893814086914
+            },
+            {
+                "fc": false,
+                "score": 939014,
+                "acc": 97.49100494384766
+            }
+        ],
+        "LeaveAllBehind.rider.0": [
+            {
+                "fc": false,
+                "score": 946000,
+                "acc": 96.85714721679688
+            },
+            {
+                "fc": false,
+                "score": 957373,
+                "acc": 98.33757019042969
+            },
+            {
+                "fc": true,
+                "score": 992772,
+                "acc": 99.19693756103516
+            }
+        ],
+        "ColorfulDays.P4koofeatつゆり花鈴.0": [
+            {
+                "fc": false,
+                "score": 925673,
+                "acc": 95.1602554321289
+            },
+            {
+                "fc": false,
+                "score": 936479,
+                "acc": 95.51074981689453
+            },
+            {
+                "fc": true,
+                "score": 993808,
+                "acc": 99.31204223632812
+            }
+        ],
+        "microwav.dandeless.0": [
+            {
+                "fc": true,
+                "score": 966250,
+                "acc": 96.25
+            },
+            {
+                "fc": true,
+                "score": 991078,
+                "acc": 99.00871276855469
+            },
+            {
+                "fc": true,
+                "score": 989322,
+                "acc": 98.81356048583984
+            }
+        ],
+        "重生.姜米條.0": [
+            {
+                "fc": false,
+                "score": 953743,
+                "acc": 99.2231674194336
+            },
+            {
+                "fc": false,
+                "score": 958369,
+                "acc": 99.6307601928711
+            },
+            {
+                "fc": false,
+                "score": 965533,
+                "acc": 99
+            }
+        ],
+        "NOONEYESMAN.MYUKKE.0": [
+            {
+                "fc": true,
+                "score": 988008,
+                "acc": 98.66751098632812
+            },
+            {
+                "fc": false,
+                "score": 937827,
+                "acc": 96.97712707519531
+            },
+            {
+                "fc": false,
+                "score": 888436,
+                "acc": 93.90995025634766
+            }
+        ],
+        "望影の方舟Six.SeURa.0": [
+            {
+                "fc": true,
+                "score": 987446,
+                "acc": 98.60506439208984
+            },
+            {
+                "fc": false,
+                "score": 932386,
+                "acc": 97.3669204711914
+            },
+            {
+                "fc": false,
+                "score": 897308,
+                "acc": 97.03565216064453
+            }
+        ],
+        "Igallta.SeURa.0": [
+            {
+                "fc": false,
+                "score": 977645,
+                "acc": 98.0797119140625
+            },
+            {
+                "fc": false,
+                "score": 962296,
+                "acc": 98.4359359741211
+            },
+            {
+                "fc": false,
+                "score": 904450,
+                "acc": 95.62377166748047
+            }
+        ],
+        "ClockParadox.WyvernP.0": [
+            {
+                "fc": false,
+                "score": 980984,
+                "acc": 99.46807861328125
+            },
+            {
+                "fc": true,
+                "score": 993942,
+                "acc": 99.3269271850586
+            },
+            {
+                "fc": true,
+                "score": 994548,
+                "acc": 99.39423370361328
+            }
+        ],
+        "Chronologika.Hundotte.0": [
+            {
+                "fc": false,
+                "score": 962638,
+                "acc": 97.32472229003906
+            },
+            null,
+            {
+                "fc": true,
+                "score": 978486,
+                "acc": 98.38917541503906
+            }
+        ],
+        "NickofTime.P4koo.0": [
+            {
+                "fc": false,
+                "score": 942622,
+                "acc": 96.4024429321289
+            },
+            null,
+            {
+                "fc": false,
+                "score": 960154,
+                "acc": 98.97314453125
+            }
+        ],
+        "Chronomia.Lime.0": [
+            {
+                "fc": false,
+                "score": 895695,
+                "acc": 96.76034545898438
+            },
+            null,
+            {
+                "fc": false,
+                "score": 976956,
+                "acc": 98.92137145996094
+            }
+        ],
+        "ChronosCollapseLaCampanella.SunsetRay.0": [
+            {
+                "fc": false,
+                "score": 926686,
+                "acc": 98.45714569091797
+            },
+            {
+                "fc": false,
+                "score": 929082,
+                "acc": 97.69728088378906
+            },
+            {
+                "fc": false,
+                "score": 951933,
+                "acc": 97.79999542236328
+            }
+        ],
+        "Rrharil.TeamGrimoire.0": [
+            {
+                "fc": false,
+                "score": 898161,
+                "acc": 94.88789367675781
+            },
+            {
+                "fc": true,
+                "score": 993250,
+                "acc": 99.25
+            },
+            {
+                "fc": false,
+                "score": 905800,
+                "acc": 97.12307739257812
+            }
+        ],
+        "CraveWave.LandRoot.0": [
+            {
+                "fc": true,
+                "score": 992881,
+                "acc": 99.20903778076172
+            },
+            {
+                "fc": false,
+                "score": 757399,
+                "acc": 83.00505065917969
+            },
+            {
+                "fc": true,
+                "score": 983401,
+                "acc": 98.1556396484375
+            }
+        ],
+        "TheChariotREVIIVAL.Attoclef.0": [
+            {
+                "fc": false,
+                "score": 993837,
+                "acc": 99.33653259277344
+            },
+            {
+                "fc": false,
+                "score": 964371,
+                "acc": 99.79546356201172
+            },
+            {
+                "fc": true,
+                "score": 996878,
+                "acc": 99.65312194824219
+            }
+        ],
+        "Luminescence.米虾Fomiki初云CLoudie.0": [
+            {
+                "fc": false,
+                "score": 959379,
+                "acc": 98.74718475341797
+            },
+            null,
+            {
+                "fc": false,
+                "score": 960497,
+                "acc": 98.87538146972656
+            }
+        ],
+        "Retribution.nmyKryexe.0": [
+            {
+                "fc": false,
+                "score": 899450,
+                "acc": 96.31531524658203
+            },
+            {
+                "fc": false,
+                "score": 900968,
+                "acc": 96.72811126708984
+            },
+            {
+                "fc": false,
+                "score": 903940,
+                "acc": 97.82768249511719
+            }
+        ],
+        "DESTRUCTION321.Normal1zervsBrokenNerdz.0": [
+            {
+                "fc": false,
+                "score": 899193,
+                "acc": 97.36321258544922
+            },
+            {
+                "fc": true,
+                "score": 998488,
+                "acc": 99.83200073242188
+            },
+            {
+                "fc": false,
+                "score": 903815,
+                "acc": 96.87010955810547
+            }
+        ],
+        "DistortedFate.Sakuzyo.0": [
+            {
+                "fc": false,
+                "score": 890985,
+                "acc": 94.28451538085938
+            },
+            {
+                "fc": false,
+                "score": 888536,
+                "acc": 94.55670166015625
+            },
+            {
+                "fc": false,
+                "score": 886204,
+                "acc": 96.58384704589844
+            }
+        ],
+        "Poseidon.1112vsStar.0": [
+            {
+                "fc": false,
+                "score": 921614,
+                "acc": 95.83489227294922
+            },
+            {
+                "fc": false,
+                "score": 895327,
+                "acc": 92.70780944824219
+            },
+            {
+                "fc": true,
+                "score": 995800,
+                "acc": 99.53333282470703
+            }
+        ],
+        "WATER.A39沙包P.0": [
+            null,
+            {
+                "fc": false,
+                "score": 927248,
+                "acc": 97.43243408203125
+            },
+            {
+                "fc": true,
+                "score": 989712,
+                "acc": 98.85692596435547
+            }
+        ],
+        "MiracleForestVIPMix.Rinthlive.0": [
+            null,
+            {
+                "fc": false,
+                "score": 968925,
+                "acc": 98.48123168945312
+            },
+            {
+                "fc": true,
+                "score": 995119,
+                "acc": 99.45768737792969
+            }
+        ],
+        "MOBILYS.Dachs.0": [
+            null,
+            {
+                "fc": false,
+                "score": 940566,
+                "acc": 98.49057006835938
+            },
+            {
+                "fc": false,
+                "score": 967798,
+                "acc": 98.25160217285156
+            }
+        ],
+        "Lyrith迷宮リリス.ユメミド.0": [
+            null,
+            {
+                "fc": false,
+                "score": 926064,
+                "acc": 96.99285888671875
+            },
+            {
+                "fc": false,
+                "score": 900134,
+                "acc": 96.1562728881836
+            }
+        ],
+        "Demiurge.Rabpit.0": [
+            null,
+            null,
+            {
+                "fc": true,
+                "score": 983644,
+                "acc": 98.2019271850586
+            }
+        ],
+        "Demonkin.ForgedReigns.0": [
+            null,
+            null,
+            {
+                "fc": true,
+                "score": 987461,
+                "acc": 98.60675811767578
+            }
+        ],
+        "Re_NascencePsystyleVer.Rinth_live.0": [
+            null,
+            {
+                "fc": false,
+                "score": 908238,
+                "acc": 97.71711730957031
+            },
+            {
+                "fc": false,
+                "score": 960429,
+                "acc": 99.0024185180664
+            }
+        ],
+        "Ark.kanoryo.0": [
+            null,
+            {
+                "fc": false,
+                "score": 922505,
+                "acc": 97.95410919189453
+            },
+            {
+                "fc": false,
+                "score": 919256,
+                "acc": 96.0330581665039
+            }
+        ],
+        "AfterDawn.S9ryne.0": [
+            null,
+            {
+                "fc": false,
+                "score": 943557,
+                "acc": 97.23849487304688
+            },
+            {
+                "fc": false,
+                "score": 942385,
+                "acc": 98.28205108642578
+            }
+        ],
+        "INFiNiTEENERZYOverdoze.RekuMochizuki.0": [
+            null,
+            {
+                "fc": false,
+                "score": 930053,
+                "acc": 98.7011947631836
+            },
+            {
+                "fc": true,
+                "score": 986166,
+                "acc": 98.46283721923828
+            }
+        ],
+        "Khalid.Dolphin.0": [
+            null,
+            null,
+            {
+                "fc": true,
+                "score": 989517,
+                "acc": 99.12836456298828
+            }
+        ],
+        "QuantumHyperspace.D_AAN.0": [
+            null,
+            null,
+            {
+                "fc": false,
+                "score": 934398,
+                "acc": 98.76689147949219
+            }
+        ],
+        "FreakyUndulationsNobleKnightsofTune.JehezukielKURORAK.0": [
+            null,
+            null,
+            {
+                "fc": false,
+                "score": 898142,
+                "acc": 97.36274719238281
+            }
+        ],
+        "PANICPARADISE.DJSHIONY.0": [
+            null,
+            null,
+            {
+                "fc": false,
+                "score": 912208,
+                "acc": 96.85016632080078
+            }
+        ],
+        "ReEndofaDream.umavsモリモリあつし.0": [
+            null,
+            null,
+            {
+                "fc": false,
+                "score": 899642,
+                "acc": 96.94351196289062
+            }
+        ],
+        "心の記憶.A39沙包P.0": [
+            null,
+            null,
+            {
+                "fc": false,
+                "score": 980187,
+                "acc": 98.79353332519531
+            }
+        ],
+        "Spotlight.Ardolf.0": [
+            null,
+            null,
+            {
+                "fc": false,
+                "score": 942799,
+                "acc": 98.57786560058594
+            }
+        ],
+        "NightTheater.わかどり.0": [
+            null,
+            null,
+            {
+                "fc": false,
+                "score": 970117,
+                "acc": 99.36497497558594
+            }
+        ],
+        "Ramification.rareguyReina.0": [
+            null,
+            null,
+            {
+                "fc": false,
+                "score": 956093,
+                "acc": 98.82514190673828
+            }
+        ],
+        "DerRichter.Ωμεγα.0": [
+            null,
+            null,
+            {
+                "fc": false,
+                "score": 892254,
+                "acc": 96.25761413574219
+            }
+        ],
+        "ATHAZA.LeaF.0": [
+            null,
+            null,
+            {
+                "fc": false,
+                "score": 903914,
+                "acc": 97.40544891357422
+            }
+        ],
+        "もぺもぺ.LeaF.0": [
+            {
+                "fc": true,
+                "score": 1000000,
+                "acc": 100
+            },
+            {
+                "fc": true,
+                "score": 1000000,
+                "acc": 100
+            },
+            {
+                "fc": true,
+                "score": 983944,
+                "acc": 98.21601867675781
+            },
+            {
+                "fc": false,
+                "score": 876854,
+                "acc": 93.77083587646484
+            }
+        ],
+        "MARENOL.LeaF.0": [
+            null,
+            null,
+            {
+                "fc": true,
+                "score": 994514,
+                "acc": 99.39041900634766
+            }
+        ],
+        "萤火虫の怨.闫东炜.0": [
+            null,
+            null,
+            {
+                "fc": true,
+                "score": 994305,
+                "acc": 99.36723327636719
+            }
+        ],
+        "风屿.闫东炜.0": [
+            null,
+            null,
+            {
+                "fc": true,
+                "score": 991553,
+                "acc": 99.0614242553711
+            },
+            {
+                "fc": false,
+                "score": 921088,
+                "acc": 98.53154754638672
+            }
+        ],
+        "dBdoll.YUESTEVENuen.0": [
+            {
+                "fc": true,
+                "score": 1000000,
+                "acc": 100
+            },
+            {
+                "fc": true,
+                "score": 1000000,
+                "acc": 100
+            },
+            {
+                "fc": true,
+                "score": 1000000,
+                "acc": 100
+            },
+            {
+                "fc": true,
+                "score": 984125,
+                "acc": 98.23607635498047
+            }
+        ],
+        "Dash.小红Akane李祥辉.0": [
+            null,
+            null,
+            {
+                "fc": true,
+                "score": 986344,
+                "acc": 98.482666015625
+            }
+        ],
+        "云女孩.符白牙SiYFics.0": [
+            null,
+            null,
+            {
+                "fc": true,
+                "score": 988700,
+                "acc": 98.74440002441406
+            }
+        ],
+        "DropIt.Asuka.0": [
+            null,
+            null,
+            {
+                "fc": true,
+                "score": 985335,
+                "acc": 98.75849151611328
+            }
+        ],
+        "Aphasia.闫东炜.0": [
+            null,
+            null,
+            {
+                "fc": true,
+                "score": 982911,
+                "acc": 98.10126495361328
+            }
+        ],
+        "开心病.闫东炜.0": [
+            null,
+            null,
+            {
+                "fc": true,
+                "score": 994750,
+                "acc": 99.41666412353516
+            }
+        ],
+        "FindMe.Kforest.0": [
+            null,
+            null,
+            {
+                "fc": false,
+                "score": 974456,
+                "acc": 98.21172332763672
+            }
+        ],
+        "狂喜蘭舞.LeaF.0": [
+            null,
+            null,
+            {
+                "fc": false,
+                "score": 977149,
+                "acc": 99.25102996826172
+            }
+        ],
+        "SparkleNewLife.rider.0": [
+            null,
+            null,
+            {
+                "fc": true,
+                "score": 984803,
+                "acc": 98.44297790527344
+            }
+        ],
+        "KhronostasisKatharsis.Halv.0": [
+            null,
+            null,
+            {
+                "fc": false,
+                "score": 965261,
+                "acc": 99.31475067138672
+            }
+        ],
+        "SnowDesert.WyvernP.0": [
+            null,
+            null,
+            {
+                "fc": true,
+                "score": 993267,
+                "acc": 99.25189971923828
+            }
+        ],
+        "NextTime.SaMZIng.0": [
+            null,
+            null,
+            {
+                "fc": true,
+                "score": 987791,
+                "acc": 98.6434097290039
+            }
+        ],
+        "RubbishSorting.CtymaxvsNceS.0": [
+            null,
+            null,
+            {
+                "fc": true,
+                "score": 973793,
+                "acc": 97.08808898925781
+            }
+        ],
+        "AnotherMe.NeutralMoon.0": [
+            null,
+            {
+                "fc": false,
+                "score": 923835,
+                "acc": 95.92941284179688
+            },
+            {
+                "fc": true,
+                "score": 991064,
+                "acc": 99.0071029663086
+            }
+        ],
+        "mechanted.rareguy.0": [
+            null,
+            {
+                "fc": false,
+                "score": 901510,
+                "acc": 95.59000396728516
+            },
+            {
+                "fc": true,
+                "score": 981918,
+                "acc": 97.99093627929688
+            }
+        ],
+        "lifeflashesbeforeweebeyes.BilliumMoto.0": [
+            null,
+            {
+                "fc": false,
+                "score": 902823,
+                "acc": 96.34375
+            },
+            {
+                "fc": false,
+                "score": 901141,
+                "acc": 96.5586929321289
+            }
+        ],
+        "BreakThroughTheBarrier.lixound.0": [
+            null,
+            {
+                "fc": false,
+                "score": 972238,
+                "acc": 98.50257873535156
+            },
+            {
+                "fc": false,
+                "score": 926688,
+                "acc": 98.35779571533203
+            },
+            null,
+            {
+                "fc": false,
+                "score": 852316,
+                "acc": 92.6566162109375
+            }
+        ],
+        "Chronostasis.黒皇帝.0": [
+            null,
+            {
+                "fc": false,
+                "score": 928350,
+                "acc": 98.87332916259766
+            },
+            {
+                "fc": false,
+                "score": 902734,
+                "acc": 96.32353210449219
+            }
+        ],
+        "InfinityHeaven.HyuN.0": [
+            null,
+            {
+                "fc": false,
+                "score": 925249,
+                "acc": 96.65876770019531
+            },
+            {
+                "fc": false,
+                "score": 909203,
+                "acc": 97.01651763916016
+            }
+        ],
+        "Disorder.HyuNfeatYURI.0": [
+            null,
+            {
+                "fc": false,
+                "score": 916184,
+                "acc": 96.8521499633789
+            },
+            {
+                "fc": false,
+                "score": 936759,
+                "acc": 97.49999237060547
+            }
+        ],
+        "CROSSSOUL.HyuNfeatSyepias.0": [
+            null,
+            {
+                "fc": false,
+                "score": 932909,
+                "acc": 97.32062530517578
+            },
+            {
+                "fc": false,
+                "score": 892058,
+                "acc": 96.40996551513672
+            }
+        ],
+        "SpeedUp.DarTokki.0": [
+            null,
+            null,
+            {
+                "fc": false,
+                "score": 920795,
+                "acc": 96.8565444946289
+            }
+        ],
+        "MagentaPotion.EmoCo.0": [
+            null,
+            null,
+            {
+                "fc": false,
+                "score": 900664,
+                "acc": 96.36536407470703
+            }
+        ],
+        "Palescreen.WyvernPfeatMadol.0": [
+            null,
+            null,
+            {
+                "fc": false,
+                "score": 908843,
+                "acc": 97.71954345703125
+            }
+        ],
+        "GOODTEK.EBIMAYO.0": [
+            {
+                "fc": true,
+                "score": 1000000,
+                "acc": 100
+            },
+            {
+                "fc": false,
+                "score": 925575,
+                "acc": 97.73399353027344
+            },
+            {
+                "fc": true,
+                "score": 993144,
+                "acc": 99.40435028076172
+            }
+        ],
+        "GOODBOUNCE.EBIMAYO.0": [
+            null,
+            {
+                "fc": false,
+                "score": 931838,
+                "acc": 96.07904815673828
+            },
+            {
+                "fc": false,
+                "score": 960969,
+                "acc": 98.38529968261719
+            }
+        ],
+        "GOODWORLD.EBIMAYO.0": [
+            null,
+            {
+                "fc": false,
+                "score": 924000,
+                "acc": 97.73912811279297
+            },
+            {
+                "fc": false,
+                "score": 833927,
+                "acc": 89.50521087646484
+            }
+        ],
+        "GOODFORTUNE.EBIMAYO.0": [
+            null,
+            {
+                "fc": false,
+                "score": 970457,
+                "acc": 99.05184173583984
+            },
+            {
+                "fc": false,
+                "score": 890351,
+                "acc": 96.34520721435547
+            }
+        ],
+        "GOODRAGE.EBIMAYO.0": [
+            null,
+            {
+                "fc": true,
+                "score": 992476,
+                "acc": 99.16401672363281
+            },
+            {
+                "fc": false,
+                "score": 905546,
+                "acc": 97.4371337890625
+            }
+        ],
+        "TheMountainEater.PaulBazooka.0": [
+            null,
+            {
+                "fc": true,
+                "score": 995920,
+                "acc": 99.546630859375
+            },
+            {
+                "fc": false,
+                "score": 960115,
+                "acc": 98.56527709960938
+            }
+        ],
+        "Orthodox.tokiwa.0": [
+            null,
+            null,
+            {
+                "fc": false,
+                "score": 965737,
+                "acc": 99.31983184814453
+            }
+        ],
+        "EndMe.ZxNXasDelaina.0": [
+            null,
+            null,
+            {
+                "fc": true,
+                "score": 990428,
+                "acc": 98.93646240234375
+            }
+        ],
+        "ParallelRetrogressionGameVer.Tetrajectory.0": [
+            null,
+            null,
+            {
+                "fc": false,
+                "score": 897127,
+                "acc": 95.88131713867188
+            }
+        ],
+        "Electron.ElousFZ.0": [
+            null,
+            null,
+            {
+                "fc": true,
+                "score": 995625,
+                "acc": 99.51388549804688
+            }
+        ],
+        "SIGMA.Kryexe.0": [
+            null,
+            null,
+            {
+                "fc": false,
+                "score": 930682,
+                "acc": 97.40764617919922
+            }
+        ],
+        "HardcoreKwaya.EnFr.0": [
+            null,
+            null,
+            {
+                "fc": false,
+                "score": 928163,
+                "acc": 96.03286743164062
+            }
+        ],
+        "Trane.MALVA.0": [
+            null,
+            null,
+            {
+                "fc": false,
+                "score": 921543,
+                "acc": 98.27533721923828
+            }
+        ],
+        "雪降りメリクリ.A39.0": [
+            null,
+            null,
+            {
+                "fc": false,
+                "score": 890186,
+                "acc": 95.38338470458984
+            }
+        ],
+        "CervelleConnexion.SCTL.0": [
+            null,
+            null,
+            {
+                "fc": false,
+                "score": 932513,
+                "acc": 97.41563415527344
+            }
+        ],
+        "modulus.PTB10.0": [
+            null,
+            {
+                "fc": false,
+                "score": 867977,
+                "acc": 93.1016616821289
+            },
+            {
+                "fc": false,
+                "score": 909935,
+                "acc": 94.97415161132812
+            }
+        ],
+        "Wavetapper.Frums.0": [
+            null,
+            null,
+            {
+                "fc": true,
+                "score": 992725,
+                "acc": 99.19168090820312
+            }
+        ],
+        "Eltaw.Fl00t.0": [
+            null,
+            {
+                "fc": false,
+                "score": 939021,
+                "acc": 97.90296173095703
+            },
+            {
+                "fc": false,
+                "score": 971912,
+                "acc": 98.55554962158203
+            }
+        ],
+        "Initialize.iF.0": [
+            null,
+            {
+                "fc": false,
+                "score": 912105,
+                "acc": 96.22881317138672
+            },
+            {
+                "fc": true,
+                "score": 992952,
+                "acc": 99.21687316894531
+            }
+        ],
+        "桜樹街道.kozatosnow.0": [
+            null,
+            {
+                "fc": true,
+                "score": 997007,
+                "acc": 99.6674575805664
+            },
+            {
+                "fc": true,
+                "score": 995196,
+                "acc": 99.46623229980469
+            }
+        ],
+        "GetReady.iF.0": [
+            null,
+            {
+                "fc": false,
+                "score": 900497,
+                "acc": 96.7636947631836
+            },
+            {
+                "fc": true,
+                "score": 981923,
+                "acc": 97.99144744873047
+            }
+        ],
+        "volcanic.DETROakaルゼ.0": [
+            null,
+            {
+                "fc": false,
+                "score": 946655,
+                "acc": 98.06598663330078
+            },
+            {
+                "fc": false,
+                "score": 947148,
+                "acc": 98.35314178466797
+            }
+        ],
+        "BetterGraphicAnimation.ルゼ.0": [
+            null,
+            {
+                "fc": false,
+                "score": 949659,
+                "acc": 98.31556701660156
+            },
+            {
+                "fc": false,
+                "score": 946153,
+                "acc": 96.68830871582031
+            }
+        ],
+        "XING.ginkiha.0": [
+            null,
+            {
+                "fc": false,
+                "score": 912521,
+                "acc": 95.82622528076172
+            },
+            {
+                "fc": false,
+                "score": 933319,
+                "acc": 96.78622436523438
+            }
+        ],
+        "FinalStep.Lime.0": [
+            null,
+            {
+                "fc": false,
+                "score": 910555,
+                "acc": 96.31622314453125
+            },
+            {
+                "fc": false,
+                "score": 970542,
+                "acc": 98.57679748535156
+            }
+        ],
+        "Cthugha.USAO.0": [
+            null,
+            {
+                "fc": false,
+                "score": 931277,
+                "acc": 97.41751098632812
+            },
+            {
+                "fc": false,
+                "score": 906572,
+                "acc": 96.7329330444336
+            }
+        ],
+        "UnorthodoxThoughts.Joulez.0": [
+            null,
+            null,
+            {
+                "fc": false,
+                "score": 936543,
+                "acc": 97.61316680908203
+            }
+        ],
+        "游园地.椒盐菠萝.0": [
+            null,
+            null,
+            {
+                "fc": true,
+                "score": 990832,
+                "acc": 98.98129272460938
+            }
+        ],
+        "energytrixxx.KAH.0": [
+            null,
+            null,
+            {
+                "fc": false,
+                "score": 912667,
+                "acc": 97.20429992675781
+            }
+        ],
+        "Nhelv.Silentroom.0": [
+            {
+                "fc": false,
+                "score": 935153,
+                "acc": 96.4795913696289
+            },
+            {
+                "fc": false,
+                "score": 859221,
+                "acc": 93.23117065429688
+            },
+            {
+                "fc": false,
+                "score": 920498,
+                "acc": 97.8631591796875
+            }
+        ],
+        "Arkhei.SeraAmagi.0": [
+            null,
+            null,
+            {
+                "fc": true,
+                "score": 995109,
+                "acc": 99.4565200805664
+            }
+        ],
+        "ジングルベルJingleBell.A39沙包P.0": [
+            null,
+            null,
+            {
+                "fc": true,
+                "score": 995424,
+                "acc": 99.49151611328125
+            }
+        ],
+        "TimetoNightSkyfeatLeeYuJin.HyuNKLYDIX.0": [
+            null,
+            null,
+            {
+                "fc": true,
+                "score": 989500,
+                "acc": 98.83333587646484
+            }
+        ],
+        "HAZARD.Limpid.0": [
+            null,
+            null,
+            {
+                "fc": false,
+                "score": 971131,
+                "acc": 98.5289077758789
+            }
+        ],
+        "AnotherMe.DAAN.0": [
+            null,
+            null,
+            {
+                "fc": false,
+                "score": 916101,
+                "acc": 97.49481964111328
+            }
+        ],
+        "DontNeverAround.HAMA.0": [
+            null,
+            null,
+            {
+                "fc": false,
+                "score": 926858,
+                "acc": 97.85018920898438
+            }
+        ],
+        "Dreamland.z1onkyrrin.0": [
+            null,
+            null,
+            {
+                "fc": true,
+                "score": 982919,
+                "acc": 98.10206604003906
+            }
+        ],
+        "996.李化禹.0": [
+            {
+                "fc": true,
+                "score": 988750,
+                "acc": 98.75
+            },
+            {
+                "fc": false,
+                "score": 937770,
+                "acc": 99.09492492675781
+            },
+            {
+                "fc": false,
+                "score": 931441,
+                "acc": 97.52509307861328
+            }
+        ],
+        "FutureMind.RayNauticaRekuMochizuki.0": [
+            null,
+            null,
+            {
+                "fc": false,
+                "score": 967852,
+                "acc": 99.68244934082031
+            }
+        ],
+        "IMustSayNo.TangJuan.0": [
+            null,
+            null,
+            {
+                "fc": true,
+                "score": 978553,
+                "acc": 97.93616485595703
+            }
+        ],
+        "Apocalypse.アリスシャッハと魔法の楽団.0": [
+            {
+                "fc": false,
+                "score": 892947,
+                "acc": 94.49275970458984
+            },
+            null,
+            {
+                "fc": true,
+                "score": 992078,
+                "acc": 99.11981964111328
+            }
+        ],
+        "Protoflicker.Silentroom.0": [
+            {
+                "fc": false,
+                "score": 969421,
+                "acc": 98.53282165527344
+            },
+            null,
+            {
+                "fc": false,
+                "score": 898231,
+                "acc": 95.6942138671875
+            }
+        ],
+        "HorizonBlue.NothingButRequiemfeatAikapinChiyoko.0": [
+            {
+                "fc": false,
+                "score": 941628,
+                "acc": 98.9306411743164
+            },
+            {
+                "fc": true,
+                "score": 997851,
+                "acc": 99.76126098632812
+            },
+            {
+                "fc": false,
+                "score": 895125,
+                "acc": 94.77859497070312
+            }
+        ],
+        "YouaretheMiserable.tpazolite.0": [
+            {
+                "fc": false,
+                "score": 941646,
+                "acc": 97.24280548095703
+            },
+            {
+                "fc": false,
+                "score": 923255,
+                "acc": 97.40813446044922
+            },
+            {
+                "fc": false,
+                "score": 932592,
+                "acc": 98.25868225097656
+            },
+            {
+                "fc": false,
+                "score": 959174,
+                "acc": 98.53794860839844
+            }
+        ],
+        "Stasis.Maozon.0": [
+            null,
+            {
+                "fc": false,
+                "score": 962666,
+                "acc": 98.80821228027344
+            },
+            {
+                "fc": false,
+                "score": 933869,
+                "acc": 98.8993911743164
+            },
+            {
+                "fc": false,
+                "score": 888241,
+                "acc": 95.4764633178711
+            }
+        ],
+        "いざ参ります.Uskefeat棗いつき.0": [
+            null,
+            null,
+            {
+                "fc": true,
+                "score": 992717,
+                "acc": 99.19075775146484
+            }
+        ],
+        "OnAndOn.ETIAfeatJenga.0": [
+            null,
+            null,
+            {
+                "fc": false,
+                "score": 948253,
+                "acc": 98.25301361083984
+            }
+        ],
+        "DataErr0r.Cosmograph.0": [
+            null,
+            null,
+            {
+                "fc": false,
+                "score": 924812,
+                "acc": 96.8841781616211
+            }
+        ],
+        "Shadow.SumaiLightvs姜米條.0": [
+            null,
+            {
+                "fc": false,
+                "score": 938579,
+                "acc": 98.94353485107422
+            },
+            {
+                "fc": false,
+                "score": 930679,
+                "acc": 97.17857360839844
+            }
+        ],
+        "心之所向.姜米條.0": [
+            null,
+            {
+                "fc": false,
+                "score": 961529,
+                "acc": 98.77962493896484
+            },
+            {
+                "fc": true,
+                "score": 995582,
+                "acc": 99.50911712646484
+            }
+        ],
+        "inferior.姜米條.0": [
+            null,
+            {
+                "fc": false,
+                "score": 923793,
+                "acc": 98.39468383789062
+            },
+            {
+                "fc": false,
+                "score": 965205,
+                "acc": 99.1324462890625
+            }
+        ],
+        "csqn.Aoi.0": [
+            null,
+            null,
+            {
+                "fc": false,
+                "score": 874071,
+                "acc": 94.03377532958984
+            }
+        ],
+        "BraveNotes.TurquoiseDRIVENota.0": [
+            null,
+            null,
+            {
+                "fc": true,
+                "score": 995488,
+                "acc": 99.49870300292969
+            }
+        ],
+        "盏茗.茶鸣拾贰律.0": [
+            null,
+            {
+                "fc": true,
+                "score": 983892,
+                "acc": 98.21023559570312
+            },
+            {
+                "fc": true,
+                "score": 993307,
+                "acc": 99.2563705444336
+            }
+        ],
+        "青芽.茶鸣拾贰律.0": [
+            null,
+            {
+                "fc": false,
+                "score": 952789,
+                "acc": 97.21154022216797
+            },
+            {
+                "fc": false,
+                "score": 946402,
+                "acc": 98.09891510009766
+            }
+        ],
+        "EternalSnow.AbyssIdols.0": [
+            null,
+            null,
+            {
+                "fc": true,
+                "score": 996850,
+                "acc": 99.64999389648438
+            }
+        ],
+        "RainySeason.AbyssIdols.0": [
+            null,
+            null,
+            {
+                "fc": false,
+                "score": 930758,
+                "acc": 98.48484802246094
+            }
+        ],
+        "ElCondorPasaPhigrosEdit.PlasticFruits.0": [
+            null,
+            null,
+            {
+                "fc": false,
+                "score": 923877,
+                "acc": 97.78947448730469
+            }
+        ],
+        "BreakOver.Kforest.0": [
+            null,
+            {
+                "fc": false,
+                "score": 921556,
+                "acc": 97.84004974365234
+            },
+            {
+                "fc": true,
+                "score": 993077,
+                "acc": 99.35714721679688
+            },
+            {
+                "fc": false,
+                "score": 852088,
+                "acc": 92.29823303222656
+            }
+        ],
+        "BelieveLightfeat果丸哒呦.ScalerMestie果丸哒呦.0": [
+            null,
+            null,
+            {
+                "fc": false,
+                "score": 974450,
+                "acc": 98.8528823852539
+            }
+        ],
+        "Pontdessouvenirs.VeetaCrushvsitsufeatitsu.0": [
+            null,
+            null,
+            {
+                "fc": false,
+                "score": 910495,
+                "acc": 97.01335144042969
+            }
+        ],
+        "青丘.BLACK0.0": [
+            null,
+            null,
+            {
+                "fc": false,
+                "score": 882795,
+                "acc": 95.6173324584961
+            }
+        ],
+        "瓷岁.茶鸣拾贰律.0": [
+            null,
+            {
+                "fc": false,
+                "score": 969337,
+                "acc": 99.11002349853516
+            },
+            {
+                "fc": true,
+                "score": 995685,
+                "acc": 99.52054595947266
+            }
+        ],
+        "Feast远东之宴.茶鸣拾贰律.0": [
+            null,
+            {
+                "fc": false,
+                "score": 961488,
+                "acc": 98.38749694824219
+            },
+            {
+                "fc": false,
+                "score": 929935,
+                "acc": 97.56999969482422
+            }
+        ],
+        "インフェルノシティ.Ponchifeatはぁち.0": [
+            null,
+            {
+                "fc": true,
+                "score": 990190,
+                "acc": 98.92733001708984
+            },
+            {
+                "fc": false,
+                "score": 927710,
+                "acc": 97.95686340332031
+            }
+        ],
+        "PoisonANDORAffection.LeaF.0": [
+            null,
+            null,
+            {
+                "fc": false,
+                "score": 877765,
+                "acc": 95.02252197265625
+            }
+        ],
+        "零號車輛.seatrus.0": [
+            null,
+            null,
+            {
+                "fc": false,
+                "score": 892020,
+                "acc": 95.43951416015625
+            }
+        ],
+        "NowIsTheTimeDoIt.RoyMikelate.0": [
+            null,
+            null,
+            {
+                "fc": false,
+                "score": 969969,
+                "acc": 98.31446075439453
+            }
+        ],
+        "Bougainvillea.Jade.0": [
+            null,
+            null,
+            {
+                "fc": true,
+                "score": 998097,
+                "acc": 99.78851318359375
+            }
+        ],
+        "神話.PicaM2U.0": [
+            null,
+            {
+                "fc": true,
+                "score": 983995,
+                "acc": 98.22171020507812
+            },
+            {
+                "fc": true,
+                "score": 988000,
+                "acc": 98.76870727539062
+            }
+        ],
+        "Elúltimobaile.Θ.0": [
+            null,
+            {
+                "fc": false,
+                "score": 993208,
+                "acc": 99.29167938232422
+            },
+            {
+                "fc": true,
+                "score": 993287,
+                "acc": 99.25410461425781
+            }
+        ],
+        "Trojan.litmus.0": [
+            null,
+            {
+                "fc": false,
+                "score": 919690,
+                "acc": 98.12415313720703
+            },
+            {
+                "fc": false,
+                "score": 895659,
+                "acc": 96.33334350585938
+            }
+        ],
+        "TemporalShifting.LureRabbitVC.0": [
+            null,
+            {
+                "fc": false,
+                "score": 936914,
+                "acc": 97.17204284667969
+            },
+            {
+                "fc": false,
+                "score": 921559,
+                "acc": 97.7841567993164
+            }
+        ],
+        "Adastraperaspera.RabbitHouse.0": [
+            null,
+            {
+                "fc": false,
+                "score": 981467,
+                "acc": 99.32359313964844
+            },
+            {
+                "fc": false,
+                "score": 878869,
+                "acc": 95.443603515625
+            }
+        ],
+        "Ajourneytothemoonlight.Yesod.0": [
+            null,
+            {
+                "fc": false,
+                "score": 924306,
+                "acc": 98.57656860351562
+            },
+            {
+                "fc": false,
+                "score": 964650,
+                "acc": 99.02835845947266
+            }
+        ],
+        "RainyHeart.BelieverInYou阿卡姆巫师.0": [
+            null,
+            null,
+            {
+                "fc": true,
+                "score": 977807,
+                "acc": 97.53408813476562
+            }
+        ],
+        "Realms.HinkikAHimitsu.0": [
+            null,
+            null,
+            {
+                "fc": false,
+                "score": 977273,
+                "acc": 99.53938293457031
+            }
+        ],
+        "ぱぴぷぴぷぴぱ.ころねぽちWith立秋.0": [
+            {
+                "fc": false,
+                "score": 986680,
+                "acc": 98.79905700683594
+            },
+            {
+                "fc": false,
+                "score": 965601,
+                "acc": 99.36434936523438
+            },
+            {
+                "fc": false,
+                "score": 830105,
+                "acc": 91.05390167236328
+            }
+        ],
+        "TriumphRegret.typeMARS.0": [
+            null,
+            {
+                "fc": false,
+                "score": 941117,
+                "acc": 99.15706634521484
+            },
+            {
+                "fc": false,
+                "score": 916519,
+                "acc": 98.37278747558594
+            }
+        ],
+        "SATELLITE.かめりあ.0": [
+            null,
+            {
+                "fc": false,
+                "score": 945300,
+                "acc": 99.03334045410156
+            },
+            {
+                "fc": false,
+                "score": 967637,
+                "acc": 98.80712890625
+            }
+        ],
+        "DancewithSilence.かめりあ.0": [
+            null,
+            {
+                "fc": false,
+                "score": 939339,
+                "acc": 98.4329605102539
+            },
+            {
+                "fc": false,
+                "score": 902898,
+                "acc": 97.23555755615234
+            }
+        ],
+        "LabyrinthinKowloonWalledWorld.かめりあ.0": [
+            null,
+            {
+                "fc": false,
+                "score": 945594,
+                "acc": 98.56922149658203
+            },
+            {
+                "fc": false,
+                "score": 914678,
+                "acc": 97.42173767089844
+            }
+        ],
+        "ComputeItWithSomeDevilishAlcoholicSteampunkEngines.かめりあ.0": [
+            null,
+            {
+                "fc": false,
+                "score": 976867,
+                "acc": 98.99723815917969
+            },
+            {
+                "fc": false,
+                "score": 932741,
+                "acc": 97.6751937866211
+            }
+        ],
+        "ERABYECONNEC10N.かめりあ.0": [
+            null,
+            {
+                "fc": false,
+                "score": 948910,
+                "acc": 98.60066223144531
+            },
+            {
+                "fc": false,
+                "score": 890265,
+                "acc": 95.78103637695312
+            }
+        ],
+        "DiamondEyes.SYNTHETIC.0": [
+            null,
+            null,
+            {
+                "fc": true,
+                "score": 997151,
+                "acc": 99.68346405029297
+            }
+        ],
+        "Bitterblossom.imvi.0": [
+            null,
+            null,
+            {
+                "fc": true,
+                "score": 993668,
+                "acc": 99.29647827148438
+            }
+        ],
+        "SilenceisGoldenSpeechisGolden.NIWASHI.0": [
+            null,
+            null,
+            {
+                "fc": false,
+                "score": 907074,
+                "acc": 97.44304656982422
+            }
+        ],
+        "FracturedAngel.DJRaisei.0": [
+            null,
+            null,
+            {
+                "fc": false,
+                "score": 885775,
+                "acc": 94.57564544677734
+            }
+        ],
+        "JourneywithYou.Iris.0": [
+            null,
+            null,
+            {
+                "fc": true,
+                "score": 989911,
+                "acc": 99.01245880126953
+            }
+        ],
+        "SecretIllumination.Yooh.0": [
+            null,
+            null,
+            {
+                "fc": false,
+                "score": 941765,
+                "acc": 98.96781158447266
+            }
+        ],
+        "InvertedWorld.ARForest.0": [
+            null,
+            null,
+            {
+                "fc": false,
+                "score": 907274,
+                "acc": 96.78048706054688
+            }
+        ],
+        "月詠に鳴る.Feryquitousfeat藍月なくる.0": [
+            null,
+            null,
+            {
+                "fc": false,
+                "score": 981061,
+                "acc": 98.65967559814453
+            },
+            {
+                "fc": false,
+                "score": 899046,
+                "acc": 96.63646697998047
+            }
+        ],
+        "TECHNOPOLIS2085.PRASTIKDANCEFLOOR.0": [
+            null,
+            null,
+            {
+                "fc": true,
+                "score": 996159,
+                "acc": 99.57317352294922
+            },
+            {
+                "fc": false,
+                "score": 863368,
+                "acc": 93.36771392822266
+            }
+        ],
+        "祈-我ら神祖と共に歩む者なり-.光吉猛修VS穴山大輔VSKaiVS水野健治VS大国奏音.0": [
+            null,
+            null,
+            {
+                "fc": false,
+                "score": 897939,
+                "acc": 97.8307876586914
+            }
+        ],
+        "bye.DingerBox.0": [
+            null,
+            null,
+            {
+                "fc": false,
+                "score": 962269,
+                "acc": 98.07585906982422
+            }
+        ],
+        "聖夜讃歌.A39沙包P.0": [
+            null,
+            null,
+            {
+                "fc": false,
+                "score": 934414,
+                "acc": 98.89469146728516
+            }
+        ],
+        "ストレイソウルアラウンド.みーに.0": [
+            null,
+            null,
+            {
+                "fc": false,
+                "score": 991046,
+                "acc": 99.0418472290039
+            }
+        ],
+        "ManifoldHypothesis.cybermisofeattigerlily.0": [
+            null,
+            null,
+            {
+                "fc": false,
+                "score": 967034,
+                "acc": 98.60893249511719
+            }
+        ],
+        "KMoeVIP.ZxNX.0": [
+            null,
+            null,
+            {
+                "fc": false,
+                "score": 907920,
+                "acc": 97.01414489746094
+            }
+        ],
+        "GVNGlitterVomitusandNeon.SaltySaltUnfold33.0": [
+            null,
+            null,
+            {
+                "fc": false,
+                "score": 909205,
+                "acc": 96.0188217163086
+            }
+        ],
+        "CrushBETA.shadow_bling.0": [
+            null,
+            null,
+            {
+                "fc": false,
+                "score": 970527,
+                "acc": 99.22723388671875
+            }
+        ],
+        "BrokenSky.JungoMAX3feat刘佳宜Snow幻影刃shadow.0": [
+            null,
+            null,
+            {
+                "fc": true,
+                "score": 991765,
+                "acc": 99.08496856689453
+            }
+        ],
+        "BRAINHACKER.SOMON.0": [
+            null,
+            null,
+            {
+                "fc": false,
+                "score": 892917,
+                "acc": 96.12179565429688
+            }
+        ],
+        "Xenolith.Tatsh.0": [
+            null,
+            null,
+            {
+                "fc": false,
+                "score": 947959,
+                "acc": 98.73890686035156
+            }
+        ],
+        "ArtificialExistence.JunKuroda.0": [
+            null,
+            null,
+            {
+                "fc": false,
+                "score": 985544,
+                "acc": 99.39375305175781
+            }
+        ],
+        "IndelibleScar.Noah.0": [
+            null,
+            null,
+            {
+                "fc": false,
+                "score": 880083,
+                "acc": 95.62796020507812
+            }
+        ],
+        "Antithese.Blacklolita.0": [
+            null,
+            null,
+            {
+                "fc": false,
+                "score": 927587,
+                "acc": 97.99623107910156
+            }
+        ],
+        "PRAGMATISMRESURRECTION.Laur.0": [
+            null,
+            null,
+            {
+                "fc": false,
+                "score": 931497,
+                "acc": 97.38238525390625
+            }
+        ],
+        "ShineAfter.ADeanJocularACE.0": [
+            null,
+            null,
+            {
+                "fc": false,
+                "score": 919556,
+                "acc": 96.79375457763672
+            }
+        ],
+        "Bloom.targ麻团qwq.0": [
+            null,
+            null,
+            {
+                "fc": false,
+                "score": 874141,
+                "acc": 95.56504821777344
+            }
+        ],
+        "幽世桔梗.Capchiifeatまるもこ.0": [
+            null,
+            null,
+            {
+                "fc": false,
+                "score": 956876,
+                "acc": 99.36289978027344
+            }
+        ],
+        "千紫万紅.r0yvsWABI.0": [
+            null,
+            null,
+            {
+                "fc": false,
+                "score": 932650,
+                "acc": 98.76666259765625
+            }
+        ],
+        "明鏡烈火.MUEvsRekuMochizuki.0": [
+            null,
+            null,
+            {
+                "fc": false,
+                "score": 937585,
+                "acc": 96.83972930908203
+            }
+        ],
+        "今天不是明天.PIKASONICfeat兰音Reine.0": [
+            null,
+            null,
+            {
+                "fc": true,
+                "score": 999310,
+                "acc": 99.92333221435547
+            }
+        ],
+        "Cuvism.Fl00tvsHalv.0": [
+            null,
+            null,
+            {
+                "fc": false,
+                "score": 978868,
+                "acc": 99.58433532714844
+            }
+        ],
+        "iLArtifact.Link0.0": [
+            null,
+            null,
+            {
+                "fc": false,
+                "score": 920962,
+                "acc": 97.0211181640625
+            }
+        ],
+        "atruthseekerCommunicationwithUtopiawillbelost.kuro.0": [
+            null,
+            null,
+            {
+                "fc": false,
+                "score": 924924,
+                "acc": 97.54057312011719
+            }
+        ],
+        "BoundedQuietude.FiniteLimitvsSiLiS.0": [
+            null,
+            null,
+            {
+                "fc": false,
+                "score": 892593,
+                "acc": 96.40357208251953
+            }
+        ],
+        "君往何处QuoVadis.M2U.0": [
+            null,
+            null,
+            {
+                "fc": false,
+                "score": 990230,
+                "acc": 99.55614471435547
+            }
+        ],
+        "暗夜苏醒REANIMATE.Warak.0": [
+            null,
+            null,
+            {
+                "fc": false,
+                "score": 966379,
+                "acc": 98.72028350830078
+            }
+        ],
+        "Grimheart.Puru.0": [
+            null,
+            null,
+            {
+                "fc": true,
+                "score": 991811,
+                "acc": 99.09012603759766
+            }
+        ],
+        "Thrashforce.KAHvsE0ri4.0": [
+            null,
+            null,
+            {
+                "fc": false,
+                "score": 928088,
+                "acc": 98.8348388671875
+            }
+        ],
+        "Originally.SNKSMizku.0": [
+            {
+                "fc": true,
+                "score": 1000000,
+                "acc": 100
+            },
+            null,
+            {
+                "fc": false,
+                "score": 959742,
+                "acc": 99.1955795288086
+            }
+        ],
+        "黄金之城GOLDTOWN.Memme.0": [
+            null,
+            null,
+            {
+                "fc": false,
+                "score": 906085,
+                "acc": 96.79113006591797
+            }
+        ],
+        "双重间谍DoubleAgent.WAVAV.0": [
+            null,
+            null,
+            {
+                "fc": false,
+                "score": 881992,
+                "acc": 96.24169158935547
+            }
+        ],
+        "幻影鬼魅PLEASE.R300K.0": [
+            null,
+            null,
+            {
+                "fc": false,
+                "score": 929644,
+                "acc": 97.99536895751953
+            }
+        ]
+    },
+    "saveUrl": "https://rak3ffdi.tds1.tapfiles.cn/gamesaves/40WstDecz3YRAunAtpr46vYduKZlVnzH/.save",
+    "Recordver": 1,
+    "gameProgress": {
+        "isFirstRun": true,
+        "legacyChapterFinished": true,
+        "alreadyShowCollectionTip": true,
+        "alreadyShowAutoUnlockINTip": true,
+        "completed": "3.0",
+        "songUpdateInfo": 4,
+        "challengeModeRank": 345,
+        "money": [
+            471,
+            75,
+            0,
+            0,
+            0
+        ],
+        "unlockFlagOfSpasmodic": 7,
+        "unlockFlagOfIgallta": 7,
+        "unlockFlagOfRrharil": 7,
+        "flagOfSongRecordKey": 31,
+        "randomVersionUnlocked": 0,
+        "chapter8UnlockBegin": true,
+        "chapter8UnlockSecondPhase": true,
+        "chapter8Passed": true,
+        "chapter8SongUnlocked": 63
+    },
+    "gameuser": {
+        "name": "user",
+        "version": 1,
+        "showPlayerId": true,
+        "selfIntro": "我不是柚子厨",
+        "avatar": "Xenolith",
+        "background": "千紫万紅"
+    },
+    "gamesettings": {
+        "chordSupport": true,
+        "fcAPIndicator": true,
+        "enableHitSound": false,
+        "lowResolutionMode": false,
+        "deviceName": "iPhone 15 Pro Max",
+        "bright": 0,
+        "musicVolume": 0.9974675178527832,
+        "effectVolume": 1,
+        "hitSoundVolume": 1,
+        "soundOffset": 0,
+        "noteScale": 1.2999999523162842
+    }
+}

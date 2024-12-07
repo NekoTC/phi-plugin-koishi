@@ -1,60 +1,78 @@
-import readFile from './getFile'
+import getFile from './getFile'
 import { DlcInfoPath, imgPath, infoPath, originalIllPath, ortherIllPath } from '../components/pluginPath'
 import path from 'path'
 import SongsInfo from './class/SongsInfo'
 import fs from 'fs'
 import { Level, MAX_DIFFICULTY } from './constNum'
-import { Context } from 'koishi'
-import { Logger } from '../components/Logger'
 import { config } from '../components/Config'
+import Chart from './class/Chart'
 
 
-let getInfo = new class getInfo {
+
+
+/**头像id */
+getFile.csvReader(path.join(infoPath, 'avatar.csv'))
+    .then((avatar) => {
+        /**信息文件 */
+        getFile.csvReader(path.join(infoPath, 'info.csv')).then((info) => {
+            getFile.csvReader(path.join(infoPath, 'difficulty.csv')).then((difficulty) => {
+                getInfo.setCsvInfo(avatar, info, difficulty)
+            })
+
+        })
+
+    })
+
+
+
+export default class getInfo {
+
+
 
     /**默认别名,以id为key */
-    nicklist: { [key: string]: string[] }
+    static nicklist: { [key: string]: string[] } = getFile.FileReader(path.join(infoPath, 'nicklist.yaml'))
     /**以别名为key */
-    songnick: { [key: string]: string[] }
+    static songnick: { [key: string]: string[] } = {};
+
     /**扩增曲目信息 */
-    DLC_Info: { [key: string]: string[] }
+    static DLC_Info: { [key: string]: string[] } = {}
+
     /**头像id */
-    avatarid: { [key: string]: string }
-    /**Tips */
-    tips: string[]
+    static avatarid: { [key: string]: string } = {}
+
+    /**Tips [] */
+    static tips: string[] = getFile.FileReader(path.join(infoPath, 'tips.yaml'))
+
     /**原版信息 */
-    ori_info: { [key: string]: any }
+    static ori_info: { [key: string]: any } = {}
     /**通过id获取曲名 */
-    songsid: { [key: string]: string }
+    static songsid: { [key: string]: string } = {}
     /**原曲名称获取id */
-    idssong: { [key: string]: string }
+    static idssong: { [key: string]: string } = {}
     /**含有曲绘的曲目列表，id */
-    illlist: string[]
+    static illlist: string[] = []
+    /**按dif分的info */
+    static info_by_difficulty: { [key: string]: Chart[] } = {}
+
     /**SP信息 */
-    sp_info: { [key: string]: any }
+    static sp_info: { [key: string]: any } = getFile.FileReader(path.join(infoPath, 'spinfo.json'))
+
     /**难度映射 */
-    Level: string[]
+    static Level: string[] = Level
+
     /**最高定数 */
-    MAX_DIFFICULTY: number
-    /**所有曲目曲名列表 */
-    idlist: string[]
+    static MAX_DIFFICULTY: number = 0
+
+    /**所有曲目id列表 */
+    static idlist: string[] = []
+
     /**note统计 */
-    notesInfo: { [key: string]: any }
-    /**今日人品 */
-    word: { [key: string]: string }
+    static notesInfo: { [key: string]: any } = getFile.FileReader(path.join(infoPath, 'notesInfo.json'))
 
-    // constructor() {
-    //     this.init()
-    // }
+    /**jrrp */
+    static word: { [key: string]: string } = getFile.FileReader(path.join(infoPath, 'jrrp.json'))
 
-    /**
-     * 
-     */
-    async init() {
-
-        /**默认别名,以id为key */
-        this.nicklist = await readFile.FileReader(path.join(infoPath, 'nicklist.yaml'))
-        /**以别名为key */
-        this.songnick = {}
+    static setCsvInfo(csv_avatar: { name: string, id: string }[], CsvInfo: any, Csvdif: any) {
         for (let id in this.nicklist) {
             for (let j in this.nicklist[id]) {
                 if (this.songnick[this.nicklist[id][j]]) {
@@ -65,68 +83,31 @@ let getInfo = new class getInfo {
             }
         }
 
-        /**扩增曲目信息 */
-        this.DLC_Info = {}
         let files = fs.readdirSync(DlcInfoPath).filter(file => file.endsWith('.json'))
         files.forEach(async (file) => {
-            this.DLC_Info[path.basename(file, '.json')] = await readFile.FileReader(path.join(DlcInfoPath, file))
+            this.DLC_Info[path.basename(file, '.json')] = await getFile.FileReader(path.join(DlcInfoPath, file))
         })
 
 
-
-        /**头像id */
-        let csv_avatar = await readFile.FileReader(path.join(infoPath, 'avatar.csv'))
-        this.avatarid = {}
-        for (let i in csv_avatar) {
-            this.avatarid[csv_avatar[i].id] = csv_avatar[i].name
-        }
-
-        /**
-         * Tips []
-         */
-        this.tips = await readFile.FileReader(path.join(infoPath, 'tips.yaml'))
-
-
-        /**原版信息 */
-        this.ori_info = {}
-        /**通过id获取曲名 */
-        this.songsid = {}
-        /**原曲名称获取id */
-        this.idssong = {}
-        /**含有曲绘的曲目列表，id */
-        this.illlist = []
-
-        /**SP信息 */
-        this.sp_info = await readFile.FileReader(path.join(infoPath, 'spinfo.json'))
         for (let i in this.sp_info) {
             if (this.sp_info[i]['illustration_big']) {
                 this.illlist.push(this.sp_info[i].song)
             }
         }
 
+        /**头像id */
+        for (let i in csv_avatar) {
+            this.avatarid[csv_avatar[i].id] = csv_avatar[i].name
+        }
 
+        let Jsoninfo = getFile.FileReader(path.join(infoPath, 'infolist.json'))
 
-        /**难度映射 */
-        this.Level = Level
+        // console.info(Jsoninfo)
 
-        /**最高定数 */
-        this.MAX_DIFFICULTY = 0
-
-        /**所有曲目id列表 */
-        this.idlist = []
-
-        /**note统计 */
-        this.notesInfo = await readFile.FileReader(path.join(infoPath, 'notesInfo.json'))
-
-        /**信息文件 */
-        let CsvInfo = await readFile.FileReader(path.join(infoPath, 'info.csv'))
-        let Csvdif = await readFile.FileReader(path.join(infoPath, 'difficulty.csv'))
-        let Jsoninfo = await readFile.FileReader(path.join(infoPath, 'infolist.json'))
-        // console.info(CsvInfo, Csvdif, Jsoninfo)
         for (let i in CsvInfo) {
             let id = CsvInfo[i].id
-            this.songsid[id + '.0'] = CsvInfo[i].song
-            this.idssong[CsvInfo[i].song] = id + '.0'
+            this.songsid[id] = CsvInfo[i].song
+            this.idssong[CsvInfo[i].song] = id
 
             this.ori_info[id] = Jsoninfo[id]
             if (!Jsoninfo[id]) {
@@ -165,22 +146,38 @@ let getInfo = new class getInfo {
             console.error('[phi-plugin] MAX_DIFFICULTY 常量未更新，请回报作者！', MAX_DIFFICULTY, this.MAX_DIFFICULTY)
         }
 
-
-        /**jrrp */
-        this.word = await readFile.FileReader(path.join(infoPath, 'jrrp.json'))
+        for (let id in this.ori_info) {
+            for (let level in this.ori_info[id].chart) {
+                let info = this.ori_info[id]
+                if (this.info_by_difficulty[info.chart[level].difficulty]) {
+                    this.info_by_difficulty[info.chart[level].difficulty].push({
+                        id: info.id,
+                        rank: level,
+                        ...info.chart[level],
+                    })
+                } else {
+                    this.info_by_difficulty[info.chart[level].difficulty] = [{
+                        id: info.id,
+                        rank: level,
+                        ...info.chart[level],
+                    }]
+                }
+            }
+        }
 
     }
+
 
     /**
      * 返回原曲信息
      * @param {} [id=undefined] 原曲id
      * @returns {SongsInfo}
      */
-    info(id: string): SongsInfo | {} {
+    static info(id: string): SongsInfo {
         let result = { ...this.ori_info, ...this.sp_info }
         let info = result[id]
         if (!info) {
-            return {}
+            return null
         }
         return {
             /**id */
@@ -190,7 +187,7 @@ let getInfo = new class getInfo {
             /**小型曲绘 */
             illustration: info.illustration,
             /**原版曲绘 */
-            illustration_big: this.getill(info.song),
+            illustration_big: this.getill(info.id),
             /**是否不参与猜字母 */
             can_t_be_letter: info.can_t_be_letter || true,
             /**是否不参与猜曲绘 */
@@ -218,18 +215,17 @@ let getInfo = new class getInfo {
      * 返回所有曲目信息
      * @returns 
      */
-    all_info() {
+    static all_info() {
         return { ...this.ori_info, ...this.sp_info }
     }
 
     /**
-    * 根据参数模糊匹配返回原曲名称
+    * 根据参数模糊匹配返回id数组
     * @param {string} mic 别名
     * @param {number} [Distance=0.85] 阈值 猜词0.95
     * @returns 原曲id数组，按照匹配程度降序
     */
-    fuzzysongsnick(mic: string, Distance: number = 0.85) {
-
+    static fuzzysongsnick(mic: string, Distance: number = 0.85) {
         const fuzzyMatch = (str1, str2) => {
             if (str1 == str2) {
                 return 1
@@ -285,7 +281,7 @@ let getInfo = new class getInfo {
     }
 
     //采用Jaro-Winkler编辑距离算法来计算str间的相似度，复杂度为O(n)=>n为较长的那个字符出的长度
-    jaroWinklerDistance(s1: string, s2: string): number {
+    static jaroWinklerDistance(s1: string, s2: string): number {
         let m = 0 //匹配的字符数量
 
         //如果任任一字符串为空则距离为0
@@ -363,22 +359,22 @@ let getInfo = new class getInfo {
      * @param {'common'|'blur'|'low'} [kind='common'] 清晰度
      * @return {string} 网址或文件地址
     */
-    getill(id: string, kind: 'common' | 'blur' | 'low' = 'common'): string {
+    static getill(id: string, kind: 'common' | 'blur' | 'low' = 'common'): string {
         let songsinfo = this.all_info()[id]
         let ans = songsinfo?.illustration_big
         let reg = /^(?:(http|https|ftp):\/\/)((?:[\w-]+\.)+[a-z0-9]+)((?:\/[^/?#]*)+)?(\?[^#]+)?(#.+)?$/i
         if (ans && !reg.test(ans)) {
             ans = path.join(ortherIllPath, ans)
         } else if (this.ori_info[id]) {
-            if (fs.existsSync(path.join(originalIllPath, id.replace(/.0$/, '.png')))) {
-                ans = path.join(originalIllPath, id.replace(/.0$/, '.png'))
-            } else if (fs.existsSync(path.join(originalIllPath, "ill", id.replace(/.0$/, '.png')))) {
+            if (fs.existsSync(path.join(originalIllPath, id + '.png'))) {
+                ans = path.join(originalIllPath, id + '.png')
+            } else if (fs.existsSync(path.join(originalIllPath, "ill", id + '.png'))) {
                 if (kind == 'common') {
-                    ans = path.join(originalIllPath, "ill", id.replace(/.0$/, '.png'))
+                    ans = path.join(originalIllPath, "ill", id + '.png')
                 } else if (kind == 'blur') {
-                    ans = path.join(originalIllPath, "illBlur", id.replace(/.0$/, '.png'))
+                    ans = path.join(originalIllPath, "illBlur", id + '.png')
                 } else if (kind == 'low') {
-                    ans = path.join(originalIllPath, "illLow", id.replace(/.0$/, '.png'))
+                    ans = path.join(originalIllPath, "illLow", id + '.png')
                 }
             }
             try {
@@ -388,25 +384,25 @@ let getInfo = new class getInfo {
             }
             if (!ans) {
                 if (kind == 'common') {
-                    ans = `${config.onLinePhiIllUrl}/ill/${id.replace(/.0$/, '.png')}`
+                    ans = `${config.onLinePhiIllUrl}/ill/${id + '.png'}`
                 } else if (kind == 'blur') {
-                    ans = `${config.onLinePhiIllUrl}/illBlur/${id.replace(/.0$/, '.png')}`
+                    ans = `${config.onLinePhiIllUrl}/illBlur/${id + '.png'}`
                 } else if (kind == 'low') {
-                    ans = `${config.onLinePhiIllUrl}/illLow/${id.replace(/.0$/, '.png')}`
+                    ans = `${config.onLinePhiIllUrl}/illLow/${id + '.png'}`
                 }
             }
         }
         if (!ans) {
             ans = path.join(imgPath, 'phigros.png')
         }
-        return ans
+        return ans;
     }
 
     /**
      * 返回章节封面 url
      * @param {string} name 标准章节名
      */
-    getChapIll(name: string) {
+    static getChapIll(name: string) {
         if (fs.existsSync(path.join(originalIllPath, "chap", `${name}.png`))) {
             return path.join(originalIllPath, "chap", `${name}.png`)
         } else {
@@ -419,7 +415,7 @@ let getInfo = new class getInfo {
      * @param {string} id 
      * @returns file name
      */
-    idgetavatar(id: string) {
+    static idgetavatar(id: string) {
         if (this.avatarid[id]) {
             return this.avatarid[id]
         } else {
@@ -432,7 +428,8 @@ let getInfo = new class getInfo {
      * @param {String} id 曲目id
      * @returns 原名
      */
-    idgetsong(id: string) {
+    static idgetsong(id: string) {
+        id.replace('.0', '')
         return this.songsid[id]
     }
 
@@ -441,12 +438,8 @@ let getInfo = new class getInfo {
      * @param {String} song 原曲曲名
      * @returns 曲目id
      */
-    SongGetId(song: string) {
+    static SongGetId(song: string) {
         return this.idssong[song]
     }
 
-}()
-
-getInfo.init()
-
-export default getInfo
+}

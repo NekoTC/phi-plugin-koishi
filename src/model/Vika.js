@@ -1,6 +1,6 @@
 // 如果不能使用 es6 import，可用 const Vika = require('@vikadata/vika').default; 代替
 import { Vika } from "@vikadata/vika";
-import Config from "../components/Config.js"
+import Config from "../components/Config"
 
 // 通过 datasheetId 来指定要从哪张维格表操作数据。
 
