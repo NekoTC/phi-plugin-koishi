@@ -49,27 +49,6 @@ Phigros查分
 
 ------
 
-### 安装：
-在Yunzai目录下运行
-
-> 使用Github
-
-```
-git clone --depth=1 https://github.com/Catrong/phi-plugin.git ./plugins/phi-plugin/ #安装插件本体
-cd ./plugins/phi-plugin/ #进入插件目录
-pnpm install -P #安装插件所需依赖
-```
-
-> 使用Gitee
-
-```
-git clone --depth=1 https://gitee.com/catrong/phi-plugin.git ./plugins/phi-plugin/ #安装插件本体
-cd ./plugins/phi-plugin/ #进入插件目录
-pnpm install -P #安装插件所需依赖
-```
-
-------
-
 ### 功能
 
 正在迁移中，请以插件内帮助为准
