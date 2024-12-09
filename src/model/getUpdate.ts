@@ -74,7 +74,7 @@ export default async function buildingRecord(session: Session, User: PhigrosUser
         for (let id in now.gameRecord) {
             for (let i in task) {
                 if (!task[i]) continue
-                if (!task[i].finished && getInfo.songsid[id] == task[i].song) {
+                if (!task[i].finished && getInfo.songById[id] == task[i].song) {
                     let level = Level.indexOf(task[i].request.rank)
                     if (!now.gameRecord[id][level]) continue
                     switch (task[i].request.type) {

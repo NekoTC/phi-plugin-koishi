@@ -46,9 +46,9 @@ export default class getInfo {
     /**原版信息 */
     static ori_info: { [key: string]: any } = {}
     /**通过id获取曲名 */
-    static songsid: { [key: string]: string } = {}
+    static songById: { [key: string]: string } = {}
     /**原曲名称获取id */
-    static idssong: { [key: string]: string } = {}
+    static idBySong: { [key: string]: string } = {}
     /**含有曲绘的曲目列表，id */
     static illlist: string[] = []
     /**按dif分的info */
@@ -106,8 +106,8 @@ export default class getInfo {
 
         for (let i in CsvInfo) {
             let id = CsvInfo[i].id
-            this.songsid[id] = CsvInfo[i].song
-            this.idssong[CsvInfo[i].song] = id
+            this.songById[id] = CsvInfo[i].song
+            this.idBySong[CsvInfo[i].song] = id
 
             this.ori_info[id] = Jsoninfo[id]
             if (!Jsoninfo[id]) {
@@ -430,7 +430,7 @@ export default class getInfo {
      */
     static idgetsong(id: string) {
         id.replace('.0', '')
-        return this.songsid[id]
+        return this.songById[id]
     }
 
     /**
@@ -439,7 +439,7 @@ export default class getInfo {
      * @returns 曲目id
      */
     static SongGetId(song: string) {
-        return this.idssong[song]
+        return this.idBySong[song]
     }
 
 }

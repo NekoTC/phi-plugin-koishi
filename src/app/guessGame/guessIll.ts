@@ -4,11 +4,11 @@ import { getInfo, send, render, fCompute, getPic } from '../../model'
 import { logger } from '../../components/Logger'
 
 
-let songsname = getInfo.illlist
+let songsId = getInfo.illlist
 let songweights = {} //存储每首歌曲被抽取的权重
 
 //曲目初始洗牌
-shuffleArray(songsname)
+shuffleArray(songsId)
 
 let gamelist = {}
 const eList = {}
@@ -21,7 +21,7 @@ export default class guessIll {
             send.send_with_At(session, "请不要重复发起哦！", true)
             return true
         }
-        if (songsname.length == 0) {
+        if (songsId.length == 0) {
             send.send_with_At(session, '当前曲库暂无有曲绘的曲目哦！更改曲库后需要重启哦！')
             return;
         }
@@ -30,8 +30,8 @@ export default class guessIll {
             songweights[guildId] = {}
 
             //将每一首曲目的权重初始化为1
-            songsname.forEach(song => {
-                songweights[guildId][song] = 1
+            songsId.forEach(id => {
+                songweights[guildId][id] = 1
             })
         }
 
@@ -241,12 +241,12 @@ export default class guessIll {
         }
 
         // 曲目初始洗牌
-        shuffleArray(songsname)
+        shuffleArray(songsId)
 
         songweights[guildId] = songweights[guildId] || {}
 
         // 将权重归1
-        songsname.forEach(song => {
+        songsId.forEach(song => {
             songweights[guildId][song] = 1
         })
 
@@ -400,25 +400,25 @@ function randint(min, max) {
 }
 
 //定义随机抽取曲目的函数
-function getRandomSong(e) {
+function getRandomSong(session: Session) {
     //对象解构提取groupid
-    const { group_id } = e
+    const { guildId } = session
 
     //计算曲目的总权重
-    const totalWeight = Object.values(songweights[group_id]).reduce((total, weight) => total as any + weight, 0)
+    const totalWeight = Object.values(songweights[guildId]).reduce((total, weight) => total as any + weight, 0)
 
     //生成一个0到总权重之间带有16位小数的随机数
     const randomWeight = randfloat(0, totalWeight, 16)
 
     let accumulatedWeight = 0
-    for (const [song, weight] of Object.entries(songweights[group_id])) {
+    for (const [song, weight] of Object.entries(songweights[guildId])) {
         accumulatedWeight += weight as any
         if (accumulatedWeight >= randomWeight) {
-            songweights[group_id][song] *= 0.4 //权重每次衰减60%
+            songweights[guildId][song] *= 0.4 //权重每次衰减60%
             return song
         }
     }
 
     //如果由于浮点数精度问题未能正确选择歌曲，则随机返回一首
-    return songsname[randint(0, songsname.length - 1)]
+    return songsId[randint(0, songsId.length - 1)]
 }
