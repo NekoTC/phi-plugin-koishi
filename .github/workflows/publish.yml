@@ -102,5 +102,5 @@ jobs:
           git stash
           git reset --hard
           git pull --rebase
-          git commit --allow-empty -m "小学还在维护此仓库哦~（状态心跳）"
+          git commit --allow-empty -m "废酱还在维护此仓库哦~（状态心跳）"
           git push
