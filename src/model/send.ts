@@ -16,11 +16,15 @@ class send {
      */
     async send_with_At(session: Session, msg: any, quote: boolean = false, recallMsg: number = 0) {
         let messageId: string[]
-        if (session.guild) {
-            messageId = await session.send(quote ? h.quote(session.messageId) : '' + h.at(session.userId) + msg)
-        } else {
-            messageId = await session.send(quote ? h.quote(session.messageId) : '' + msg)
+        let res = ""
+        if (quote) {
+            res += h.quote(session.userId).toString()
         }
+        if (session.guild) {
+            res += h.at(session.userId).toString()
+        }
+        res += msg
+        messageId = await session.send(res)
         if (recallMsg) {
             setTimeout(() => {
                 for (let id in messageId) {

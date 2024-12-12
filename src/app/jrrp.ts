@@ -48,10 +48,10 @@ export default class phiJrrp {
                         common.splice(id - bad.length, 1)
                     }
                 }
-                /**记录现在时间，有效期到第二天8点 */
+                /**记录现在时间，有效期为当天 */
                 jrrp.push(fCompute.date_to_string(Date.now()))
 
-                await redis.upsert('phigrosJrrp', [{ userId: session.userId, value: JSON.stringify(jrrp) }])
+                await redis.upsert('phigrosJrrp', [{ userId: session.userId, value: JSON.stringify(jrrp) }], 'userId')
             }
             let data = {
                 bkg: getInfo.getill("ShineAfter.ADeanJocularACE"),
