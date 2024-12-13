@@ -105,7 +105,6 @@ export default class guessLetter {
         }
 
         if (anslist[guildId][index] != getInfo.info(songId[0]).song) {
-            console.info(session.text(i18nList.letter.guessFalse, [index + 1, getInfo.info(songId[0]).song]))
             send.send_with_At(session, session.text(i18nList.letter.guessFalse, [index + 1, getInfo.info(songId[0]).song]), true)
             return true
         }

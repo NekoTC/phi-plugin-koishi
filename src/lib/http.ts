@@ -1,7 +1,5 @@
 
 
-import fetch from 'node-fetch'
-
 
 interface HttpClient {
     request: HttpRequest;

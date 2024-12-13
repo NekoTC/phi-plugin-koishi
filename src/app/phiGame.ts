@@ -44,7 +44,6 @@ export default class phiGames {
 
         ctx.middleware(async (session, next) => {
             if (gameList[session.guildId]?.gameType == 'letter') {
-                console.info(session.content)
                 return guessLetter.guess(session, gameList, session.content) ? null : next();
             }
             return next()
