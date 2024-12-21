@@ -194,7 +194,7 @@ function getBlurlist(guildId: string): string[] {
         let str = ''
         for (let j = 0; j < ans[i].length; j++) {
             if (pinyin(ans[i][j], { pattern: 'first', toneType: 'none', type: 'string' }).toLowerCase() in openlist[guildId]) {
-                console.info(pinyin(ans[i][j], { pattern: 'first', toneType: 'none', type: 'string' }), ans[i][j])
+                // console.info(pinyin(ans[i][j], { pattern: 'first', toneType: 'none', type: 'string' }), ans[i][j])
                 str += ans[i][j]
             } else {
                 str += '*'

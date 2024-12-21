@@ -89,7 +89,7 @@ export default class getFile {
             }
             return true
         } catch (error) {
-            console.info(error)
+            // console.info(error)
             logger.warn(`[phi-plugin]写入文件 ${filepath} 时遇到错误`)
             logger.warn(error)
             return false

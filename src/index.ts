@@ -193,8 +193,6 @@ export const Config: Schema<Config> = Schema.intersect([
 
 ])
 
-export let logger: Context['logger']
-
 export async function apply(ctx: Context, config: Config) {
     ctx.plugin(app, config)
     ctx.plugin(components, config)

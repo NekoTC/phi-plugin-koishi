@@ -3,13 +3,13 @@ import path from 'path'
 
 
 /**插件根目录 */
-export const pluginPath = __dirname.replace(/\\/g, '/').replace(/\/src\/components/, '')
+export const pluginPath = __dirname.replace(/\\/g, '/').replace(/\/(src|lib)\/components/, '')
 const _path = process.cwd().replace(/\\/g, '/')
 
 /**插件名 */
 export const pluginName = path.basename(path.join(pluginPath, '../../'))
 /**src 根目录 */
-export const pluginRoot = path.join(pluginPath, 'src')
+export const pluginRoot = __dirname.replace(/\\/g, '/').replace(/\/components/, '')
 
 /**插件资源目录 */
 export const pluginResources = path.join(pluginRoot, 'resources')

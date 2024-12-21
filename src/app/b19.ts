@@ -1,7 +1,8 @@
 import { Context, h } from "koishi";
 import send from "../model/send";
-import { Config, logger } from "..";
-import getNotes from "../model/getNotes";
+import { Config } from "..";
+import { logger } from "../components/Logger";
+import getPluginData from "../model/getPluginData";
 import PhigrosUser from "../lib/PhigrosUser";
 import buildingRecord from "../model/getUpdate";
 import getInfo from "../model/getInfo";
@@ -33,7 +34,7 @@ export default class phiB19 {
             nnum = Math.max(nnum, 21)
             nnum = Math.min(nnum, config.B19MaxNum)
 
-            let plugin_data = await getNotes.getNotesData(session.userId)
+            let plugin_data = await getPluginData.get(session.userId)
 
 
             if (!config.isGuild)
@@ -121,7 +122,7 @@ export default class phiB19 {
                 backgroundUrl: await fCompute.getBackground(save.gameuser.background),
                 PlayerId: save.saveInfo.PlayerId,
             }
-            let plugin_data = await getNotes.getNotesData(session.userId)
+            let plugin_data = await getPluginData.get(session.userId)
 
             let data = {
                 phi: save_b19.phi,
@@ -301,7 +302,7 @@ export default class phiB19 {
 
             data = data.sort(cmpsugg())
 
-            let plugin_data = await getNotes.getNotesData(session.userId)
+            let plugin_data = await getPluginData.get(session.userId)
 
             send.send_with_At(session, await render(ctx, 'list', {
                 head_title: "推分建议",

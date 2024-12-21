@@ -8,7 +8,7 @@ import PhigrosUser from "../lib/PhigrosUser";
 import Save from "../model/class/Save";
 import buildingRecord from "../model/getUpdate";
 import getSave from "../model/getSave";
-import getNotes from "../model/getNotes";
+import getPluginData from "../model/getPluginData";
 import scoreHistory from "../model/class/scoreHistory";
 import levelKind from "../model/type/levelKind";
 import getInfo from "../model/getInfo";
@@ -123,7 +123,7 @@ export default class phiSstk {
 
             send.send_with_At(session, '解绑会导致历史数据全部清空呐QAQ！真的要这么做吗？（确认/取消）')
 
-            let res = await session.prompt(30)
+            let res = await session.prompt(30000)
 
             if (res.includes('确认')) {
                 let flag = true
@@ -134,13 +134,13 @@ export default class phiSstk {
                     flag = false
                 }
                 try {
-                    let pluginData = await getNotes.getNotesData(session.userId)
+                    let pluginData = await getPluginData.get(session.userId)
 
                     if (pluginData) {
                         if (pluginData.plugin_data) {
                             pluginData.plugin_data.task = []
                         }
-                        await getNotes.putNotesData(session.userId, pluginData)
+                        await getPluginData.put(session.userId, pluginData)
                     }
                     getSave.del_user_token(session.userId)
                 } catch (err) {
@@ -161,7 +161,7 @@ export default class phiSstk {
 
         ctx.command('phi.clear', '清除全部数据').action(async ({ session }) => {
             send.send_with_At(session, '请注意，本操作将会删除Phi-Plugin关于您的所有信息QAQ！（确认/取消）')
-            let res = await session.prompt(30)
+            let res = await session.prompt(30000)
             if (res.includes('确认')) {
                 let flag = true
                 try {
@@ -171,7 +171,7 @@ export default class phiSstk {
                     flag = false
                 }
                 try {
-                    getNotes.delNotesData(session.userId)
+                    getPluginData.del(session.userId)
                 } catch (err) {
                     send.send_with_At(session, err)
                     flag = false
@@ -186,7 +186,7 @@ export default class phiSstk {
 
         ctx.command('phi.sessionToken', '获取sessionToken').action(async ({ session }) => {
 
-            if (session.userId) {
+            if (session.guild) {
                 send.send_with_At(session, `请私聊使用嗷`)
                 return;
             }
@@ -233,7 +233,7 @@ async function build(ctx: Context, session: Session, sessionToken: string, confi
 
 
     let now = new Save(User)
-    let pluginData = await getNotes.getNotesData(session.userId)
+    let pluginData = getPluginData.get(session.userId)
     let saveHistory = await getSave.getHistory(session.userId)
 
     // const RecordErr = now.checkRecord()

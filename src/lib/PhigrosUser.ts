@@ -1,6 +1,5 @@
 import SaveManager from './SaveManager';
 import JSZip from 'jszip';
-import fetch from 'node-fetch';
 import ByteReader from './ByteReader';
 import GameRecord from './GameRecord';
 import GameProgress from './GameProgress';
@@ -17,7 +16,7 @@ export default interface PhigrosUser {
     gameProgress: GameProgress;
     gameuser: GameUser;
     gamesettings: GameSettings;
-    
+
     chooseSave(choose: any): any;
     getSaveInfo(): any;
     buildRecord(): any;
@@ -38,7 +37,7 @@ export default class PhigrosUser {
         this.sessionToken = ''
         this.saveInfo = {}
         this.gameRecord = {}
-        if (!session.match(/[a-z0-9]{25}/))
+        if (!session || !session.match(/[a-z0-9]{25}/))
             throw new Error("SessionToken格式错误");
         this.sessionToken = session;
 

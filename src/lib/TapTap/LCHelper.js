@@ -1,4 +1,3 @@
-import fetch from 'node-fetch';
 import CryptoJS from 'crypto-js';
 
 let AppKey = 'Qr9AEqtuoSVS3zeD6iVbM4ZC0AtkJcQ89tywVyi0';

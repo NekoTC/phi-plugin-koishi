@@ -119,7 +119,7 @@ export default class Save {
      * @param {boolean} ignore 跳过存档检查
      */
     constructor(data: Save | PhigrosUser, ignore: boolean = false) {
-        this.sessionToken = data.sessionToken
+        this.sessionToken = data.sessionToken || (data as any).session
         this.modifiedAt = data.saveInfo.modifiedAt.iso
         this.saveInfo = data.saveInfo
         this.saveUrl = data.saveUrl + ''
@@ -128,14 +128,15 @@ export default class Save {
         this.gameuser = data.gameuser
         this.gameRecord = {}
         for (let id in data.gameRecord) {
-            this.gameRecord[id] = []
+            let nid = id.replace(/.0$/, '')
+            this.gameRecord[nid] = []
             for (let i in data.gameRecord[id]) {
                 let level = Number(i)
                 if (!data.gameRecord[id][level]) {
-                    this.gameRecord[id][level] = null
+                    this.gameRecord[nid][level] = null
                     continue
                 }
-                this.gameRecord[id][level] = new LevelRecordInfo(data.gameRecord[id][level], id, level)
+                this.gameRecord[nid][level] = new LevelRecordInfo(data.gameRecord[id][level], nid, level)
                 if (ignore) continue
                 if (data.gameRecord[id][level].acc > 100) {
                     logger.error(`acc > 100 ${this.sessionToken}`)
@@ -149,7 +150,7 @@ export default class Save {
 
     /**
      * 获取存档
-     * @returns 按照 rks 排序的数组
+     * @returns 按照 rks 排序的数组W
      */
     getRecord() {
         if (this.sortedRecord) {

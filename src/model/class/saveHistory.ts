@@ -23,9 +23,23 @@ export default class saveHistory {
      * @param {saveHistory} data 
      */
     constructor(data: saveHistory) {
+
+        for (let key in data?.data) {
+            data.data[key].date = new Date(data.data[key].date)
+        }
         this.data = data?.data || [];
+
+        for (let key in data.rks) {
+            data.rks[key].date = new Date(data.rks[key].date)
+        }
         this.rks = data?.rks || [];
-        this.scoreHistory = data?.scoreHistory || {};
+
+        this.scoreHistory = {}
+        for (let key in data.scoreHistory) {
+            let id = key.replace(/.0$/, '')
+            this.scoreHistory[id] = data.scoreHistory[key]
+        }
+
         this.dan = data?.dan || [];
         /**v1.0,取消对当次更新内容的存储，取消对task的记录，更正scoreHistory */
         /**v1.1,更正scoreHistory */
@@ -45,6 +59,7 @@ export default class saveHistory {
             }
             this.version = 2
         }
+
     }
 
     /**
@@ -85,6 +100,7 @@ export default class saveHistory {
      * @param {Save} save 新存档
      */
     update(save: Save) {
+        console.info(save)
         /**更新单曲成绩 */
         for (let id in save.gameRecord) {
             if (!this.scoreHistory[id]) this.scoreHistory[id] = {}

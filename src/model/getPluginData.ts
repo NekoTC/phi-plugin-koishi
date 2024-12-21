@@ -2,14 +2,14 @@ import getFile from './getFile'
 import path from 'path'
 import { pluginDataPath } from '../components/pluginPath'
 import pluginData from './class/pluginData'
-export default class getNotes {
+export default class getPluginData {
 
     /**
      * 获取并初始化用户数据
      * @param {string} user_id 
      * @returns {{plugin_data:{money:number,sign_in:string,task_time:string,task:Array<object>,theme:string}}}
      */
-    static getNotesData(user_id: string): pluginData {
+    static get(user_id: string): pluginData {
         let data = getFile.FileReader(path.join(pluginDataPath, `${user_id}_.json`))
         if (!data || !data.plugin_data) {
             data = {
@@ -25,11 +25,11 @@ export default class getNotes {
         return data
     }
 
-    static async putNotesData(user_id: string, data: any) {
+    static async put(user_id: string, data: any) {
         return getFile.SetFile(path.join(pluginDataPath, `${user_id}_.json`), data)
     }
 
-    static async delNotesData(user_id: string) {
+    static async del(user_id: string) {
         return getFile.DelFile(path.join(pluginDataPath, `${user_id}_.json`))
     }
 

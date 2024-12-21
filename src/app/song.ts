@@ -7,6 +7,7 @@ import { Level, LevelNum } from "../model/constNum";
 import fCompute from "../model/fCompute";
 import render from "../model/render";
 import Chart from "../model/class/Chart";
+import { logger } from "../components/Logger";
 
 
 export default class phiSong {
@@ -192,15 +193,15 @@ export default class phiSong {
 
             let songReg = /[\(（].*[\)）]/
             let songReq = ""
-            console.info(arg.match(songReg))
-            if (arg.match(songReq)) {
+            // console.info(arg.match(songReg))
+            if (arg.match(songReg)) {
                 songReq = arg.match(songReg)[0].replace(/[\(\)（）]/g, "")
-                arg = arg.replace(songReq, "")
+                arg = arg.replace(arg.match(songReg)[0], "")
             }
 
             let songAsk = fCompute.match_request(songReq)
 
-            console.info(songAsk, songReq)
+            // console.info(songAsk, songReq)
 
             let { isask, range } = fCompute.match_request(arg, 48)
 
@@ -228,7 +229,6 @@ export default class phiSong {
 
             NumList = fCompute.randArray(NumList)
 
-            // console.info(NumList, range)
 
             let res = randClg(NumList.shift(), { ...chartList })
             while (!res && NumList.length) {
@@ -321,7 +321,7 @@ function randClg(clgNum: number, chartList: { [key: string]: Chart[] }): Chart[]
     let ans = []
     for (let i in difList) {
         if (!chartList[difList[i]]) {
-            console.info(difList[i], chartList)
+            logger.error(difList[i], chartList)
         }
         let tem = chartList[difList[i]].splice(fCompute.randBetween(0, chartList[difList[i]].length - 1), 1)[0]
         ans.push(tem)

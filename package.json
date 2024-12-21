@@ -1,40 +1,43 @@
 {
-  "name": "koishi-plugin-phi-plugin",
-  "description": "Phigros查分",
-  "version": "0.1.8",
-  "main": "lib/index.js",
-  "typings": "lib/index.d.ts",
-  "files": [
-    "lib",
-    "dist"
-  ],
-  "license": "MIT",
-  "scripts": {},
-  "keywords": [
-    "chatbot",
-    "koishi",
-    "plugin"
-  ],
-  "peerDependencies": {
-    "koishi": "^4.18.3",
-    "@types/node-fetch": "^2.6.12",
-    "art-template": "^4.13.2",
-    "lodash": "^4.17.21",
-    "node-fetch": "^3.3.2",
-    "yaml": "^2.6.1",
-    "crypto-js": "^4.2.0",
-    "csv": "^6.3.11",
-    "csvtojson": "^2.0.10",
-    "jszip": "^3.10.1",
-    "node-csv": "^0.1.2",
-    "pinyin-pro": "^3.26.0",
-    "qrcode": "^1.5.4"
-  },
-  "service": {
-    "required": [
-      "database",
-      "puppeteer"
-    ]
-  },
-  "dependencies": {}
+    "name": "koishi-plugin-phi-plugin",
+    "description": "Phigros查分",
+    "version": "0.1.23",
+    "main": "lib/index.js",
+    "typings": "lib/index.d.ts",
+    "files": [
+        "lib",
+        "dist"
+    ],
+    "license": "MIT",
+    "scripts": {},
+    "keywords": [
+        "chatbot",
+        "koishi",
+        "plugin"
+    ],
+    "peerDependencies": {
+        "koishi": "^4.18.3"
+    },
+    "service": {
+        "required": [
+            "database",
+            "puppeteer"
+        ]
+    },
+    "devDependencies":{
+        "koishi": "^4.18.3",
+        "@types/node-fetch": "^2.6.12"
+    },
+    "dependencies": {
+        "art-template": "^4.13.2",
+        "lodash": "^4.17.21",
+        "yaml": "^2.6.1",
+        "crypto-js": "^4.2.0",
+        "csv": "^6.3.11",
+        "csvtojson": "^2.0.10",
+        "jszip": "^3.10.1",
+        "node-csv": "^0.1.2",
+        "pinyin-pro": "^3.26.0",
+        "qrcode": "^1.5.4"
+    }
 }

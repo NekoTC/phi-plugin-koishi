@@ -43,7 +43,7 @@ export default class getBackup {
             let user_id = key.userId
             user_token[user_id] = key.token
         }
-        console.info(user_token)
+        // console.info(user_token)
         zip.file('user_token.json', JSON.stringify(user_token))
         /**压缩 */
         let zipName = `${(new Date()).toISOString().replace(/[\:\.]/g, '-')}.zip`
@@ -76,30 +76,31 @@ export default class getBackup {
                 /**阻止遍历文件夹 */
                 if (!session.includes('.json')) {
                     /**history */
-                    getFile.FileReader(path.join(savePath, session, 'history.json')).then((old: any) => {
-                        zip.folder('saveData').folder(session).file('history.json').async('string').then((history) => {
-                            /**格式化为 JSON */
-                            let now = new saveHistory(JSON.parse(history))
-                            /**有本地记录，合并；无本地记录，直接覆盖 */
-                            now.add(new saveHistory(old))
-                            getFile.SetFile(path.join(savePath, session, 'history.json'), now)
-                        })
+                    let oldHistory = getFile.FileReader(path.join(savePath, session, 'history.json'))
+                    zip.folder('saveData').folder(session).file('history.json').async('string').then((history) => {
+                        /**格式化为 JSON */
+                        let now = new saveHistory(JSON.parse(history))
+                        /**有本地记录，合并；无本地记录，直接覆盖 */
+                        now.add(new saveHistory(oldHistory))
+                        getFile.SetFile(path.join(savePath, session, 'history.json'), now)
                     })
-                    /**save */
-                    getFile.FileReader(path.join(savePath, session, 'save.json')).then((old: Save) => {
-                        zip.folder('saveData').folder(session).file('save.json').async('string').then((save: string) => {
-                            /**格式化为 JSON */
-                            let now: Save = JSON.parse(save)
-                            /**有本地记录，保留最新记录；无本地记录，直接覆盖 */
-                            if (old?.saveInfo?.modifiedAt?.iso && new Date(old?.saveInfo?.modifiedAt?.iso) > new Date(now?.saveInfo?.modifiedAt?.iso)) { now = old }
-                            getFile.SetFile(path.join(savePath, session, 'save.json'), now)
 
-                        })
+                    /**save */
+                    let oldSave = getFile.FileReader(path.join(savePath, session, 'save.json'))
+                    zip.folder('saveData').folder(session).file('save.json').async('string').then((save: string) => {
+                        /**格式化为 JSON */
+                        let now: Save = new Save(JSON.parse(save))
+                        /**有本地记录，保留最新记录；无本地记录，直接覆盖 */
+                        if (oldSave?.saveInfo?.modifiedAt?.iso && new Date(oldSave?.saveInfo?.modifiedAt?.iso) > new Date(now?.saveInfo?.modifiedAt?.iso)) { now = oldSave }
+                        getFile.SetFile(path.join(savePath, session, 'save.json'), now)
+
                     })
                 }
 
             });
-        } catch (e) { }
+        } catch (e) {
+            logger.error(e)
+        }
         try {
             /**插件数据相关 */
             zip.folder('pluginData').forEach((fileName, file) => {
@@ -107,13 +108,19 @@ export default class getBackup {
                     getFile.SetFile(path.join(pluginDataPath, fileName), JSON.parse(data))
                 })
             })
-        } catch (e) { }
+        } catch (e) {
+            logger.error(e)
+        }
         try {
             /**user_id->tk */
             zip.file('user_token.json').async('string').then((data) => {
-                let now = JSON.parse(data)
-                redis.upsert('phigrosUserToken', now)
+                let now: { [key: string]: string } = JSON.parse(data)
+                for (let key in now) {
+                    redis.upsert('phigrosUserToken', [{ userId: key, token: now[key] }], 'userId')
+                }
             })
-        } catch (e) { }
+        } catch (e) {
+            logger.error(e)
+        }
     }
 }

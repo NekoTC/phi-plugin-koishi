@@ -4,7 +4,7 @@ import getSave from "./getSave";
 import send from "./send";
 import { logger } from "../components/Logger";
 import Save from "./class/Save";
-import getNotes from "./getNotes";
+import getPluginData from "./getPluginData";
 import getInfo from "./getInfo";
 import { Level } from "./constNum";
 
@@ -64,7 +64,7 @@ export default async function buildingRecord(session: Session, User: PhigrosUser
     getSave.putHistory(session.userId, history)
 
 
-    let pluginData = await getNotes.getNotesData(session.userId)
+    let pluginData = await getPluginData.get(session.userId)
 
     /**note数量变化 */
     let add_money = 0
@@ -99,7 +99,7 @@ export default async function buildingRecord(session: Session, User: PhigrosUser
             }
         }
     }
-    await getNotes.putNotesData(session.userId, pluginData)
+    await getPluginData.put(session.userId, pluginData)
 
     /**rks变化 */
     let add_rks = old ? now.saveInfo.summary.rankingScore - old.saveInfo.summary.rankingScore : 0

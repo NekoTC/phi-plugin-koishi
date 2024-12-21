@@ -1,10 +1,11 @@
 import { Context } from "koishi"
-import { Config, logger } from ".."
+import { Config } from ".."
 import { fCompute, getBackup, send } from "../model"
 import fs from "fs"
 import { backupPath } from "../components/pluginPath"
 import path from "path"
 import { redis } from "../components/redis"
+import { logger } from "../components/Logger"
 
 let banSetting = ["help", "bind", "b19", "wb19", "song", "ranklist", "fnc", "tipgame", "guessgame", "ltrgame", "sign", "setting", "dan"]
 
@@ -26,13 +27,13 @@ export default class phiManage {
         ctx.command('phi.restore', '恢复数据', { authority: 4 }).action(async ({ session, options }) => {
             try {
                 let msg = ''
-                for (let i in fs.readdirSync(backupPath).reverse()) {
-                    msg += `[${i}]${fs.readdirSync(backupPath)[i]}\n`
+                for (let i in fs.readdirSync(backupPath)) {
+                    msg += `[${i}]${fs.readdirSync(backupPath).reverse()[i]}\n`
                 }
                 send.send_with_At(session, '请选择需要恢复的备份文件：\n' + msg)
-                let index = await session.prompt(30)
+                let index = await session.prompt(30000)
                 try {
-                    let fileName = fs.readdirSync(backupPath)[Number(index.replace(/\s*/g, ''))]
+                    let fileName = fs.readdirSync(backupPath).reverse()[Number(index.replace(/\s*/g, ''))]
                     let filePath = path.join(backupPath, fileName)
                     await getBackup.restore(filePath)
                     send.send_with_At(session, `[${index}] ${fs.readdirSync(backupPath).reverse()[index.replace(/\s*/g, '')]} 恢复成功`)

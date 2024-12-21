@@ -66,6 +66,7 @@ export default async function render(ctx: Context, app: Keys<tplName>, params: a
         if (Date.now() - renderId > config.waitingTimeout) {
             logger.error(`waiting ${app} timeout`)
             logger.error(`waitingList length: ${waitingList[app].length}`)
+            waitingList[app].splice(waitingList[app].indexOf(renderId), 1)
             return '渲染超时，请稍后再试QAQ！';
         }
     }

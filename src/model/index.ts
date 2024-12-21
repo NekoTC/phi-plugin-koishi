@@ -4,7 +4,7 @@ import getBackup from "./getBackup";
 import getBanGroup from "./getBanGroup";
 import getFile from "./getFile";
 import getInfo from "./getInfo";
-import getNotes from "./getNotes";
+import getPluginData from "./getPluginData";
 import getPic from "./getPic";
 import getRksRank from "./getRksRank";
 import getSave from "./getSave";
@@ -20,7 +20,7 @@ export {
     getBanGroup,
     getFile,
     getInfo,
-    getNotes,
+    getPluginData as getNotes,
     getPic,
     getRksRank,
     getSave,

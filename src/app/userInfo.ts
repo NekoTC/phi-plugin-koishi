@@ -555,7 +555,7 @@ export default class phiUserInfo {
                 return (b.difficulty || 0) - (a.difficulty || 0)
             })
 
-            let plugin_data = getNotes.getNotesData(session.userId)
+            let plugin_data = getNotes.get(session.userId)
 
             let request = []
             request.push(`${range[0]} - ${range[1]}`)
