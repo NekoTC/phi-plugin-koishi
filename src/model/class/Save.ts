@@ -128,7 +128,7 @@ export default class Save {
         this.gameuser = data.gameuser
         this.gameRecord = {}
         for (let id in data.gameRecord) {
-            let nid = id.replace(/.0$/, '')
+            let nid = id.replace(/\.0$/, '')
             this.gameRecord[nid] = []
             for (let i in data.gameRecord[id]) {
                 let level = Number(i)
@@ -295,6 +295,9 @@ export default class Save {
             rkslist[i].illustration = getInfo.getill(rkslist[i].id, 'common')
             /**b19列表 */
             b19_list.push(rkslist[i])
+            if (!rkslist[i].rks) {
+                console.info(rkslist[i])
+            }
         }
 
         this.B19List = { phi, b19_list }

@@ -76,7 +76,15 @@ export default async function render(ctx: Context, app: Keys<tplName>, params: a
     let page = renderList[app].page
 
     /**保存模板文件 */
-    let html = artTemplate.render(fs.readFileSync(data.tplFile, { encoding: 'utf-8' }), data)
+    let html: string
+    try {
+        html = artTemplate.render(fs.readFileSync(data.tplFile, { encoding: 'utf-8' }), data)
+    } catch (error) {
+        logger.error(error)
+        renderList[app].using = false
+        return '渲染失败，请稍后再试QAQ！'
+
+    }
     getFile.SetFile(path.join(tempPath, app, `${app}.html`), html, 'txt')
 
     await page.goto(path.join(tempPath, app, `${app}.html`), { waitUntil: 'networkidle2' })

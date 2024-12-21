@@ -30,7 +30,7 @@ export default class GameRecord {
     async init(err: string[]) {
         this.songsnum = this.data.getVarInt()
         while (this.data.remaining() > 0) {
-            let key = this.data.getString().replace(/.0$/, '');
+            let key = this.data.getString().replace(/\.0$/, '');
             this.data.skipVarInt()
             let length = this.data.getByte();
             let fc = this.data.getByte();

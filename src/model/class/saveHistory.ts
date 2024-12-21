@@ -36,7 +36,7 @@ export default class saveHistory {
 
         this.scoreHistory = {}
         for (let key in data.scoreHistory) {
-            let id = key.replace(/.0$/, '')
+            let id = key.replace(/\.0$/, '')
             this.scoreHistory[id] = data.scoreHistory[key]
         }
 
