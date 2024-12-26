@@ -3,18 +3,18 @@ import getInfo from "./getInfo"
 import { imgPath } from "../components/pluginPath"
 import { logger } from "../components/Logger"
 import { Context, Keys } from "koishi"
-import tplName from "./type/tplName"
+import { idString } from "./type/type"
 
 export default class pic {
 
     /**
      * 获取歌曲图鉴，曲名为原名
-     * @param {any} ctx 上下文
-     * @param {string} id 曲名
-     * @param {any} data 自定义数据
+     * @param ctx 上下文
+     * @param id 曲名
+     * @param data 自定义数据
      * @returns 
      */
-    static async GetSongsInfoAtlas(ctx: Context, id: Keys<tplName>, data: any = undefined) {
+    static async GetSongsInfoAtlas(ctx: Context, id: idString, data: any = undefined) {
         data = data || getInfo.info(id)
         if (data) {
             if (!data.illustration) { data.illustration = getInfo.getill(id) }
@@ -32,7 +32,7 @@ export default class pic {
      * @param { {illustration:string, illustrator:string} } data 自定义数据
      * @returns 
      */
-    static async GetSongsIllAtlas(ctx: Context, id: string, data: { illustration: string; illustrator: string } = undefined) {
+    static async GetSongsIllAtlas(ctx: Context, id: idString, data: { illustration: string; illustrator: string } = undefined) {
         if (data) {
             return await render(ctx, 'ill', { illustration: data.illustration, illustrator: data.illustrator })
         } else {

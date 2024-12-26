@@ -8,6 +8,8 @@ import fCompute from "../model/fCompute";
 import render from "../model/render";
 import Chart from "../model/class/Chart";
 import { logger } from "../components/Logger";
+import { getNotes } from "../model";
+import { idString } from "../model/type/type";
 
 
 export default class phiSong {
@@ -137,7 +139,8 @@ export default class phiSong {
             if (top % 1 == 0 && !arg.includes(".0")) top += 0.9
 
             let idList = []
-            for (let id in getInfo.ori_info) {
+            for (let i in getInfo.ori_info) {
+                let id = i as idString
                 for (let level in Level) {
                     if (isask[level] && getInfo.ori_info[id]['chart'][Level[level]]) {
                         let difficulty = getInfo.ori_info[id]['chart'][Level[level]]['difficulty']
@@ -174,7 +177,7 @@ export default class phiSong {
 
             let song = getInfo.fuzzysongsnick(arg)
             if (song[0] || arg in getInfo.ori_info) {
-                let id = song[0] || arg
+                let id = song[0] || arg as idString
                 let info = getInfo.info(id)
                 let nick = '======================\n已有别名：\n'
                 for (let i in getInfo.nicklist[id]) {
@@ -233,15 +236,33 @@ export default class phiSong {
             let res = randClg(NumList.shift(), { ...chartList })
             while (!res && NumList.length) {
                 res = randClg(NumList.shift(), { ...chartList })
-            }
-            let ans = ""
-            if (res) {
-                ans += `${getInfo.idgetsong(res[0].id)} ${res[0].rank} ${res[0].difficulty}\n`
-                ans += `${getInfo.idgetsong(res[1].id)} ${res[1].rank} ${res[1].difficulty}\n`
-                ans += `${getInfo.idgetsong(res[2].id)} ${res[2].rank} ${res[2].difficulty}`
-            }
+            } if (res) {
 
-            send.send_with_At(session, ans || '未找到符合条件的课题QAQ')
+                let songs = []
+
+                let plugin_data = getNotes.get(session.userId)
+
+                for (let i in res) {
+                    let info = getInfo.info(res[i].id)
+                    songs.push({
+                        id: info.id,
+                        song: info.song,
+                        rank: res[i].rank,
+                        difficulty: res[i].difficulty,
+                        illustration: getInfo.getill(info.id),
+                        ...info.chart[res[i].rank]
+                    })
+                }
+
+                send.send_with_At(session, await render(ctx, 'clg', {
+                    songs,
+                    tot_clg: Math.floor(res[0].difficulty) + Math.floor(res[1].difficulty) + Math.floor(res[2].difficulty),
+                    background: getInfo.getill(getInfo.illlist[Number((Math.random() * (getInfo.illlist.length - 1)).toFixed(0))], 'common'),
+                    theme: plugin_data?.plugin_data?.theme || 'star',
+                }))
+            } else {
+                send.send_with_At(session, `未找到符合条件的谱面QAQ！`)
+            }
 
             return;
 

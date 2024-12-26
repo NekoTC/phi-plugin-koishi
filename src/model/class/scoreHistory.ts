@@ -1,7 +1,8 @@
 import { Keys } from "koishi"
 import fCompute from "../fCompute"
 import getInfo from "../getInfo"
-import levelKind from "../type/levelKind"
+import { levelKind } from "../type/levelKind"
+import { idString } from "../type/type"
 
 export default class scoreHistory {
 
@@ -24,7 +25,7 @@ export default class scoreHistory {
      * @param now 
      * @param old 
      */
-    static extend(id: string, level: Keys<levelKind>, now: [number, number, Date, boolean], old?: [number, number, Date, boolean]) {
+    static extend(id: idString, level: levelKind, now: [number, number, Date, boolean], old?: [number, number, Date, boolean]) {
         now[0] = Number(now[0])
         now[1] = Number(now[1])
         if (old) {

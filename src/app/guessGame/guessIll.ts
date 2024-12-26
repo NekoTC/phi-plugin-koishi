@@ -2,6 +2,7 @@ import { Context, Session } from 'koishi'
 import { config } from '../../components/Config'
 import { getInfo, send, render, fCompute, getPic } from '../../model'
 import { logger } from '../../components/Logger'
+import { idString } from '../../model/type/type'
 
 
 let songsId = getInfo.illlist
@@ -61,7 +62,7 @@ export default class guessIll {
         let blur_ = randint(9, 14)
 
         let data = {
-            illustration: getInfo.getill(songs_info.song),
+            illustration: getInfo.getill(songs_info.id),
             width: w_,
             height: h_,
             x: x_,
@@ -400,7 +401,7 @@ function randint(min, max) {
 }
 
 //定义随机抽取曲目的函数
-function getRandomSong(session: Session) {
+function getRandomSong(session: Session):idString {
     //对象解构提取groupid
     const { guildId } = session
 
@@ -415,7 +416,7 @@ function getRandomSong(session: Session) {
         accumulatedWeight += weight as any
         if (accumulatedWeight >= randomWeight) {
             songweights[guildId][song] *= 0.4 //权重每次衰减60%
-            return song
+            return song as idString
         }
     }
 

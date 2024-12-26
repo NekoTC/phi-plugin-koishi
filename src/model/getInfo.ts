@@ -1,12 +1,13 @@
 import getFile from './getFile'
 import { DlcInfoPath, imgPath, infoPath, originalIllPath, ortherIllPath } from '../components/pluginPath'
 import path from 'path'
-import SongsInfo from './class/SongsInfo'
+import SongsInfo from './type/SongsInfo'
 import fs from 'fs'
 import { Level, MAX_DIFFICULTY } from './constNum'
 import { config } from '../components/Config'
 import Chart from './class/Chart'
 import { logger } from '../components/Logger'
+import { idString, songString } from './type/type'
 
 
 
@@ -31,9 +32,9 @@ export default class getInfo {
 
 
     /**默认别名,以id为key */
-    static nicklist: { [key: string]: string[] } = getFile.FileReader(path.join(infoPath, 'nicklist.yaml'))
+    static nicklist: { [key: idString]: string[] } = getFile.FileReader(path.join(infoPath, 'nicklist.yaml'))
     /**以别名为key */
-    static songnick: { [key: string]: string[] } = {};
+    static songnick: { [key: string]: idString[] } = {};
 
     /**扩增曲目信息 */
     static DLC_Info: { [key: string]: string[] } = {}
@@ -45,13 +46,13 @@ export default class getInfo {
     static tips: string[] = getFile.FileReader(path.join(infoPath, 'tips.yaml'))
 
     /**原版信息 */
-    static ori_info: { [key: string]: any } = {}
+    static ori_info: { [key: idString]: any } = {}
     /**通过id获取曲名 */
-    static songById: { [key: string]: string } = {}
+    static songById: { [key: idString]: songString } = {}
     /**原曲名称获取id */
-    static idBySong: { [key: string]: string } = {}
+    static idBySong: { [key: songString]: idString } = {}
     /**含有曲绘的曲目列表，id */
-    static illlist: string[] = []
+    static illlist: idString[] = []
     /**按dif分的info */
     static info_by_difficulty: { [key: string]: Chart[] } = {}
 
@@ -77,9 +78,9 @@ export default class getInfo {
         for (let id in this.nicklist) {
             for (let j in this.nicklist[id]) {
                 if (this.songnick[this.nicklist[id][j]]) {
-                    this.songnick[this.nicklist[id][j]].push(id)
+                    this.songnick[this.nicklist[id][j]].push(id as idString)
                 } else {
-                    this.songnick[this.nicklist[id][j]] = [id]
+                    this.songnick[this.nicklist[id][j]] = [id as idString]
                 }
             }
         }
@@ -174,7 +175,7 @@ export default class getInfo {
      * @param {} [id=undefined] 原曲id
      * @returns {SongsInfo}
      */
-    static info(id: string): SongsInfo {
+    static info(id: idString): SongsInfo {
         let result = { ...this.ori_info, ...this.sp_info }
         let info = result[id]
         if (!info) {
@@ -226,7 +227,7 @@ export default class getInfo {
     * @param {number} [Distance=0.85] 阈值 猜词0.95
     * @returns 原曲id数组，按照匹配程度降序
     */
-    static fuzzysongsnick(mic: string, Distance: number = 0.85) {
+    static fuzzysongsnick(mic: string, Distance: number = 0.85): idString[] {
         const fuzzyMatch = (str1, str2) => {
             if (str1 == str2) {
                 return 1
@@ -356,11 +357,11 @@ export default class getInfo {
 
     /**
      * id获取曲绘，返回地址
-     * @param {string} id id
-     * @param {'common'|'blur'|'low'} [kind='common'] 清晰度
-     * @return {string} 网址或文件地址
+     * @param id id
+     * @param kind 清晰度
+     * @return 网址或文件地址
     */
-    static getill(id: string, kind: 'common' | 'blur' | 'low' = 'common'): string {
+    static getill(id: idString, kind: 'common' | 'blur' | 'low' = 'common'): string {
         // console.info(id)
         let songsinfo = this.all_info()[id]
         let ans = songsinfo?.illustration_big
@@ -414,7 +415,7 @@ export default class getInfo {
 
     /**
      * 通过id获得头像文件名称
-     * @param {string} id 
+     * @param id 
      * @returns file name
      */
     static idgetavatar(id: string) {
@@ -427,20 +428,20 @@ export default class getInfo {
 
     /**
      * 根据曲目id获取原名
-     * @param {String} id 曲目id
+     * @param id 曲目id
      * @returns 原名
      */
-    static idgetsong(id: string) {
+    static idgetsong(id: idString): songString {
         id.replace('.0', '')
         return this.songById[id]
     }
 
     /**
      * 通过原曲曲目获取曲目id
-     * @param {String} song 原曲曲名
+     * @param song 原曲曲名
      * @returns 曲目id
      */
-    static SongGetId(song: string) {
+    static SongGetId(song: songString): idString {
         return this.idBySong[song]
     }
 

@@ -10,9 +10,10 @@ import buildingRecord from "../model/getUpdate";
 import getSave from "../model/getSave";
 import getPluginData from "../model/getPluginData";
 import scoreHistory from "../model/class/scoreHistory";
-import levelKind from "../model/type/levelKind";
+import { levelKind } from "../model/type/levelKind";
 import getInfo from "../model/getInfo";
 import render from "../model/render";
+import { idString } from "../model/type/type";
 
 
 export default class phiSstk {
@@ -242,14 +243,14 @@ async function build(ctx: Context, session: Session, sessionToken: string, confi
     //     send.send_with_At(e, '[测试功能，概率有误，暂时不清楚错误原因]\n请注意，你的存档可能存在一些问题：\n' + RecordErr)
     // }
 
-    for (let song in saveHistory.scoreHistory) {
-        let tem = saveHistory.scoreHistory[song]
+    for (let id in saveHistory.scoreHistory) {
+        let tem = saveHistory.scoreHistory[id]
         for (let level in tem) {
             let history: any[] = tem[level]
             if (!history) continue
             for (let i = 0; i < history.length; ++i) {
                 let score_date = fCompute.date_to_string(scoreHistory.date(history[i]))
-                let score_info = scoreHistory.extend(song, level as Keys<levelKind>, history[i], history[i - 1])
+                let score_info = scoreHistory.extend(id as idString, level as levelKind, history[i], history[i - 1])
                 if (time_vis[score_date] == undefined) {
                     time_vis[score_date] = tot_update.length
                     tot_update.push({ date: score_date, color: fCompute.getRandomBgColor(), update_num: 0, song: [] })

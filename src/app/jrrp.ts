@@ -4,6 +4,7 @@ import { fCompute, getFile, getInfo, render, send } from "../model";
 import { infoPath } from "../components/pluginPath";
 import path from "path";
 import { redis } from "../components/redis";
+import { idString } from "../model/type/type";
 
 /**一言 */
 let sentence = getFile.FileReader(path.join(infoPath, 'sentences.json'))
@@ -54,7 +55,7 @@ export default class phiJrrp {
                 await redis.upsert('phigrosJrrp', [{ userId: session.userId, value: JSON.stringify(jrrp) }], 'userId')
             }
             let data = {
-                bkg: getInfo.getill("ShineAfter.ADeanJocularACE"),
+                bkg: getInfo.getill("ShineAfter.ADeanJocularACE" as idString),
                 lucky: jrrp[0],
                 luckRank: jrrp[0] == 100 ? 5 : (jrrp[0] >= 80 ? 4 : (jrrp[0] >= 60 ? 3 : (jrrp[0] >= 40 ? 2 : (jrrp[0] >= 20 ? 1 : 0)))),
                 year: new Date().getFullYear(),

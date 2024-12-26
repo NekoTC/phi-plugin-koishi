@@ -2,6 +2,7 @@ import LevelRecord from './LevelRecord'
 import ByteReader from './ByteReader';
 import Util from './Util'
 import getInfo from '../model/getInfo'
+import { idString } from '../model/type/type';
 
 export default interface GameRecord {
     name: string;
@@ -30,7 +31,7 @@ export default class GameRecord {
     async init(err: string[]) {
         this.songsnum = this.data.getVarInt()
         while (this.data.remaining() > 0) {
-            let key = this.data.getString().replace(/\.0$/, '');
+            let key = this.data.getString().replace(/\.0$/, '') as idString;
             this.data.skipVarInt()
             let length = this.data.getByte();
             let fc = this.data.getByte();

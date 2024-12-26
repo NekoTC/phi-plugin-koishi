@@ -1,8 +1,8 @@
-import { Keys } from "koishi";
 import { Level } from "../constNum"
 import LevelRecordInfo from "./LevelRecordInfo";
 import Save from "./Save"
-import levelKind from "../type/levelKind";
+import { levelKind } from "../type/levelKind";
+import { idString } from "../type/type";
 
 export default interface saveHistory {
     /**data货币变更记录 */
@@ -10,7 +10,7 @@ export default interface saveHistory {
     /**rks变更记录 */
     rks: { date: Date, value: number }[],
     /**历史成绩 */
-    scoreHistory: { [key: string]: { [key in Keys<levelKind>]?: [number, number, Date, boolean][] } },
+    scoreHistory: { [key: idString]: { [key in levelKind]?: [number, number, Date, boolean][] } },
     /**民间考核 */
     dan: any[],
     version: number
@@ -200,10 +200,10 @@ export default class saveHistory {
 
     /**
      * 获取歌曲最新的历史记录
-     * @param {string} id 曲目id
+     * @param id 曲目id
      * @returns 
      */
-    async getSongsLastRecord(id: string) {
+    async getSongsLastRecord(id: idString) {
         let score = { ...this.scoreHistory[id] }
         let ans: { acc: number, score: number, date?: Date, fc: boolean }[] = []
         for (let i in score) {

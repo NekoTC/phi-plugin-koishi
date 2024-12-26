@@ -4,6 +4,7 @@ import LevelRecordInfo from './LevelRecordInfo'
 import getInfo from '../getInfo'
 import PhigrosUser from '../../lib/PhigrosUser'
 import { Level } from '../constNum'
+import { idString } from '../type/type'
 
 export default interface Save {
     sessionToken: string,
@@ -109,7 +110,7 @@ export default interface Save {
         /**背景 */
         background: string,
     },
-    gameRecord?: { [key: string]: LevelRecordInfo[] }
+    gameRecord?: { [key: idString]: LevelRecordInfo[] }
 }
 
 export default class Save {
@@ -128,7 +129,7 @@ export default class Save {
         this.gameuser = data.gameuser
         this.gameRecord = {}
         for (let id in data.gameRecord) {
-            let nid = id.replace(/\.0$/, '')
+            let nid = id.replace(/\.0$/, '') as idString
             this.gameRecord[nid] = []
             for (let i in data.gameRecord[id]) {
                 let level = Number(i)
@@ -313,7 +314,7 @@ export default class Save {
      * @param {number} difficulty 
      * @returns 
      */
-    getSuggest(id: string, lv: number, count: number) {
+    getSuggest(id: idString, lv: number, count: number) {
         let difficulty = getInfo.info(id).chart[Level[lv]].difficulty
         if (!this.b19_rks) {
             let record = this.getRecord()

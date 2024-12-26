@@ -11,6 +11,7 @@ import render from "../model/render";
 import getSave from "../model/getSave";
 import scoreHistory from "../model/class/scoreHistory";
 import { Level } from "../model/constNum";
+import { idString } from "../model/type/type";
 
 export default class phiB19 {
     constructor(ctx: Context, config: Config) {
@@ -267,7 +268,8 @@ export default class phiB19 {
             /**计算 */
             let data = []
 
-            for (let id in Record) {
+            for (let i in Record) {
+                let id = i as idString
                 let song = getInfo.idgetsong(id)
                 if (!song) {
                     logger.warn('[phi-plugin]', id, '曲目无信息')

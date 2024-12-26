@@ -1,19 +1,20 @@
-export default interface picKind {
-    arcgrosB19: any;
-    song: any;
-    b19: any;
-    chap: any;
-    guess: any;
-    help: any;
-    ill: any;
-    jrrp: any;
-    list: any;
-    lvsco: any;
-    rand: any;
-    rankingList: any;
-    score: any;
-    setting: any;
-    tasks: any;
-    update: any;
-    userinfo: any;
-}
+
+export type tplName =
+    'arcgrosB19' |
+    'song' |
+    'b19' |
+    'chap' |
+    'clg' |
+    'guess' |
+    'help' |
+    'ill' |
+    'jrrp' |
+    'list' |
+    'lvsco' |
+    'rand' |
+    'rankingList' |
+    'score' |
+    'setting' |
+    'tasks' |
+    'update' |
+    'userinfo'

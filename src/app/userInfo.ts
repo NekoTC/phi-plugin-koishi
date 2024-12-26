@@ -3,6 +3,7 @@ import { fCompute, getInfo, getNotes, getSave, render, send } from "../model/ind
 import { Config } from "..";
 import { Level } from "../model/constNum";
 import { logger } from "../components/Logger";
+import { idString } from "../model/type/type";
 
 
 export default class phiUserInfo {
@@ -100,7 +101,8 @@ export default class phiUserInfo {
             stats[3].tot = tot[3]
             stats[3].tatle = Level[3]
 
-            for (let id in Record) {
+            for (let i in Record) {
+                let id = i as idString
                 if (!getInfo.idgetsong(id)) {
                     continue
                 }
@@ -406,7 +408,8 @@ export default class phiUserInfo {
             }
 
 
-            for (let id in Record) {
+            for (let i in Record) {
+                let id = i as idString
                 let info = getInfo.info(id)
                 let record = Record[id]
                 let vis = false
@@ -523,7 +526,8 @@ export default class phiUserInfo {
 
             let data = []
 
-            for (let id in Record) {
+            for (let i in Record) {
+                let id = i as idString
                 let song = getInfo.idgetsong(id)
                 if (!song) {
                     logger.warn('[phi-plugin]', id, '曲目无信息')

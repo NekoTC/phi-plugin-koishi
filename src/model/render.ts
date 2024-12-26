@@ -7,14 +7,14 @@ import { config } from '../components/Config'
 import { Version, Display_Plugin_Name, Plugin_Name } from '../components/index'
 import artTemplate from 'art-template'
 import getFile from './getFile'
-import tplName from './type/tplName'
+import { tplName } from './type/tplName'
 import { logger } from '../components/Logger'
 import { Page } from 'puppeteer-core'
 import fCompute from './fCompute'
 
-let renderList: { [keys in Keys<tplName>]?: { page: Page, using: boolean } } = {}
+let renderList: { [keys in tplName]?: { page: Page, using: boolean } } = {}
 
-let waitingList: { [keys in Keys<tplName>]?: number[] } = {}
+let waitingList: { [keys in tplName]?: number[] } = {}
 
 
 /**
@@ -25,7 +25,7 @@ let waitingList: { [keys in Keys<tplName>]?: number[] } = {}
  * @returns 
  */
 
-export default async function render(ctx: Context, app: Keys<tplName>, params: any) {
+export default async function render(ctx: Context, app: tplName, params: any) {
     let layoutPath = pluginResources.replace(/\\/g, '/') + `/html/common/layout/`
     let resPath = pluginResources.replace(/\\/g, '/') + `/`
 

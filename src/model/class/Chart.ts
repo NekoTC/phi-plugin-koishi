@@ -1,7 +1,8 @@
+import { idString } from "../type/type";
 
 export default class Chart {
 
-    id?: string;
+    id?: idString;
     rank?: string;
     charter: string;
     difficulty: number;

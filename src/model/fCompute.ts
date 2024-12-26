@@ -4,6 +4,7 @@ import { Session } from 'koishi'
 import { h } from 'koishi'
 import getInfo from './getInfo'
 import { title } from 'process'
+import { songString } from './type/type'
 
 export default class compute {
     /**
@@ -90,7 +91,7 @@ export default class compute {
                     break
                 }
             }
-            return getInfo.getill(getInfo.SongGetId(save_background))
+            return getInfo.getill(getInfo.SongGetId(save_background as songString))
         } catch (err) {
             logger.error(`获取背景曲绘错误`, err)
             return false

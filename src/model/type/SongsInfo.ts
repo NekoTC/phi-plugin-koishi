@@ -1,9 +1,10 @@
-import Chart from "./Chart"
+import { idString, songString } from "./type"
+import Chart from "../class/Chart"
 
 
 export default interface SongsInfo {
-    id: number
-    song: string
+    id: idString
+    song: songString
     illustration: string
     illustration_big: string
     can_t_be_letter: boolean
