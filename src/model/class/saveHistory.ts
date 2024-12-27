@@ -1,8 +1,7 @@
 import { Level } from "../constNum"
 import LevelRecordInfo from "./LevelRecordInfo";
 import Save from "./Save"
-import { levelKind } from "../type/levelKind";
-import { idString } from "../type/type";
+import { idString, levelKind } from "../type/type";
 
 export default interface saveHistory {
     /**data货币变更记录 */

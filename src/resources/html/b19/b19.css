@@ -71,14 +71,14 @@ body p {
 }
 
 .num {
-    width: 14%;
+    width: 10%;
     height: 16%;
     padding-left: 3.5%;
-    padding-right: 3.5%;
+    padding-right: 4.5%;
     top: 4%;
-    left: -3%;
+    left: 1%;
     background-color: rgba(255, 255, 255, 1);
-    clip-path: polygon(100% 0, 82.844% 100%, 0 100%, 17.156% 0);
+    clip-path: polygon(100% 0, 81.844% 100%, 0 100%, 18.156% 0);
     position: absolute;
     text-align: center;
 }
@@ -112,7 +112,6 @@ body p {
     position: absolute;
     margin-left: -13%;
     clip-path: polygon(100% 0, 81.844% 100%, 0 100%, 18.156% 0);
-    z-index: revert-layer;
 }
 
 .rank-AT {
@@ -189,7 +188,6 @@ body p {
     width: 95%;
     height: 25%;
     margin-left: 5%;
-    margin-top: 3%;
 }
 
 .songname p {
@@ -203,7 +201,6 @@ body p {
     height: 70%;
     text-align: center;
     position: relative;
-    margin-top: -4%;
 }
 
 .Rating {
@@ -397,6 +394,7 @@ body p {
 .createdbox p {
     color: white;
     font-size: 70px;
+    font-family: 'Aldrich', 'PHI';
 }
 
 .phi-plugin {

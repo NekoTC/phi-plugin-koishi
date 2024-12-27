@@ -294,6 +294,41 @@ export default class phiSong {
 
             send.send_with_At(session, getInfo.tips[fCompute.randBetween(0, getInfo.tips.length - 1)])
         })
+
+        ctx.command('phi.new', '新区速递').action(async ({ session }) => {
+            if (await send.isBan(session, 'new')) {
+                return;
+            }
+            let ans = '新曲速递：\n'
+            for (let i in getInfo.updatedSong) {
+                let info = getInfo.info(getInfo.updatedSong[i])
+                ans += `${info.song}\n`
+                for (let j in info.chart) {
+                    ans += `  ${j} ${info.chart[j].difficulty} ${info.chart[j].combo}\n`
+                }
+            }
+
+            ans += '\n定数&谱面修改：\n'
+            for (let song in getInfo.updatedChart) {
+                let tem = getInfo.updatedChart[song]
+                ans += song + '\n'
+                for (let level in tem) {
+                    ans += `  ${level}:\n`
+                    if (tem[level].isNew) {
+                        delete tem[level].isNew
+                        for (let obj in tem[level]) {
+                            ans += `    ${obj}: ${tem[level][obj][0]}\n`
+                        }
+                    } else {
+                        for (let obj in tem[level]) {
+                            ans += `    ${obj}: ${tem[level][obj][0]} -> ${tem[level][obj][1]}\n`
+                        }
+                    }
+                }
+            }
+
+            send.send_with_At(session, ans)
+        })
     }
 }
 

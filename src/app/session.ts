@@ -10,10 +10,9 @@ import buildingRecord from "../model/getUpdate";
 import getSave from "../model/getSave";
 import getPluginData from "../model/getPluginData";
 import scoreHistory from "../model/class/scoreHistory";
-import { levelKind } from "../model/type/levelKind";
 import getInfo from "../model/getInfo";
 import render from "../model/render";
-import { idString } from "../model/type/type";
+import { idString, levelKind } from "../model/type/type";
 
 
 export default class phiSstk {

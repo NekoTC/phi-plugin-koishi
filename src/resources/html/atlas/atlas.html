@@ -1,6 +1,6 @@
 {{extend defaultLayout}}
 {{block 'css'}}
-<link rel="stylesheet" href="{{_res_path}}html/song/song.css">
+<link rel="stylesheet" href="{{_res_path}}html/atlas/atlas.css">
 
 {{/block}}
 
@@ -31,7 +31,7 @@
                         </div>
                         <div class="line">
                             {{if spinfo}}
-                            <p name="pvis">{{@spinfo.replace(/\n/g,'<br\>')}}</p>
+                            <p name="pvis">{{#spinfo.replace(/\n/g,'<br\>')}}</p>
                             {{/if}}
                         </div>
                     </div>

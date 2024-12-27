@@ -1,5 +1,5 @@
 import getFile from './getFile'
-import { DlcInfoPath, imgPath, infoPath, originalIllPath, ortherIllPath } from '../components/pluginPath'
+import { DlcInfoPath, imgPath, infoPath, oldInfoPath, originalIllPath, ortherIllPath } from '../components/pluginPath'
 import path from 'path'
 import SongsInfo from './type/SongsInfo'
 import fs from 'fs'
@@ -7,7 +7,7 @@ import { Level, MAX_DIFFICULTY } from './constNum'
 import { config } from '../components/Config'
 import Chart from './class/Chart'
 import { logger } from '../components/Logger'
-import { idString, songString } from './type/type'
+import { idString, songString, levelKind, noteKind } from './type/type'
 
 
 
@@ -18,7 +18,10 @@ getFile.csvReader(path.join(infoPath, 'avatar.csv'))
         /**信息文件 */
         getFile.csvReader(path.join(infoPath, 'info.csv')).then((info) => {
             getFile.csvReader(path.join(infoPath, 'difficulty.csv')).then((difficulty) => {
-                getInfo.setCsvInfo(avatar, info, difficulty)
+                getFile.csvReader(path.join(oldInfoPath, 'difficulty.csv')).then((oldDifficulty) => {
+                    getInfo.setCsvInfo(avatar, info, difficulty, oldDifficulty)
+
+                })
             })
 
         })
@@ -56,6 +59,10 @@ export default class getInfo {
     /**按dif分的info */
     static info_by_difficulty: { [key: string]: Chart[] } = {}
 
+    static updatedSong: idString[] = []
+
+    static updatedChart: { [key: idString]: { [key in levelKind]?: { [key in (noteKind | 'difficulty' | 'combo')]?: number[] } } } = {}
+
     /**SP信息 */
     static sp_info: { [key: string]: any } = getFile.FileReader(path.join(infoPath, 'spinfo.json'))
 
@@ -68,13 +75,10 @@ export default class getInfo {
     /**所有曲目id列表 */
     static idlist: string[] = []
 
-    /**note统计 */
-    static notesInfo: { [key: string]: any } = getFile.FileReader(path.join(infoPath, 'notesInfo.json'))
-
     /**jrrp */
     static word: { [key: string]: string } = getFile.FileReader(path.join(infoPath, 'jrrp.json'))
 
-    static setCsvInfo(csv_avatar: { name: string, id: string }[], CsvInfo: any, Csvdif: any) {
+    static setCsvInfo(csv_avatar: { name: string, id: string }[], CsvInfo: any, Csvdif: any, oldDif: any) {
         for (let id in this.nicklist) {
             for (let j in this.nicklist[id]) {
                 if (this.songnick[this.nicklist[id][j]]) {
@@ -102,14 +106,30 @@ export default class getInfo {
             this.avatarid[csv_avatar[i].id] = csv_avatar[i].name
         }
 
+        /**note统计 */
+        let notesInfo: { [key: idString]: { [key in levelKind]: { [key in noteKind]: number } } } = getFile.FileReader(path.join(infoPath, 'notesInfo.json'))
+
         let Jsoninfo = getFile.FileReader(path.join(infoPath, 'infolist.json'))
+        let oldNotes = getFile.FileReader(path.join(oldInfoPath, 'notesInfo.json'))
+        let OldDifList = []
+        for (let i in oldDif) {
+            OldDifList[oldDif[i].id] = oldDif[i]
+        }
+
+        this.updatedSong = []
+        this.updatedChart = {}
 
         // console.info(Jsoninfo)
 
         for (let i in CsvInfo) {
-            let id = CsvInfo[i].id
+            let id: idString = CsvInfo[i].id
             this.songById[id] = CsvInfo[i].song
             this.idBySong[CsvInfo[i].song] = id
+
+            /**比较新曲部分 */
+            if (!OldDifList[id]) {
+                this.updatedSong.push(id)
+            }
 
             this.ori_info[id] = Jsoninfo[id]
             if (!Jsoninfo[id]) {
@@ -124,16 +144,54 @@ export default class getInfo {
             for (let j in this.Level) {
                 const level = this.Level[j]
                 if (CsvInfo[i][level]) {
+
+                    /**比较更新部分 */
+                    if (OldDifList[id]) {
+                        if (!OldDifList[id][level] || OldDifList[id][level] != Csvdif[i][level] || JSON.stringify(oldNotes[id][level]) != JSON.stringify(notesInfo[id][level])) {
+                            let tem = {}
+                            if (!OldDifList[CsvInfo[i].id][level]) {
+                                Object.assign(tem, { ...notesInfo[id][level], difficulty: Csvdif[i][level], isNew: true })
+                            } else {
+                                if (OldDifList[id][level] != Csvdif[i][level]) {
+                                    Object.assign(tem, { difficulty: [OldDifList[id][level], Csvdif[i][level]] })
+                                }
+                                if (oldNotes[id][level].tap != notesInfo[id][level].tap) {
+                                    Object.assign(tem, { tap: [oldNotes[id][level].tap, notesInfo[id][level].tap] })
+                                }
+                                if (oldNotes[id][level].drag != notesInfo[id][level].drag) {
+                                    Object.assign(tem, { drag: [oldNotes[id][level].drag, notesInfo[id][level].drag] })
+                                }
+                                if (oldNotes[id][level].hold != notesInfo[id][level].hold) {
+                                    Object.assign(tem, { hold: [oldNotes[id][level].hold, notesInfo[id][level].hold] })
+                                }
+                                if (oldNotes[id][level].flicke != notesInfo[id][level].flicke) {
+                                    Object.assign(tem, { flicke: [oldNotes[id][level].flicke, notesInfo[id][level].flicke] })
+                                }
+                                let oldCombo = oldNotes[id][level].tap + oldNotes[id][level].drag + oldNotes[id][level].hold + oldNotes[id][level].flicke
+                                let newCombo = notesInfo[id][level].tap + notesInfo[id][level].drag + notesInfo[id][level].hold + notesInfo[id][level].flicke
+                                if (oldCombo != newCombo) {
+                                    Object.assign(tem, { combo: [oldCombo, newCombo] })
+                                }
+                            }
+                            if (!this.updatedChart[id]) {
+                                this.updatedChart[id] = {}
+                            }
+                            this.updatedChart[id][level] = tem
+                            console.log(this.updatedChart)
+                        }
+                    }
+
+
                     if (!this.ori_info[id].chart[level]) {
                         this.ori_info[id].chart[level] = {}
                     }
                     this.ori_info[id].chart[level].charter = CsvInfo[i][level]
                     this.ori_info[id].chart[level].difficulty = Csvdif[i][level]
-                    this.ori_info[id].chart[level].tap = this.notesInfo[id][level].tap
-                    this.ori_info[id].chart[level].drag = this.notesInfo[id][level].drag
-                    this.ori_info[id].chart[level].hold = this.notesInfo[id][level].hold
-                    this.ori_info[id].chart[level].flicke = this.notesInfo[id][level].flicke
-                    this.ori_info[id].chart[level].combo = this.notesInfo[id][level].tap + this.notesInfo[id][level].drag + this.notesInfo[id][level].hold + this.notesInfo[id][level].flicke
+                    this.ori_info[id].chart[level].tap = notesInfo[id][level].tap
+                    this.ori_info[id].chart[level].drag = notesInfo[id][level].drag
+                    this.ori_info[id].chart[level].hold = notesInfo[id][level].hold
+                    this.ori_info[id].chart[level].flicke = notesInfo[id][level].flicke
+                    this.ori_info[id].chart[level].combo = notesInfo[id][level].tap + notesInfo[id][level].drag + notesInfo[id][level].hold + notesInfo[id][level].flicke
 
                     /**最高定数 */
                     this.MAX_DIFFICULTY = Math.max(this.MAX_DIFFICULTY, Number(Csvdif[i][level]))

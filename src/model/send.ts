@@ -3,7 +3,7 @@ import Save from "./class/Save";
 import { h, Keys, Session } from 'koishi';
 import { i18nList } from '../components/i18n';
 import getBanGroup from './getBanGroup';
-import allFnc from './class/allFnc';
+import { allFnc } from './type/allFnc';
 
 class send {
 
@@ -68,7 +68,7 @@ class send {
      * @param session 
      * @param fnc 指令名称
      */
-    async isBan(session: Session, fnc: Keys<allFnc>): Promise<boolean> {
+    async isBan(session: Session, fnc: allFnc): Promise<boolean> {
         if (session.guild && await getBanGroup.get(session.guildId, fnc)) {
             session.send(session.text(i18nList.beGroupBan))
             return true

@@ -1,8 +1,7 @@
 import { Keys } from "koishi"
 import fCompute from "../fCompute"
 import getInfo from "../getInfo"
-import { levelKind } from "../type/levelKind"
-import { idString } from "../type/type"
+import { idString, levelKind } from "../type/type"
 
 export default class scoreHistory {
 

@@ -23,6 +23,8 @@ export const infoPath = path.join(pluginResources, 'info')
 /**额外曲目名称信息（开字母用） */
 export const DlcInfoPath = path.join(pluginResources, 'info', 'DLC')
 
+/**上个版本信息 */
+export const oldInfoPath = path.join(pluginResources, 'info', 'oldInfo')
 
 /**默认图片路径 */
 export const imgPath = path.join(pluginResources, 'html', 'otherimg')

@@ -1,5 +1,5 @@
 import { redis, banGroupId } from '../components/redis'
-import allFnc from "./class/allFnc"
+import { allFnc } from "./type/allFnc"
 import { Keys } from "koishi"
 
 export default class getBanGroup {
@@ -21,7 +21,7 @@ export default class getBanGroup {
      * @param {string} fnc 
      * @returns 
      */
-    static async get(group: string, fnc: Keys<allFnc>) {
+    static async get(group: string, fnc: allFnc) {
         if (!group) {
             return false
         }
