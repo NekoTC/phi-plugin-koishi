@@ -29,13 +29,13 @@
             },
             {
                 "title": "/pgr",
-                "eg": "/pgr [背景(可选)]",
-                "desc": "获取 B19 成绩图，在主题不为⌈使一颗心免于哀伤⌋时可以选择背景曲绘<br>eg1: /pgr    eg2: /pgr df"
+                "eg": "/pgr -b <number>",
+                "desc": "获取 B19 成绩图，在主题不为⌈使一颗心免于哀伤⌋时可以选择背景曲绘<br>eg1: /pgr    eg2: /pgr -b 30"
             },
             {
-                "title": "杠批比三零",
-                "eg": "杠批比三零 杠批B30",
-                "desc": "获取 B30 成绩图<br>eg1: 杠批比三零<br>eg2: 杠批B99"
+                "title": "/a",
+                "eg": "/a -b <number>",
+                "desc": "获取 B30 成绩图<br>eg1: /a -b 30<br>eg2: /a"
             },
             {
                 "title": "/info",
@@ -48,7 +48,7 @@
                 "desc": "获取单曲成绩<br>eg: /score df"
             },
             {
-                "title": "/lvsco<br>/scolv",
+                "title": "/lvsco",
                 "eg": "/lvsco [定数] [难度]",
                 "desc": "获取指定范围内的成绩统计图<br>eg1: /lvsco 15+<br>eg2: /lvsco 14 IN HD<br>eg3: /lvsco 12-15 IN AT"
             },
@@ -61,21 +61,6 @@
                 "title": "/list",
                 "eg": "/list [定数] [难度] [评级]",
                 "desc": "列出所有匹配的成绩<br>eg: /list 15 F"
-            },
-            {
-                "title": "/bN",
-                "eg": "/b<N>",
-                "desc": "B19 但是很长很长<br>eg: /b60"
-            },
-            {
-                "title": "/lmtacc",
-                "eg": "/lmtacc <0-100>",
-                "desc": "计算限制最低 ACC 后的 RKS <br>eg: /lmtacc 98.5"
-            },
-            {
-                "title": "/bestN",
-                "eg": "/best <1-99>",
-                "desc": "获取文字版 B<N> 成绩，私聊获取完整版，建议私聊使用<br>eg: /best 19"
             },
             {
                 "title": "/suggest [定数] [难度] [评级]",
@@ -93,16 +78,6 @@
         "group": "图鉴 & 功能",
         "list": [
             {
-                "title": "/ranklist<br>/排行榜",
-                "eg": "/ranklist [名次]",
-                "desc": "放榜<br>eg1: /ranklist<br>eg2: /ranklist 520"
-            },
-            {
-                "title": "/godlist<br>/封神榜",
-                "eg": "/ranklist",
-                "desc": "放榜"
-            },
-            {
                 "title": "/song",
                 "eg": "/song <曲目>",
                 "desc": "查询曲目图鉴<br>eg: /song 996"
@@ -116,16 +91,6 @@
                 "title": "/rand",
                 "eg": "/rand [定数] [难度]",
                 "desc": "随机谱面<br>eg1: /rand 13+<br>eg2: /rand 15-<br>eg3: /rand 14-16 AT"
-            },
-            {
-                "title": "/randclg",
-                "eg": "/randclg [课题总值] [难度] ([曲目定数范围])",
-                "desc": "随机课题<br>eg1: /randclg 40+ IN<br>eg2: /rand 40 (IN 13-15)<br>eg3: /rand 40-48 AT IN (15+)"
-            },
-            {
-                "title": "/search",
-                "eg": "/search [bpm N-N] [dif N-N] [cmb N-N]",
-                "desc": "查询符合条件的曲目，建议私聊使用<br>eg1: /search bpm 300<br>eg2: /search bpm 1-300 dif 15"
             },
             {
                 "title": "/alias",
@@ -147,46 +112,6 @@
     {
         "group": "娱乐 & 设定",
         "list": [
-            {
-                "title": "/ltr",
-                "eg": "/ltr /nN.xx /ans /open x",
-                "desc": "开字母小游戏<br>eg1: /第一个996 /n1.df<br>eg2:/开 A /open A"
-            },
-            {
-                "title": "/guess",
-                "eg": "/guess (直接回答) /ans",
-                "desc": "猜曲绘，回答直接发曲目，识别后 Bot 会回复正确与否"
-            },
-            {
-                "title": "/tipgame",
-                "eg": "/tipgame /tip (直接回答) /ans",
-                "desc": "提示猜歌，回答直接发曲目，识别后 Bot 会回复正确与否"
-            },
-            {
-                "title": "/theme",
-                "eg": "/theme [0-2]",
-                "desc": "切换主题，作用于 pgr update list task<br>eg: /theme 1"
-            },
-            {
-                "title": "/sign",
-                "eg": "/sign",
-                "desc": "签到打卡获取 Notes 和任务卡片<br>eg: /sign"
-            },
-            {
-                "title": "/send",
-                "eg": "/send @ <N>",
-                "desc": "用于 Notes 转账，会从中扣除部分<br>eg: /send @xx 520"
-            },
-            {
-                "title": "/task",
-                "eg": "/task",
-                "desc": "查看自己的任务<br>eg: /task"
-            },
-            {
-                "title": "/retask",
-                "eg": "/retask",
-                "desc": "花费 20Notes 重置自己的任务，每日 /sgin 可视为一次 /retask ，每日第一次 reatask 免费<br>eg: /retask"
-            },
             {
                 "title": "/jrrp",
                 "eg": "/jrrp",
@@ -241,34 +166,9 @@
                 "desc": "删除某一歌曲的别名<br>eg: /delnick 福报"
             },
             {
-                "title": "/repu",
-                "eg": "/repu",
-                "desc": "重启puppeteer，仅支持最新版喵崽"
-            },
-            {
-                "title": "/下载曲绘<br>/down ill",
+                "title": "/下载曲绘<br>/downill",
                 "eg": "/下载曲绘",
                 "desc": "下载曲绘到本地"
-            },
-            {
-                "title": "/更新<br>/gx",
-                "eg": "/[强制]更新",
-                "desc": "更新本插件"
-            },
-            {
-                "title": "/get",
-                "eg": "/get <名次>",
-                "desc": "获取排行榜上某一名次的sessionToken"
-            },
-            {
-                "title": "/del",
-                "eg": "/del <sessionToken>",
-                "desc": "禁用某一sessionToken"
-            },
-            {
-                "title": "/allow",
-                "eg": "/allow <sessionToken>",
-                "desc": "恢复某一sessionToken"
             },
             {
                 "title": "/ban",

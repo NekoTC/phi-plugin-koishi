@@ -6,6 +6,19 @@
 
 {{block 'main'}}
 
+    <div class="background">
+        {{if theme == "star"}}
+        <img src="{{_res_path}}html/otherimg/Star1.png" alt="曲绘-模糊">
+        <img src="{{_res_path}}html/otherimg/Star2.png" alt="曲绘-模糊"
+            style="min-height: 0;width: 100%;height: auto;bottom: 0;filter: none;">
+        {{else}}
+        {{if background}}
+        <img src="{{background}}" alt="曲绘-模糊">
+        {{else}}
+        <img src="{{_res_path}}html/otherimg/phigros.png" alt="曲绘-模糊">
+        {{/if}}
+        {{/if}}
+    </div>
     <div class="title">
         <div class="l">
             <img src="{{_res_path}}html/otherimg/Phigros_Icon_3.0.0.png" alt="icon">
@@ -16,7 +29,7 @@
         </div>
         <div class="m"></div>
         <div class="r">
-            <p>Player: {{#gameuser.PlayerId}}</p>
+            <p>Player: {{@gameuser.PlayerId}}</p>
             <p>RankingScore: {{gameuser.rks.toFixed(4)}}</p>
             <div class="Challenge">
                 <p>ChallengeMode:</p>
@@ -45,7 +58,9 @@
             <div class="song">
                 <div class="ill-box">
                     <div class="num">
-                        <p>Phi</p>
+                        <div style="width: 100%; height: 100%;">
+                            <p name="pvis">Phi</p>
+                        </div>
                     </div>
                     <div class="ill">
                         <img src="{{phi.illustration}}" alt="{{phi.illustration}}">
@@ -111,7 +126,9 @@
             <div class="song">
                 <div class="ill-box">
                     <div class="num">
-                        <p name="pvis">#{{song.num}}</p>
+                        <div style="width: 100%; height: 100%;">
+                            <p name="pvis">#{{song.num}}</p>
+                        </div>
                     </div>
                     <div class="ill">
                         <img src="{{song.illustration}}" alt="ill">
@@ -166,7 +183,9 @@
             <div class="song">
                 <div class="ill-box">
                     <div class="num">
-                        <p name="pvis">#{{song.num}}</p>
+                        <div style="width: 100%; height: 100%;">
+                            <p name="pvis">#{{song.num}}</p>
+                        </div>
                     </div>
                     <div class="ill">
                         <img src="{{song.illustration}}" alt="ill">

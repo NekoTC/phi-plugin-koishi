@@ -1,5 +1,5 @@
 import { redis, banGroupId } from '../components/redis'
-import { allFnc } from "./type/allFnc"
+import { allFnc } from "./type/type"
 import { Keys } from "koishi"
 
 export default class getBanGroup {

@@ -3,7 +3,7 @@ import Save from "./class/Save";
 import { h, Keys, Session } from 'koishi';
 import { i18nList } from '../components/i18n';
 import getBanGroup from './getBanGroup';
-import { allFnc } from './type/allFnc';
+import { allFnc } from './type/type';
 
 class send {
 

@@ -33,10 +33,17 @@ export default class guessLetter {
         let totList = msg ? [] : Object.keys(getInfo.idBySong)
         range[guildId] = msg ? [] : ['phigros']
         let askList = msg.split(' ')
+        console.info(askList)
         for (let i in getInfo.DLC_Info) {
-            if (i in askList) {
+            if (askList.indexOf(i) != -1) {
                 totList = totList.concat(getInfo.DLC_Info[i])
+                range[guildId].push(i)
             }
+        }
+        // console.info(getInfo.DLC_Info)
+        if (!totList.length) {
+            send.send_with_At(session, session.text(i18nList.letter.notFoundSong), true)
+            return false
         }
         anslist[guildId] = randFromArr(totList, config.LetterNum)
 

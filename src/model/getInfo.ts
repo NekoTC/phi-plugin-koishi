@@ -91,7 +91,7 @@ export default class getInfo {
 
         let files = fs.readdirSync(DlcInfoPath).filter(file => file.endsWith('.json'))
         files.forEach(async (file) => {
-            this.DLC_Info[path.basename(file, '.json')] = await getFile.FileReader(path.join(DlcInfoPath, file))
+            this.DLC_Info[path.basename(file, '.json')] = getFile.FileReader(path.join(DlcInfoPath, file))
         })
 
 
@@ -177,7 +177,7 @@ export default class getInfo {
                                 this.updatedChart[id] = {}
                             }
                             this.updatedChart[id][level] = tem
-                            console.log(this.updatedChart)
+                            // console.log(this.updatedChart)
                         }
                     }
 

@@ -18,6 +18,8 @@ export const i18nList = {
         haveAnotherGame: 'letterHaveAnotherGame',
         /**现在还没有进行的开字母捏，快输入"/phi letter"开始一局吧！ */
         notFoundGame: 'letterNotFoundGame',
+        /**没有找到对应的曲库嗷！ */
+        notFoundSong: 'letterNotFoundSong',
         /**出你字母已开始！*/
         start: 'letterStart',
         /**出你字母已结束！*/
@@ -57,6 +59,7 @@ export function apply(ctx: Context) {
         letterHaveAnotherGame: '已经在玩开字母啦！如果想要重新开始请先/phi ans结束本局游戏哦！',
         letterNotFoundGame: '现在还没有进行的开字母捏，快输入"/phi letter"开始一局吧！',
         letterStart: '出你字母已开始！回复"/nX.XXXX"命令猜歌，例如："/n1.Reimei";发送/open X来翻开字母(不区分大小写，不需要指令头)，如/open A;发送/ ans结束并查看答案哦！',
+        letterNotFoundSong: '没有找到对应的曲库嗷！',
         letterGameOver: '全部歌曲已开启！出你字母已结束！',
         letterBody: '当前考试范围：{0}\n已翻开字母：{1}\n{2}',
         letterOnlyCanOpenOne: '每次只能翻开一个字母哦！',
