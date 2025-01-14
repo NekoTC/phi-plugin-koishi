@@ -5,7 +5,7 @@ import ByteReader from './ByteReader'
 import Base64 from './Base64';
 
 
-export default interface Summary {
+interface Summary {
     updatedAt: string;
     saveVersion: number;
     challengeModeRank: number;
@@ -17,7 +17,7 @@ export default interface Summary {
     phi: number[];
 }
 
-export default class Summary {
+class Summary {
     constructor(summary) {
         let now = Date().toString()
         let time = now.split(' ')
@@ -48,3 +48,5 @@ export default class Summary {
         }
     }
 }
+
+export default Summary;

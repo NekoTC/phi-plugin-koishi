@@ -99,7 +99,7 @@ export default class saveHistory {
      * @param {Save} save 新存档
      */
     update(save: Save) {
-        console.info(save)
+        // console.info(save)
         /**更新单曲成绩 */
         for (let id in save.gameRecord) {
             if (!this.scoreHistory[id]) this.scoreHistory[id] = {}

@@ -1,5 +1,5 @@
 
-export default interface ByteReader {
+interface ByteReader {
     data: Buffer;
     position: number;
     remaining(): number;
@@ -22,7 +22,7 @@ export default interface ByteReader {
     replaceBytes(length: number, bytes: Uint8Array): void;
 }
 
-export default class ByteReader {
+class ByteReader {
     constructor(data, position = 0) {
         this.data = Buffer.from(data, 'hex');
         this.position = position;
@@ -159,3 +159,4 @@ export default class ByteReader {
         this.data = Buffer.from(result);
     }
 }
+export default ByteReader;

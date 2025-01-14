@@ -90,7 +90,7 @@ export const Config: Schema<Config> = Schema.intersect([
             Schema.const("https://raw.githubusercontent.com/Catrong/phi-plugin-ill/refs/heads/main/").description("Github"),
             Schema.const("https://ghp.ci/https://raw.githubusercontent.com/Catrong/phi-plugin-ill/refs/heads/main/").description("mirror.ghproxy"),
             Schema.string().description("Custom").default("https://mirror.ghproxy.com/https://raw.githubusercontent.com/Catrong/phi-plugin-ill/main")
-        ]).default("https://gitee.com/Steveeee-e/phi-plugin-ill/raw/main").description("在线曲绘来源"),
+        ]).default("https://gitee.com/Steveeee-e/phi-plugin-ill/raw/main/").description("在线曲绘来源"),
         /**渲染精度 */
         renderScale: Schema.number().min(50).max(200).step(1).role('slider').default(100).description("渲染精度"),
         /**渲染质量 */

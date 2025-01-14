@@ -411,6 +411,7 @@ export default class phiUserInfo {
             for (let i in Record) {
                 let id = i as idString
                 let info = getInfo.info(id)
+                if (!info) continue
                 let record = Record[id]
                 let vis = false
                 for (let lv in [0, 1, 2, 3]) {

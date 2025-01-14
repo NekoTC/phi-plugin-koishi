@@ -12,7 +12,7 @@ import { logger } from '../components/Logger'
 import { Page } from 'puppeteer-core'
 import fCompute from './fCompute'
 
-let renderList: { [keys in tplName]?: { page: Page, using: boolean } } = {}
+let renderList: { [keys in tplName]?: boolean } = {}
 
 let waitingList: { [keys in tplName]?: number[] } = {}
 
@@ -54,14 +54,14 @@ export default async function render(ctx: Context, app: tplName, params: any) {
 
     /**检查是否已有page */
     if (!renderList[app]) {
-        renderList[app] = { page: await ctx.puppeteer.page(), using: false }
+        renderList[app] = false
         waitingList[app] = []
     }
 
     let renderId = Date.now()
     waitingList[app].push(renderId)
 
-    while (renderList[app].using || waitingList[app][0] != renderId) {
+    while (renderList[app] || waitingList[app][0] != renderId) {
         await new Promise((resolve) => { setTimeout(resolve, 500) })
         if (Date.now() - renderId > config.waitingTimeout) {
             logger.error(`waiting ${app} timeout`)
@@ -71,9 +71,10 @@ export default async function render(ctx: Context, app: tplName, params: any) {
         }
     }
 
-    renderList[app].using = true
+    renderList[app] = true
     waitingList[app].shift()
-    let page = renderList[app].page
+    let page = await ctx.puppeteer.page()
+    // let page = renderList[app].page
 
     /**保存模板文件 */
     let html: string
@@ -81,7 +82,7 @@ export default async function render(ctx: Context, app: tplName, params: any) {
         html = artTemplate.render(fs.readFileSync(data.tplFile, { encoding: 'utf-8' }), data)
     } catch (error) {
         logger.error(error)
-        renderList[app].using = false
+        renderList[app] = false
         return '渲染失败，请稍后再试QAQ！'
 
     }
@@ -96,11 +97,12 @@ export default async function render(ctx: Context, app: tplName, params: any) {
             type: 'jpeg', quality: config.randerQuality,
             // path: path.join(tempPath, 'img', `${app}.jpeg`)
         })
+        await page.close()
     } catch (error) {
         logger.error(error)
     }
 
-    renderList[app].using = false
+    renderList[app] = false
     let time2 = Date.now()
     if (base64) {
         logger.info(`render ${app} time: ${time2 - time1}ms`)
