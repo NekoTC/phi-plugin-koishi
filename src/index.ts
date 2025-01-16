@@ -194,7 +194,7 @@ export const Config: Schema<Config> = Schema.intersect([
 ])
 
 export async function apply(ctx: Context, config: Config) {
-    ctx.plugin(app, config)
     ctx.plugin(components, config)
+    ctx.plugin(app, config)
 }
 

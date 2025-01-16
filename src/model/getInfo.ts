@@ -490,7 +490,7 @@ export default class getInfo {
      * @returns 原名
      */
     static idgetsong(id: idString): songString {
-        id.replace('.0', '')
+        id.replace(/\.0$/, '')
         return this.songById[id]
     }
 
