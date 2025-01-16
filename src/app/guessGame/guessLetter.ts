@@ -118,7 +118,7 @@ export default class guessLetter {
 
         send.send_with_At(session, session.text(i18nList.letter.guessTrue, [index + 1, getInfo.info(songId[0]).song]), true)
 
-        winnerlist[guildId][index - 1] = session?.event?.user?.name || 'true'
+        winnerlist[guildId][index] = session?.event?.user?.name || 'true'
         let res = getBlurlist(guildId)
         if (checkGameOver(guildId, res)) {
             gameOver(guildId, gameList, session)
