@@ -6,7 +6,6 @@ import fs from 'fs'
 import { Level, MAX_DIFFICULTY } from './constNum'
 import { config } from '../components/Config'
 import Chart from './class/Chart'
-import { logger } from '../components/Logger'
 import { idString, songString, levelKind, noteKind } from './type/type'
 
 
@@ -134,7 +133,7 @@ export default class getInfo {
             this.ori_info[id] = Jsoninfo[id]
             if (!Jsoninfo[id]) {
                 this.ori_info[id] = { song: CsvInfo[i].song, chapter: '', bpm: '', length: '', chart: {} }
-                logger.info(`[phi-plugin]曲目详情未更新：${CsvInfo[i].song}`)
+                console.info(`[phi-plugin]曲目详情未更新：${CsvInfo[i].song}`)
             }
             this.ori_info[id].song = CsvInfo[i].song
             this.ori_info[id].id = id
@@ -203,7 +202,7 @@ export default class getInfo {
 
 
         if (this.MAX_DIFFICULTY != MAX_DIFFICULTY) {
-            logger.error('[phi-plugin] MAX_DIFFICULTY 常量未更新，请回报作者！', MAX_DIFFICULTY, this.MAX_DIFFICULTY)
+            console.error('[phi-plugin] MAX_DIFFICULTY 常量未更新，请回报作者！', MAX_DIFFICULTY, this.MAX_DIFFICULTY)
         }
 
         for (let id in this.ori_info) {
