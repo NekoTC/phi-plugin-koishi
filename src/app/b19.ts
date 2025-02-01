@@ -41,22 +41,20 @@ export default class phiB19 {
             if (!config.isGuild)
                 send.send_with_At(session, "正在生成图片，请稍等一下哦！\n//·/w\\·\\\\", false, 5)
 
-            /**自定义数量不更新存档 */
-            if (nnum == 21) {
 
-                try {
-                    buildingRecord(session, new PhigrosUser(save.sessionToken))
+            try {
+                await buildingRecord(session, new PhigrosUser(save.sessionToken))
 
-                    save = await send.getsave_result(session)
+                save = await send.getsave_result(session)
 
-                    if (!save) {
-                        return;
-                    }
-
-                } catch (err) {
-                    send.send_with_At(session, err)
-                    logger.error(err)
+                if (!save) {
+                    return;
                 }
+
+            } catch (err) {
+                send.send_with_At(session, err)
+                logger.error(err)
+
             }
 
             let save_b19 = await save.getB19(nnum)

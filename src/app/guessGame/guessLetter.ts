@@ -63,7 +63,7 @@ export default class guessLetter {
             return false
         }
         msg = msg.toLowerCase()
-        if (msg in openlist[guildId]) {
+        if (openlist[guildId].includes(msg)) {
             /**开过了 */
             send.send_with_At(session, session.text(i18nList.letter.haveBeOpened), true)
             return false
