@@ -15,7 +15,7 @@ export default new class getQRcode {
      * @param {string} url 链接
      * @returns 二维码
      */
-    async getQRcode(url) {
+    async getQRcode(url): Promise<Buffer> {
         return await QRCode.toBuffer(url, { scale: 10 })
     }
 
