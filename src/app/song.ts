@@ -327,6 +327,11 @@ export default class phiSong {
                 }
             }
 
+            if (ans.length > 500) {
+                send.send_with_At(session, '新曲速递内容过长，请试图查阅其他途径！')
+                return;
+            }
+
             send.send_with_At(session, ans)
         })
     }

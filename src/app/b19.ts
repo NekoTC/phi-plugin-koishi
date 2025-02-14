@@ -29,10 +29,10 @@ export default class phiB19 {
 
             let nnum = Number(options.best)
             if (!nnum) {
-                nnum = 21
+                nnum = 33
             }
 
-            nnum = Math.max(nnum, 21)
+            nnum = Math.max(nnum, 33)
             nnum = Math.min(nnum, config.B19MaxNum)
 
             let plugin_data = await getPluginData.get(session.userId)
@@ -85,7 +85,7 @@ export default class phiB19 {
                 nnum: nnum,
             }
 
-            send.send_with_At(session, await render(ctx, "b19", data))
+            send.send_with_At(session, await render(ctx, "b19", data) + (Math.abs(save_b19.com_rks - save.saveInfo.summary.rankingScore) > 0.1 ? `请注意，当前版本可能更改了计算规则\n计算rks: ${save_b19.com_rks}\n标准rks: ${save.saveInfo.summary.rankingScore}` : ''))
         })
 
         ctx.command('phi.a', '获取B30').option('best', '-b <val:natural> 输出bN', { fallback: 30 }).action(async ({ session, options }) => {
@@ -101,10 +101,10 @@ export default class phiB19 {
 
 
             let nnum = options.best
-            nnum = nnum ? Number(nnum) - 1 : 29
-            if (!nnum) { nnum = 29 }
+            nnum = nnum ? Number(nnum) - 1 : 32
+            if (!nnum) { nnum = 32 }
 
-            nnum = Math.max(nnum, 19)
+            nnum = Math.max(nnum, 30)
             nnum = Math.min(nnum, config.B19MaxNum)
 
             let save_b19 = await save.getB19(nnum)

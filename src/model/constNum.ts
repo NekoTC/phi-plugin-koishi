@@ -14,7 +14,7 @@ export const LevelNum = {
 export const redisPath = "phiPlugin"
 
 /**最大难度 */
-export const MAX_DIFFICULTY = 16.8
+export const MAX_DIFFICULTY = 17.6
 
 
 export const ChallengeModeName = ['白', '绿', '蓝', '红', '金', '彩']
