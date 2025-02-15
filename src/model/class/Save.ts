@@ -275,7 +275,7 @@ export default class Save {
             }
             if (tem?.rks) {
                 sum_rks += Number(tem.rks) //计算rks
-                tem.illustration = getInfo.getill(tem.song)
+                tem.illustration = getInfo.getill(tem.id)
                 tem.suggest = "无法推分"
             }
         }

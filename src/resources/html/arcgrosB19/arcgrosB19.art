@@ -43,7 +43,7 @@
         <div class="song_box">
             <div class="num_box">
                 <div class="num">
-                    <p>P{{$index}}</p>
+                    <p>P{{$index+1}}</p>
                 </div>
                 <div class="num_broad"></div>
                 <num class="num_borad_bottom"></num>
@@ -95,7 +95,7 @@
             </div>
             {{else}}
             <div class="borad_up">
-                <p>当前还没有满分过任何曲目哦！</p>
+                <p>empty</p>
             </div>
             <div class="borad_down_box">
                 <div class="borad_down">
