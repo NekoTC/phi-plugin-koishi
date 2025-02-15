@@ -85,7 +85,7 @@ export default class phiB19 {
                 nnum: nnum,
             }
 
-            send.send_with_At(session, await render(ctx, "b19", data) + (Math.abs(save_b19.com_rks - save.saveInfo.summary.rankingScore) > 0.1 ? `请注意，当前版本可能更改了计算规则\n计算rks: ${save_b19.com_rks}\n标准rks: ${save.saveInfo.summary.rankingScore}` : ''))
+            send.send_with_At(session, await render(ctx, "b19", data) + (Math.abs(save_b19.com_rks - save.saveInfo.summary.rankingScore) > 0.1 ? `请注意，当前版本可能更改了计算规则\n计算rks: ${save_b19.com_rks}\n存档rks: ${save.saveInfo.summary.rankingScore}` : ''))
         })
 
         ctx.command('phi.a', '获取B30').option('best', '-b <val:natural> 输出bN', { fallback: 30 }).action(async ({ session, options }) => {
