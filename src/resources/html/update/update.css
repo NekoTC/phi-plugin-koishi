@@ -6,7 +6,7 @@ body {
     display: flex;
     width: 800px;
     height: fit-content;
-    font-family: 'PHI';
+    font-family: 'PHI', 'HIMALAYA', '吞弥恰俊';
     align-items: center;
 }
 
@@ -433,6 +433,7 @@ body p {
 .createdbox p {
     color: white;
     font-size: 70px;
+    font-family: 'Aldrich', 'PHI';
 }
 
 .phi-plugin {

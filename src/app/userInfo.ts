@@ -481,8 +481,8 @@ export default class phiUserInfo {
                 range: {
                     bottom: range[0],
                     top: range[1],
-                    left: range[0] / 16.9 * 100,
-                    length: (range[1] - range[0]) / 16.9 * 100
+                    left: range[0] / getInfo.MAX_DIFFICULTY * 100,
+                    length: (range[1] - range[0]) / getInfo.MAX_DIFFICULTY * 100
                 },
                 illustration: illustration,
                 highest: tothighest,

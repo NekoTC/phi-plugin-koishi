@@ -13,7 +13,7 @@
 
 <body class="elem-{{element||elem||`hydro`}} {{displayMode || mode || `default`}}-mode  {{bodyClass}}" {{sys.scale}}>
 
-    
+
     <div class="background">
         {{if theme == "star"}}
         <img src="{{_res_path}}html/otherimg/Star1.png" alt="曲绘-模糊">
@@ -37,39 +37,36 @@
     <script>
         function adjustFontSize() {
             //获取p元素
-            var a = document.getElementsByName('pvis')
-            for (var i = 0; i < a.length; ++i) {
+            let a = document.getElementsByName('pvis')
+            for (let i = 0; i < a.length; ++i) {
 
-                const songName = a[i]
+                let songName = a[i]
 
                 if (!songName) continue
 
 
                 /*调整曲目名称字体大小*/
-                var parentElement = songName.parentElement
+                let parentElement = songName.parentElement
 
-                // var maxFontSize = 100 //设置最大字体大小
+                if (!(songName.scrollWidth > parentElement.offsetWidth || songName.scrollHeight > parentElement.offsetHeight)) continue
 
-                // //如果字体宽度小于父元素宽度，则增大字体大小
-                // while (songName.scrollWidth < parentElement.offsetWidth && songName.scrollHeight < parentElement.offsetHeight) {
-                //     var style = window.getComputedStyle(songName, null).getPropertyValue('font-size')
-                //     var fontSize = parseFloat(style)
+                let fontSize = Number(window.getComputedStyle(songName, null).getPropertyValue('font-size').replace("px", ""));
 
-                //     //检查是否已经达到最大字体大小
-                //     if (fontSize >= maxFontSize) {
-                //         break
-                //     }
 
-                //     songName.style.fontSize = (fontSize + 1) + "px"
-                // }
-
-                // 如果字体宽度大于父元素宽度，则减小字体大小
-                while (songName.scrollWidth > parentElement.offsetWidth || songName.scrollHeight > parentElement.offsetHeight) {
-                    var style = window.getComputedStyle(songName, null).getPropertyValue('font-size')
-                    var fontSize = parseFloat(style);
-                    songName.style.fontSize = (fontSize - 1) + "px";
+                for (let i = 31; i > 0; i--) {
+                    if (!(fontSize & (1 << i)))
+                        continue
+                    fontSize -= (1 << i)
+                    songName.style.fontSize = fontSize + "px"
+                    if (!(songName.scrollWidth > parentElement.offsetWidth || songName.scrollHeight > parentElement.offsetHeight)) {
+                        fontSize += (1 << i)
+                    }
                 }
+
+                --fontSize;
+                songName.style.fontSize = fontSize + "px";
             }
+
         }
         window.onload = adjustFontSize
         window.onresize = adjustFontSize

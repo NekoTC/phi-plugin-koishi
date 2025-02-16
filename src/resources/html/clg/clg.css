@@ -15,6 +15,8 @@ body p {
     transform: none;
 }
 
+
+
 .box {
     height: 88%;
     width: 96.5%;
@@ -84,7 +86,7 @@ body p {
     left: 3%;
     bottom: 0;
     display: flex;
-    align-items: flex-end;
+    align-items: center;
 }
 
 .song_name p {
@@ -203,7 +205,7 @@ body p {
 
 .tot_clg p {
     font-size: 120px;
-    text-shadow: 0 0 3px black,0 0 10px white;
+    text-shadow: 0 0 3px black, 0 0 10px white;
 }
 
 .createdbox {
