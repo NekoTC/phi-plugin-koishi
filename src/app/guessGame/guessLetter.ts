@@ -8,7 +8,7 @@ import { pinyin } from 'pinyin-pro'
 import { config } from '../../components/Config'
 import getInfo from '../../model/getInfo'
 import send from '../../model/send'
-import { Session } from 'koishi'
+import { Context, Session } from 'koishi'
 import { i18nList } from '../../components/i18n'
 import { fCompute } from '../../model/index'
 
@@ -23,10 +23,10 @@ let openlist: { [key: string]: string[] } = {}
 
 export default class guessLetter {
     /**发起出字母猜歌 **/
-    static start(session: Session, gameList: { [key: string]: { gameType: string } }, msg: string) {
+    static start(ctx: Context, session: Session, gameList: { [key: string]: { gameType: string } }, msg: string) {
         let { guildId } = session // 使用对象解构提取guildId
         if (anslist[guildId]) {
-            send.send_with_At(session, session.text(i18nList.letter.haveAnotherGame), true)
+            send.send_with_At(session, session.text(i18nList.game.haveAnotherGame, { prefix: getInfo.getCmdPrefix(ctx, session) }), true)
             return false
         }
         gameList[guildId] = { gameType: 'letter' }
@@ -54,7 +54,7 @@ export default class guessLetter {
     }
 
     /** 翻开字母 **/
-    static reveal(session: Session, gameList: { [key: string]: { gameType: string } }, msg: string) {
+    static reveal(ctx: Context, session: Session, gameList: { [key: string]: { gameType: string } }, msg: string) {
         let { guildId } = session // 使用对象解构提取guildId
         msg = msg.replace(/\s/g, '')
         if (msg.length != 1) {
@@ -85,7 +85,7 @@ export default class guessLetter {
     }
 
     /** 猜测 **/
-    static guess(session: Session, gameList: { [key: string]: { gameType: string } }, msg: string) {
+    static guess(ctx: Context, session: Session, gameList: { [key: string]: { gameType: string } }, msg: string) {
         let { guildId } = session // 使用对象解构提取guildId
         if (!anslist[guildId]) {
             return false
@@ -107,7 +107,7 @@ export default class guessLetter {
         let songId = getInfo.fuzzysongsnick(msg.replace(guess, ''), 0.95)
 
         if (!songId[0]) {
-            send.send_with_At(session, session.text(i18nList.notFoundSong, [msg.replace(guess, '')]), true)
+            send.send_with_At(session, session.text(i18nList.common.notFoundSong, [msg.replace(guess, '')]), true)
             return false
         }
 
@@ -129,10 +129,10 @@ export default class guessLetter {
     }
 
     /** 答案 **/
-    static ans(session: Session, gameList: { [key: string]: { gameType: string } }) {
+    static ans(ctx: Context, session: Session, gameList: { [key: string]: { gameType: string } }) {
         let { guildId } = session // 使用对象解构提取guildId
         if (!anslist[guildId]) {
-            send.send_with_At(session, session.text(i18nList.letter.notFoundGame), true)
+            send.send_with_At(session, session.text(i18nList.letter.notFoundGame, { prefix: getInfo.getCmdPrefix(ctx, session) }), true)
             return false
         }
         gameOver(guildId, gameList, session)
@@ -140,11 +140,11 @@ export default class guessLetter {
     }
 
     /** 提示 **/
-    static getTip(session: Session, gameList: { [key: string]: { gameType: string } }) {
+    static getTip(ctx: Context, session: Session, gameList: { [key: string]: { gameType: string } }) {
         let { guildId } = session
 
         if (!gameList[guildId]) {
-            send.send_with_At(session, session.text(i18nList.letter.notFoundGame), true)
+            send.send_with_At(session, session.text(i18nList.letter.notFoundGame, { prefix: getInfo.getCmdPrefix(ctx, session) }), true)
             return false
         }
 

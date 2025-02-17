@@ -5,6 +5,7 @@ import lodash from "lodash";
 import fs from "fs";
 import { cachePath } from '../components/pluginPath';
 import { exec, execSync } from 'child_process';
+import { i18nList } from '../components/i18n';
 
 
 let uping = false
@@ -16,7 +17,7 @@ export default class phiDownload {
         ctx.command('phi.downill', '下载illust', { authority: 4 }).action(async ({ session }) => {
             /** 检查是否正在更新中 */
             if (uping) {
-                await session.send("已有命令更新中..请勿重复操作");
+                await session.send(i18nList.download.another);
                 return;
             }
 
@@ -36,7 +37,7 @@ export default class phiDownload {
 
             /** 是否成功 */
             if (isUp) {
-                await session.send("更新完毕")
+                await session.send(i18nList.download.finish);
             }
         })
     }
@@ -47,13 +48,13 @@ export default class phiDownload {
 async function clone(session: Session, config: Config) {
     let command = `git clone https://gitee.com/Steveeee-e/phi-plugin-ill.git ${cachePath}/original_ill/ --depth=1`;
 
-    session.send("开始下载曲绘文件");
+    session.send(session.text(i18nList.download.illBegin));
 
     uping = true;
     let ret: any = await execSyncGit(command);
     uping = false;
     if (ret.error) {
-        logger.error(`曲绘文件更新失败QAQ!`);
+        logger.error(session.text(i18nList.download.illFail));
         gitErr(ret.error, ret.stdout, session);
         return false;
     }
@@ -62,9 +63,9 @@ async function clone(session: Session, config: Config) {
     let time = await getTime();
 
     if (/(Already up[ -]to[ -]date|已经是最新的)/.test(ret.stdout)) {
-        await session.send(`曲绘文件已经是最新版本\n最后更新时间：${time}`);
+        await session.send(session.text(i18nList.download.alreadyNew, [time]));
     } else {
-        await session.send(`phi-plugin-ill\n最后更新时间：${time}`);
+        await session.send(session.text(i18nList.download.illNew, [time]));
         isUp = true;
         /** 获取phi-plugin-ill的更新日志 */
         let log: any = await getLog(session, config);
@@ -84,38 +85,33 @@ async function clone(session: Session, config: Config) {
      * @returns
      */
 async function gitErr(err, stdout, session: Session) {
-    let msg = "更新失败！";
+    let msg = session.text(i18nList.download.illFail);
     let errMsg = err.toString();
     stdout = stdout.toString();
 
     if (errMsg.includes("Timed out")) {
         let remote = errMsg.match(/'(.+?)'/g)[0].replace(/'/g, "");
-        await session.send(msg + `\n连接超时：${remote}`);
+        await session.send(msg + session.text(i18nList.download.illFailTimeout, [remote]));
         return;
     }
 
     if (/Failed to connect|unable to access/g.test(errMsg)) {
         let remote = errMsg.match(/'(.+?)'/g)[0].replace(/'/g, "");
-        await session.send(msg + `\n连接失败：${remote}`);
+        await session.send(msg + session.text(i18nList.download.illFailFetch, [remote]));
         return;
     }
 
     if (errMsg.includes("be overwritten by merge")) {
         await session.send(
-            msg +
-            `存在冲突：\n${errMsg}\n` +
-            "请解决冲突后再更新，或者执行#强制更新，放弃本地修改"
+            msg + session.text(i18nList.download.illFailOverwrite, [errMsg])
         );
         return;
     }
 
     if (stdout.includes("CONFLICT")) {
-        await session.send([
-            msg + "存在冲突\n",
-            errMsg,
-            stdout,
-            "\n请解决冲突后再更新，或者执行#强制更新，放弃本地修改",
-        ]);
+        await session.send(
+            msg + session.text(i18nList.download.illFailOverwrite, [errMsg + stdout,]),
+        );
         return;
     }
 

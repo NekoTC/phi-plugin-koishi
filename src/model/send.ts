@@ -1,6 +1,7 @@
 import getSave from "./getSave";
+import getInfo from "./getInfo";
 import Save from "./class/Save";
-import { h, Keys, Session } from 'koishi';
+import { Context, h, Keys, Session } from 'koishi';
 import { i18nList } from '../components/i18n';
 import getBanGroup from './getBanGroup';
 import { allFnc } from './type/type';
@@ -44,19 +45,19 @@ class send {
      * v1.1,更正scoreHistory
      * v1.2,由于曲名错误，删除所有记录，曲名使用id记录
      */
-    async getsave_result(session: Session, ver?: number): Promise<Save> {
+    async getsave_result(ctx: Context, session: Session, ver?: number): Promise<Save> {
 
         let sessionToken = await getSave.get_user_token(session.userId)
 
         let user_save = await getSave.getSave(session.userId)
 
         if (!sessionToken) {
-            this.send_with_At(session, session.text(i18nList.haveToBind))
+            this.send_with_At(session, session.text(i18nList.common.haveToBind, { prefix: getInfo.getCmdPrefix(ctx, session) }))
             return null
         }
 
         if (!user_save || (ver && (!user_save.Recordver || user_save.Recordver < ver))) {
-            this.send_with_At(session, session.text(i18nList.haveToUpdate))
+            this.send_with_At(session, session.text(i18nList.common.haveToUpdate, { prefix: getInfo.getCmdPrefix(ctx, session) }))
             return null
         }
 
@@ -70,7 +71,7 @@ class send {
      */
     async isBan(session: Session, fnc: allFnc): Promise<boolean> {
         if (session.guild && await getBanGroup.get(session.guildId, fnc)) {
-            session.send(session.text(i18nList.beGroupBan))
+            session.send(session.text(i18nList.common.beGroupBan))
             return true
         }
         return false

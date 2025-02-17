@@ -4,6 +4,7 @@ import { Config } from "..";
 import { Level } from "../model/constNum";
 import { logger } from "../components/Logger";
 import { idString } from "../model/type/type";
+import { i18nList } from "../components/i18n";
 
 
 export default class phiUserInfo {
@@ -18,12 +19,12 @@ export default class phiUserInfo {
             if (User) {
                 if (User.gameProgress) {
                     let data = User.gameProgress.money
-                    send.send_with_At(session, `您的data数为：${data[4] ? `${data[4]}PB ` : ''}${data[3] ? `${data[3]}TB ` : ''}${data[2] ? `${data[2]}GB ` : ''}${data[1] ? `${data[1]}MB ` : ''}${data[0] ? `${data[0]}KB ` : ''}`)
+                    send.send_with_At(session, session.text(i18nList.userinfo.data) + `${data[4] ? `${data[4]}PB ` : ''}${data[3] ? `${data[3]}TB ` : ''}${data[2] ? `${data[2]}GB ` : ''}${data[1] ? `${data[1]}MB ` : ''}${data[0] ? `${data[0]}KB ` : ''}`)
                 } else {
-                    send.send_with_At(session, `请先更新数据哦！\n/phi update`)
+                    send.send_with_At(session, session.text(i18nList.common.haveToUpdate, { prefix: getInfo.getCmdPrefix(ctx, session) }))
                 }
             } else {
-                send.send_with_At(session, `请先绑定sessionToken哦！\n/phi bind <sessionToken>`)
+                send.send_with_At(session, session.text(i18nList.common.haveToBind, { prefix: getInfo.getCmdPrefix(ctx, session) }))
             }
             return;
         })
@@ -49,7 +50,7 @@ export default class phiUserInfo {
                 bksong = getInfo.getill(getInfo.illlist[fCompute.randBetween(0, getInfo.illlist.length - 1)], 'blur')
             }
 
-            let save = await send.getsave_result(session, 1.0)
+            let save = await send.getsave_result(ctx, session, 1.0)
 
             if (!save) {
                 return;
@@ -142,7 +143,7 @@ export default class phiUserInfo {
             let userbackground = await fCompute.getBackground(save.gameuser.background)
 
             if (!userbackground) {
-                send.send_with_At(session, `ERROR: 未找到[${save.gameuser.background}]的有关信息！`)
+                send.send_with_At(session, session.text(i18nList.common.notFoundSong, [save.gameuser.background]))
                 logger.error(`未找到${save.gameuser.background}对应的曲绘！`)
             }
 
@@ -343,7 +344,7 @@ export default class phiUserInfo {
             }
 
 
-            let save = await send.getsave_result(session, 1.0)
+            let save = await send.getsave_result(ctx, session, 1.0)
 
             if (!save) {
                 return;
@@ -451,7 +452,7 @@ export default class phiUserInfo {
             let illustration = await fCompute.getBackground(save.gameuser.background)
 
             if (!illustration) {
-                send.send_with_At(session, `ERROR: 未找到[${save.gameuser.background}]的有关信息！`)
+                send.send_with_At(session, session.text(i18nList.common.notFoundSong, [save.gameuser.background]))
                 logger.error(`未找到${save.gameuser.background}的曲绘！`)
             }
 
@@ -511,7 +512,7 @@ export default class phiUserInfo {
             }
 
 
-            let save = await send.getsave_result(session)
+            let save = await send.getsave_result(ctx, session)
 
             if (!save) {
                 return;
@@ -552,7 +553,7 @@ export default class phiUserInfo {
             }
 
             if (data.length > config.listScoreMaxNum) {
-                send.send_with_At(session, `谱面数量过多(${data.length})大于设置的最大值(${config.listScoreMaxNum})，请缩小搜索范围QAQ！`)
+                send.send_with_At(session, session.text(i18nList.common.listToLong, [data.length, config.listScoreMaxNum]))
                 return;
             }
 

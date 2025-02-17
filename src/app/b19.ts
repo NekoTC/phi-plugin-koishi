@@ -1,6 +1,6 @@
 import { Context, h } from "koishi";
 import send from "../model/send";
-import { Config } from "..";
+import { Config, name } from "..";
 import { logger } from "../components/Logger";
 import getPluginData from "../model/getPluginData";
 import PhigrosUser from "../lib/PhigrosUser";
@@ -12,6 +12,7 @@ import getSave from "../model/getSave";
 import scoreHistory from "../model/class/scoreHistory";
 import { Level } from "../model/constNum";
 import { idString } from "../model/type/type";
+import { i18nList } from "../components/i18n";
 
 export default class phiB19 {
     constructor(ctx: Context, config: Config) {
@@ -21,7 +22,7 @@ export default class phiB19 {
                 return;
             }
 
-            let save = await send.getsave_result(session)
+            let save = await send.getsave_result(ctx, session)
             if (!save) {
                 return;
             }
@@ -32,20 +33,20 @@ export default class phiB19 {
                 nnum = 33
             }
 
-            nnum = Math.max(nnum, 33)
             nnum = Math.min(nnum, config.B19MaxNum)
+            nnum = Math.max(nnum, 33)
 
             let plugin_data = await getPluginData.get(session.userId)
 
 
             if (!config.isGuild)
-                send.send_with_At(session, "正在生成图片，请稍等一下哦！\n//·/w\\·\\\\", false, 5)
+                send.send_with_At(session, session.text(i18nList.common.renderingImg), false, 5)
 
 
             try {
-                await buildingRecord(session, new PhigrosUser(save.sessionToken))
+                await buildingRecord(ctx, session, new PhigrosUser(save.sessionToken))
 
-                save = await send.getsave_result(session)
+                save = await send.getsave_result(ctx, session)
 
                 if (!save) {
                     return;
@@ -94,7 +95,7 @@ export default class phiB19 {
                 return;
             }
 
-            let save = await send.getsave_result(session)
+            let save = await send.getsave_result(ctx, session)
             if (!save) {
                 return;
             }
@@ -144,7 +145,7 @@ export default class phiB19 {
                 return;
             }
 
-            const save = await send.getsave_result(session)
+            const save = await send.getsave_result(ctx, session)
 
             if (!save) {
                 return;
@@ -154,12 +155,12 @@ export default class phiB19 {
             let song = arg
 
             if (!song) {
-                send.send_with_At(session, `请指定曲名哦！\n格式：/phi score <曲名>`)
+                send.send_with_At(session, session.text(i18nList.common.haveToInputName, { prefix: getInfo.getCmdPrefix(ctx, session), cmd: 'score' }))
                 return;
             }
 
             if (!(getInfo.fuzzysongsnick(song)[0])) {
-                send.send_with_At(session, `未找到 ${song} 的有关信息哦！`)
+                send.send_with_At(session, session.text(i18nList.b19.notFoundSong, [song]))
                 return;
             }
 
@@ -170,7 +171,7 @@ export default class phiB19 {
             let ans = Record[songId]
 
             if (!ans) {
-                send.send_with_At(session, `我不知道你关于[${songName}]的成绩哦！可以试试更新成绩哦！\n格式：/phi update`)
+                send.send_with_At(session, session.text(i18nList.b19.songNoScore, { prefix: getInfo.getCmdPrefix(ctx, session), name: songName }))
                 return;
             }
 
@@ -251,7 +252,7 @@ export default class phiB19 {
                 return;
             }
 
-            let save = await send.getsave_result(session)
+            let save = await send.getsave_result(ctx, session)
 
             if (!save) {
                 return;
@@ -294,7 +295,7 @@ export default class phiB19 {
             }
 
             if (data.length > config.listScoreMaxNum) {
-                send.send_with_At(session, `谱面数量过多(${data.length})大于设置的最大值(${config.listScoreMaxNum})，只显示前${config.listScoreMaxNum}条！`)
+                send.send_with_At(session, session.text(i18nList.common.listToLong, [data.length, config.listScoreMaxNum]))
             }
 
             data.splice(config.listScoreMaxNum)

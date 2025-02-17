@@ -13,6 +13,7 @@ import scoreHistory from "../model/class/scoreHistory";
 import getInfo from "../model/getInfo";
 import render from "../model/render";
 import { idString, levelKind } from "../model/type/type";
+import { i18nList } from "../components/i18n";
 
 
 export default class phiSstk {
@@ -27,16 +28,16 @@ export default class phiSstk {
             let sessionToken = token?.match(/[0-9a-zA-Z]{25}|qrcode/g)[0]
 
             if (!sessionToken) {
-                return session.text('haveToInputToken')
+                return session.text(i18nList.bind.haveToInputToken, { prefix: getInfo.getCmdPrefix(ctx, session) })
             }
 
             if (sessionToken == "qrcode") {
                 let request = await getQRcode.getRequest();
                 let qrCodeMsg;
                 if (config.TapTapLoginQRcode) {
-                    qrCodeMsg = await send.send_with_At(session, h.image(await getQRcode.getQRcode(request.data.qrcode_url), 'image/png') + '请扫描二维码进行登录！如只有一个设备请长按识别二维码登录嗷！请勿错扫他人二维码。请注意，登录TapTap可能造成账号及财产损失，请在信任Bot来源的情况下扫码登录。', false, 60);
+                    qrCodeMsg = await send.send_with_At(session, h.image(await getQRcode.getQRcode(request.data.qrcode_url), 'image/png') + session.text(i18nList.bind.QRCode), false, 60);
                 } else {
-                    qrCodeMsg = await send.send_with_At(session, `${request.data.qrcode_url}\n请点击链接进行登录嗷！请勿使用他人的链接。请注意，登录TapTap可能造成账号及财产损失，请在信任Bot来源的情况下扫码登录。`, false, 60);
+                    qrCodeMsg = await send.send_with_At(session, request.data.qrcode_url + session.text(i18nList.bind.QRCode), false, 60);
                 }
                 let t1 = new Date();
                 let result;
@@ -46,7 +47,7 @@ export default class phiSstk {
                     result = await getQRcode.checkQRCodeResult(request);
                     if (!result.success) {
                         if (result.data.error == "authorization_waiting" && !flag) {
-                            send.send_with_At(session, `登录二维码已扫描，请确认登录`, false, 10);
+                            send.send_with_At(session, session.text(i18nList.bind.QRCodeBeUsed), false, 10);
                             fCompute.recallMsg(session, qrCodeMsg)
                             flag = true;
                         }
@@ -57,30 +58,30 @@ export default class phiSstk {
                 }
 
                 if (!result.success) {
-                    send.send_with_At(session, `操作超时，请重试！`);
+                    send.send_with_At(session, session.text(i18nList.bind.QRCodeTimeout));
                     return;
                 }
                 try {
                     sessionToken = await getQRcode.getSessionToken(result);
                 } catch (err) {
                     logger.error(err)
-                    send.send_with_At(session, `获取sessionToken失败QAQ！请确认您的Phigros已登录TapTap账号！\n错误信息：${err}`)
+                    send.send_with_At(session, session.text(i18nList.bind.QRCodeFail));
                     return;
                 }
             }
 
-            send.send_with_At(session, `请注意保护好自己的sessionToken呐！如果需要获取已绑定的sessionToken可以私聊发送 /phi sessionToken 哦！`, false, 10)
+            send.send_with_At(session, session.text(i18nList.bind.tipProtectToken, { prefix: getInfo.getCmdPrefix(ctx, session) }), false, 10)
 
 
             if (!config.isGuild) {
-                send.send_with_At(session, "正在绑定，请稍等一下哦！\n >_<", false, 5)
+                send.send_with_At(session, session.text(i18nList.bind.ing), false, 5)
             }
 
             try {
                 await build(ctx, session, sessionToken, config)
             } catch (error) {
                 logger.error(error)
-                send.send_with_At(session, `更新失败，请检查你的sessionToken是否正确！\n错误信息：${error}`)
+                send.send_with_At(session, session.text(i18nList.bind.failed, [error]))
             }
         })
 
@@ -92,18 +93,18 @@ export default class phiSstk {
 
             let token = await getSave.get_user_token(session.userId)
             if (!token) {
-                send.send_with_At(session, `没有找到你的存档哦！请先绑定sessionToken！\n帮助：/phi tk help\n格式：/phi bind <sessionToken>`)
+                send.send_with_At(session, session.text(i18nList.common.haveToBind, { prefix: getInfo.getCmdPrefix(ctx, session) }))
                 return null
             }
 
             if (!config.isGuild || !session.guild) {
-                send.send_with_At(session, "正在更新，请稍等一下哦！\n >_<", true, 5)
+                send.send_with_At(session, session.text(i18nList.bind.ing), true, 5)
             }
             try {
                 await build(ctx, session, token, config)
             } catch (error) {
                 logger.error(error)
-                send.send_with_At(session, `更新失败，请检查你的sessionToken是否正确！\n错误信息：${error}`)
+                send.send_with_At(session, session.text(i18nList.bind.failed, [error]))
             }
 
             return null
@@ -117,15 +118,15 @@ export default class phiSstk {
 
 
             if (!getSave.get_user_token(session.userId)) {
-                send.send_with_At(session, '没有找到你的存档信息嗷！')
+                send.send_with_At(session, session.text(i18nList.common.haveToBind, { prefix: getInfo.getCmdPrefix(ctx, session) }))
                 return;
             }
 
-            send.send_with_At(session, '解绑会导致历史数据全部清空呐QAQ！真的要这么做吗？（确认/取消）')
+            send.send_with_At(session, session.text(i18nList.bind.unbind))
 
             let res = await session.prompt(30000)
 
-            if (res.includes('确认')) {
+            if (res.includes(session.text(i18nList.bind.unbindKeyWord))) {
                 let flag = true
                 try {
                     getSave.delSave(session.userId)
@@ -148,21 +149,21 @@ export default class phiSstk {
                     flag = false
                 }
                 if (flag) {
-                    send.send_with_At(session, '解绑成功')
+                    send.send_with_At(session, session.text(i18nList.bind.unbindSuccess))
                 } else {
-                    send.send_with_At(session, '没有找到你的存档哦！')
+                    send.send_with_At(session, session.text(i18nList.common.haveToBind, { prefix: getInfo.getCmdPrefix(ctx, session) }))
                 }
             } else {
-                send.send_with_At(session, `取消成功！`)
+                send.send_with_At(session, session.text(i18nList.bind.unbindCancel))
             }
 
             return;
         })
 
         ctx.command('phi.clear', '清除全部数据').action(async ({ session }) => {
-            send.send_with_At(session, '请注意，本操作将会删除Phi-Plugin关于您的所有信息QAQ！（确认/取消）')
+            send.send_with_At(session, session.text(i18nList.bind.clear))
             let res = await session.prompt(30000)
-            if (res.includes('确认')) {
+            if (res.includes(session.text(i18nList.bind.unbindKeyWord))) {
                 let flag = true
                 try {
                     getSave.delSave(session.userId)
@@ -177,23 +178,23 @@ export default class phiSstk {
                     flag = false
                 }
                 if (flag) {
-                    send.send_with_At(session, '清除成功')
+                    send.send_with_At(session, session.text(i18nList.bind.unbindSuccess))
                 }
             } else {
-                send.send_with_At(session, `取消成功！`)
+                send.send_with_At(session, session.text(i18nList.bind.unbindCancel))
             }
         })
 
         ctx.command('phi.sessionToken', '获取sessionToken').action(async ({ session }) => {
 
             if (session.guild) {
-                send.send_with_At(session, `请私聊使用嗷`)
+                send.send_with_At(session, session.text(i18nList.common.turnToPrivate))
                 return;
             }
 
-            let save = await send.getsave_result(session)
+            let save = await send.getsave_result(ctx, session)
             if (!save) {
-                send.send_with_At(session, `未绑定存档，请先绑定存档嗷！`)
+                send.send_with_At(session, session.text(i18nList.common.haveToBind, { prefix: getInfo.getCmdPrefix(ctx, session) }))
                 return;
             }
 
@@ -209,12 +210,12 @@ async function build(ctx: Context, session: Session, sessionToken: string, confi
         User = new PhigrosUser(sessionToken)
     } catch (err) {
         logger.error(`[phi-plugin]绑定sessionToken错误`, err)
-        send.send_with_At(session, `绑定sessionToken错误QAQ!\n错误的sstk:${sessionToken}\n帮助：/phi tk help\n格式：/phi bind <sessionToken>`, false, 10)
+        send.send_with_At(session, session.text(i18nList.bind.errToken, { prefix: getInfo.getCmdPrefix(ctx, session) }), false, 10)
         return true
     }
 
     /**记录存档rks,note变化 */
-    let added_rks_notes: any = await buildingRecord(session, User)
+    let added_rks_notes: any = await buildingRecord(ctx, session, User)
     if (!added_rks_notes) {
         return true
     }
@@ -260,7 +261,7 @@ async function build(ctx: Context, session: Session, sessionToken: string, confi
         }
     }
 
-    let newnum = tot_update[time_vis[fCompute.date_to_string(now.saveInfo.modifiedAt.iso)]]?.update_num || 0
+    let newnum: number = tot_update[time_vis[fCompute.date_to_string(now.saveInfo.modifiedAt.iso)]]?.update_num || 0
 
     tot_update.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
 
@@ -362,7 +363,7 @@ async function build(ctx: Context, session: Session, sessionToken: string, confi
         ChallengeModeRank: now.saveInfo.summary.challengeModeRank % 100,
         background: getInfo.getill(getInfo.illlist[Math.floor((Math.random() * (getInfo.illlist.length - 1)))]),
         box_line: box_line,
-        update_ans: newnum ? `更新了${newnum}份成绩` : `未收集到新成绩`,
+        update_ans: newnum ? session.text(i18nList.bind.updated, [newnum]) : session.text(i18nList.bind.noUpdate),
         Notes: pluginData.plugin_data ? pluginData.plugin_data.money : 0,
         show: show,
         tips: getInfo.tips[Math.floor((Math.random() * (getInfo.tips.length - 1)) + 1)],

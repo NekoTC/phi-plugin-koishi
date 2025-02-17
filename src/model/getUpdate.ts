@@ -1,4 +1,4 @@
-import { Session } from "koishi";
+import { Context, Session } from "koishi";
 import PhigrosUser from "../lib/PhigrosUser";
 import getSave from "./getSave";
 import send from "./send";
@@ -7,6 +7,7 @@ import Save from "./class/Save";
 import getPluginData from "./getPluginData";
 import getInfo from "./getInfo";
 import { Level } from "./constNum";
+import { i18nList } from "../components/i18n";
 
 /**
      * 更新存档
@@ -14,7 +15,7 @@ import { Level } from "./constNum";
      * @param User 
      * @returns [rks变化值，note变化值]，失败返回 false
      */
-export default async function buildingRecord(session: Session, User: PhigrosUser): Promise<number[]> {
+export default async function buildingRecord(ctx: Context, session: Session, User: PhigrosUser): Promise<number[]> {
     let old = await getSave.getSave(session.userId)
 
     if (old) {
@@ -22,7 +23,7 @@ export default async function buildingRecord(session: Session, User: PhigrosUser
             if (old.sessionToken == User.sessionToken) {
                 // send.send_with_At(e, `你已经绑定了该sessionToken哦！将自动执行update...\n如果需要删除统计记录请 ⌈/${Config.getUserCfg('config', 'cmdhead')} unbind⌋ 进行解绑哦！`)
             } else {
-                send.send_with_At(session, `检测到新的sessionToken，将自动更换绑定。如果需要删除统计记录请 /phi unbind 进行解绑哦！`)
+                send.send_with_At(session, session.text(i18nList.bind.newToken, { prefix: getInfo.getCmdPrefix(ctx, session) }))
 
                 await getSave.add_user_token(session.userId, User.sessionToken)
                 old = await getSave.getSave(session.userId)
@@ -38,10 +39,10 @@ export default async function buildingRecord(session: Session, User: PhigrosUser
         }
         let err = await User.buildRecord()
         if (err.length) {
-            send.send_with_At(session, "以下曲目无信息，可能导致b19显示错误\n" + err.join('\n'))
+            send.send_with_At(session, session.text(i18nList.bind.noInfo) + err.join('\n'))
         }
     } catch (err) {
-        send.send_with_At(session, "绑定失败！QAQ\n" + err)
+        send.send_with_At(session, session.text(i18nList.bind.downloadError) + err)
         logger.error(err)
         return null
     }
@@ -49,7 +50,7 @@ export default async function buildingRecord(session: Session, User: PhigrosUser
     try {
         await getSave.putSave(session.userId, User)
     } catch (err) {
-        send.send_with_At(session, `保存存档失败！` + err)
+        send.send_with_At(session, session.text(i18nList.bind.saveError) + err)
         logger.error(err)
         return null
     }
@@ -60,7 +61,6 @@ export default async function buildingRecord(session: Session, User: PhigrosUser
     /**更新 */
     let history = await getSave.getHistory(session.userId)
     history.update(now)
-    logger.info(1111111, history)
     getSave.putHistory(session.userId, history)
 
 

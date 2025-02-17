@@ -10,6 +10,7 @@ import Chart from "../model/class/Chart";
 import { logger } from "../components/Logger";
 import { getNotes } from "../model";
 import { idString } from "../model/type/type";
+import { i18nList } from "../components/i18n";
 
 
 export default class phiSong {
@@ -20,7 +21,7 @@ export default class phiSong {
             }
 
             if (!arg) {
-                send.send_with_At(session, `请指定曲名哦！\n格式：/phi song <曲名>`)
+                send.send_with_At(session, session.text(i18nList.common.haveToInputName, { prefix: getInfo.getCmdPrefix(ctx, session), cmd: 'song' }))
                 return;
             }
             let ids = getInfo.fuzzysongsnick(arg)
@@ -36,7 +37,7 @@ export default class phiSong {
                     send.send_with_At(session, msgRes)
                 }
             } else {
-                send.send_with_At(session, `未找到${arg}的相关曲目信息QAQ`)
+                send.send_with_At(session, session.text(i18nList.common.notFoundSong, [arg]))
             }
         })
 
@@ -46,7 +47,7 @@ export default class phiSong {
             }
 
             if (!arg) {
-                send.send_with_At(session, `请指定曲名哦！\n格式：/phi ill <曲名>`)
+                send.send_with_At(session, session.text(i18nList.common.haveToInputName, { prefix: getInfo.getCmdPrefix(ctx, session), cmd: 'ill' }))
                 return;
             }
             let ids = getInfo.fuzzysongsnick(arg)
@@ -62,7 +63,7 @@ export default class phiSong {
                     send.send_with_At(session, msgRes)
                 }
             } else {
-                send.send_with_At(session, `未找到${arg}的相关曲目信息QAQ`)
+                send.send_with_At(session, session.text(i18nList.common.notFoundSong, [arg]))
             }
         })
 
@@ -92,7 +93,7 @@ export default class phiSong {
             if (rank[0]) {
                 if (rank[0].includes('+')) {
                     if (rank[1]) {
-                        send.send_with_At(session, `含有 '+' 的难度不支持指定范围哦！\n/phi rand <定数>+ <难度(可多选)>`, true)
+                        send.send_with_At(session, session.text(i18nList.common.plusAndRange), true)
                         return;
                     } else {
                         bottom = Number(rank[0].replace('+', ''))
@@ -101,7 +102,7 @@ export default class phiSong {
                 } else if (rank[0].includes('-') && !rank[1]) {
                     bottom = Number(rank[0].replace('-', ''))
                     if (bottom != bottom) {
-                        send.send_with_At(session, `${rank[0]} 不是一个定级哦\n#/phi rand <定数>- <难度(可多选)>`, true)
+                        send.send_with_At(session, session.text(i18nList.common.notNum, [rank[0]]), true)
                         return;
                     } else {
                         bottom = 0
@@ -111,9 +112,12 @@ export default class phiSong {
                     bottom = Number(rank[0])
                     if (rank[1]) {
                         top = Number(rank[1])
-                        if (bottom != bottom || top != top) {
-                            send.send_with_At(session, `${rank[0]} - ${rank[1]} 不是一个定级范围哦\n/phi rand <定数1> - <定数2> <难度(可多选)>`, true)
+                        if (bottom != bottom) {
+                            send.send_with_At(session, session.text(i18nList.common.notNum, [rank[0]]), true)
                             return;
+                        }
+                        if (top != top) {
+                            send.send_with_At(session, session.text(i18nList.common.notNum, [rank[1]]), true)
                         }
                         if (top < bottom) {
                             /**swap */
@@ -124,7 +128,7 @@ export default class phiSong {
                     } else {
                         bottom = Number(rank[0])
                         if (bottom != bottom) {
-                            send.send_with_At(session, `${rank[0]} 不是一个定级哦\n#/phi rand <定数> <难度(可多选)>`, true)
+                            send.send_with_At(session, session.text(i18nList.common.notNum, [rank[0]]), true)
                             return;
                         } else {
                             top = bottom
@@ -159,7 +163,7 @@ export default class phiSong {
             }
 
             if (!idList[0]) {
-                send.send_with_At(session, `未找到 ${bottom} - ${top} 的 ${isask[0] ? `${Level[0]} ` : ''}${isask[1] ? `${Level[1]} ` : ''}${isask[2] ? `${Level[2]} ` : ''}${isask[3] ? `${Level[3]} ` : ''}谱面QAQ!`)
+                send.send_with_At(session, session.text(i18nList.song.notFoundRange, [bottom, top, `${isask[0] ? `${Level[0]} ` : ''}${isask[1] ? `${Level[1]} ` : ''}${isask[2] ? `${Level[2]} ` : ''}${isask[3] ? `${Level[3]} ` : ''}`]), true)
                 return;
             }
 
@@ -185,7 +189,7 @@ export default class phiSong {
                 }
                 send.send_with_At(session, `name: ${info.song}\nid: ${info.id}\n` + await getPic.GetSongsIllAtlas(ctx, id) + nick)
             } else {
-                send.send_with_At(session, `未找到${arg}的相关曲目信息QAQ！`, true)
+                send.send_with_At(session, session.text(i18nList.common.notFoundSong, [arg]), true)
             }
         })
 
@@ -261,7 +265,7 @@ export default class phiSong {
                     theme: plugin_data?.plugin_data?.theme || 'star',
                 }))
             } else {
-                send.send_with_At(session, `未找到符合条件的谱面QAQ！`)
+                send.send_with_At(session, session.text(i18nList.song.notFoundClg))
             }
 
             return;
@@ -279,10 +283,10 @@ export default class phiSong {
             let dif = Number(data[0])
             let acc = Number(data[1])
             if (data && acc && dif > 0 && dif <= getInfo.MAX_DIFFICULTY && acc > 0 && acc <= 100) {
-                send.send_with_At(session, `dif: ${dif} acc: ${acc}\n计算结果：${fCompute.rks(Number(acc), Number(dif))}`, true)
+                send.send_with_At(session, session.text(i18nList.song.comRult, [dif, acc, fCompute.rks(Number(acc), Number(dif))]), true)
                 return;
             } else {
-                send.send_with_At(session, `格式错误QAQ！\n格式：/phi com <定数> <acc>`)
+                send.send_with_At(session, session.text(i18nList.song.comErr, { prefix: getInfo.getCmdPrefix(ctx, session) }))
                 return;
             }
         })
@@ -299,7 +303,7 @@ export default class phiSong {
             if (await send.isBan(session, 'new')) {
                 return;
             }
-            let ans = '新曲速递：\n'
+            let ans = session.text(i18nList.song.new1)
             for (let i in getInfo.updatedSong) {
                 let info = getInfo.info(getInfo.updatedSong[i])
                 ans += `${info.song}\n`
@@ -308,7 +312,7 @@ export default class phiSong {
                 }
             }
 
-            ans += '\n定数&谱面修改：\n'
+            ans += session.text(i18nList.song.new2)
             for (let song in getInfo.updatedChart) {
                 let tem = getInfo.updatedChart[song]
                 ans += song + '\n'
@@ -328,7 +332,7 @@ export default class phiSong {
             }
 
             if (ans.length > 500) {
-                send.send_with_At(session, '新曲速递内容过长，请试图查阅其他途径！')
+                send.send_with_At(session, session.text(i18nList.song.newToLong))
                 return;
             }
 

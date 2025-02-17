@@ -16,10 +16,10 @@ export default class phiHelp {
             }
 
             let helpGroup = await getFile.FileReader(path.join(infoPath, 'help.json'))
-            
+
             session.send(await render(ctx, "help", {
                 helpGroup: helpGroup,
-                cmdHead: null,
+                cmdHead: getInfo.getCmdPrefix(ctx, session, true),
                 isMaster: (session as any)?.user?.authority == 4,
                 background: getInfo.getill(getInfo.illlist[Math.floor(Math.random() * getInfo.illlist.length)]),
                 theme: 'star'

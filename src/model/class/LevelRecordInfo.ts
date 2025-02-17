@@ -45,7 +45,7 @@ export default class LevelRecordInfo {
 
 
         if (info.chart && info.chart[this.rank]?.difficulty) {
-            this.difficulty = info.chart[this.rank]['difficulty'] //难度
+            this.difficulty = Number(info.chart[this.rank]['difficulty']) //难度
             this.rks = fCompute.rks(this.acc, this.difficulty) //等效rks
         } else {
             this.difficulty = 0

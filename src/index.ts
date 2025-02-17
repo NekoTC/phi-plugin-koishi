@@ -2,6 +2,7 @@ import { Context, Schema } from 'koishi'
 import { } from 'koishi-plugin-puppeteer'
 import * as components from './components/index'
 import * as app from './app/index'
+import { getInfo } from './model'
 
 export const name = 'phi-plugin'
 
@@ -102,7 +103,7 @@ export const Config: Schema<Config> = Schema.intersect([
         /**并行渲染数量 */
         renderNum: Schema.number().min(1).max(10).default(1).description("并行渲染数量"),
         /**B19最大限制 */
-        B19MaxNum: Schema.number().min(22).max(1000).default(22).description("用户可以获取B19图片成绩的最大数量"),
+        B19MaxNum: Schema.number().min(33).max(1000).default(33).description("用户可以获取B19图片成绩的最大数量"),
         /**历史成绩单日数量 */
         HistoryDayNum: Schema.number().min(2).max(10000).default(10).description("/update 展现历史成绩的单日最大数量，至少为2"),
         /**历史成绩展示天数 */
@@ -197,4 +198,3 @@ export async function apply(ctx: Context, config: Config) {
     ctx.plugin(components, config)
     ctx.plugin(app, config)
 }
-

@@ -7,6 +7,7 @@ import { Level, MAX_DIFFICULTY } from './constNum'
 import { config } from '../components/Config'
 import Chart from './class/Chart'
 import { idString, songString, levelKind, noteKind } from './type/type'
+import { Context, Session } from 'koishi'
 
 
 
@@ -30,8 +31,6 @@ getFile.csvReader(path.join(infoPath, 'avatar.csv'))
 
 
 export default class getInfo {
-
-
 
     /**默认别名,以id为key */
     static nicklist: { [key: idString]: string[] } = getFile.FileReader(path.join(infoPath, 'nicklist.yaml'))
@@ -500,6 +499,15 @@ export default class getInfo {
      */
     static SongGetId(song: songString): idString {
         return this.idBySong[song]
+    }
+
+    /** 
+     * 获取指令前缀
+     * @returns
+     */
+    static getCmdPrefix(ctx: Context, session: Session, removeSpace: boolean = false): string {
+        let command = ctx.$commander.get('phi')
+        return (session.resolve(session.app.koishi.config.prefix)[0] ?? '') + command.displayName.replace(/\./g, ' ') + command.declaration + (removeSpace ? '' : ' ')
     }
 
 }
