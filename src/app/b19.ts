@@ -16,6 +16,7 @@ import { i18nList } from "../components/i18n";
 
 export default class phiB19 {
     constructor(ctx: Context, config: Config) {
+        
         ctx.command('phi.pgr', '获取B19').option('best', '-b <val:natural> 输出bN', { fallback: 21 }).action(async ({ session, options }) => {
 
             if (await send.isBan(session, 'b19')) {
@@ -36,7 +37,7 @@ export default class phiB19 {
             nnum = Math.min(nnum, config.B19MaxNum)
             nnum = Math.max(nnum, 33)
 
-            let plugin_data = await getPluginData.get(session.userId)
+            let plugin_data = getPluginData.get(session.userId)
 
 
             if (!config.isGuild)
@@ -121,7 +122,7 @@ export default class phiB19 {
                 backgroundUrl: await fCompute.getBackground(save.gameuser.background),
                 PlayerId: save.saveInfo.PlayerId,
             }
-            let plugin_data = await getPluginData.get(session.userId)
+            let plugin_data = getPluginData.get(session.userId)
 
             let data = {
                 phi: save_b19.phi,
@@ -141,6 +142,7 @@ export default class phiB19 {
         })
 
         ctx.command('phi.score <message:text>', '单曲分数').action(async ({ session }, arg = "") => {
+
             if (await send.isBan(session, 'singlescore')) {
                 return;
             }
@@ -302,7 +304,7 @@ export default class phiB19 {
 
             data = data.sort(cmpsugg())
 
-            let plugin_data = await getPluginData.get(session.userId)
+            let plugin_data = getPluginData.get(session.userId)
 
             send.send_with_At(session, await render(ctx, 'list', {
                 head_title: "推分建议",
