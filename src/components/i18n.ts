@@ -151,7 +151,7 @@ export const i18nList = {
 }
 
 export function apply(ctx: Context) {
-    let bindTip = `\n获取登录二维码：{prefix}bind qrcode\n普通绑定格式：{prefix}bind <sessionToken>\n帮助：{prefix}tk help`
+    let bindTip = `\n获取登录二维码：{prefix}bind qrcode\n普通绑定格式：{prefix}bind &lt;sessionToken&gt;\n帮助：{prefix}tk help`
     ctx.i18n.define('zh-CN', {
         beGroupBan: `这里被管理员禁止使用这个功能了呐QAQ！`,
         haveToBind: `请先绑定sessionToken哦！\n如果不知道自己的sessionToken可以尝试扫码绑定嗷！` + bindTip,
@@ -161,7 +161,7 @@ export function apply(ctx: Context) {
         renderingImg: `正在生成图片，请稍等一下哦！\n//·/w\\·\\\\`,
         listToLong: `谱面数量过多({0})大于设置的最大值({1})，只显示前{1}条！`,
         turnToPrivate: `请私聊使用嗷`,
-        haveToInputName: `请指定曲名哦！\n格式：{prefix}{cmd} <曲名>`,
+        haveToInputName: `请指定曲名哦！\n格式：{prefix}{cmd} &lt;曲名&gt;`,
         plusAndRange: `含有 '+' 的难度不支持指定范围哦！`,
         notNum: `{0} 不是一个数字哦`,
 
@@ -173,7 +173,7 @@ export function apply(ctx: Context) {
         bindQRCodeTimeout: `操作超时，请重试！`,
         bindQRCodeFail: `获取sessionToken失败QAQ！请确认您的Phigros已登录TapTap账号！\n错误信息：{0}`,
         bindTipProtectToken: `请注意保护好自己的sessionToken呐！如果需要获取已绑定的sessionToken可以私聊发送 {prefix}sessionToken 哦！`,
-        bindIng: `正在更新中，请稍等一下哦！\n >_<`,
+        bindIng: `正在更新中，请稍等一下哦！\n &gt;_&lt;`,
         bindFailed: `更新失败，请检查你的sessionToken是否正确！\n错误信息：{0}`,
         bindUnbind: `解绑会导致历史数据全部清空呐QAQ！真的要这么做吗？（确认/取消）`,
         bindUnbindKeyWord: `确认`,
@@ -219,7 +219,7 @@ export function apply(ctx: Context) {
         songNotFoundRange: `未找到 {0} - {1} 的 {2}谱面QAQ!`,
         songNotFoundClg: `未找到符合条件的谱面QAQ！`,
         songComRult: `dif: {0} acc: {1}\n计算结果：{2}`,
-        songComErr: `格式错误QAQ！\n格式：{prefix}com <定数> <acc>`,
+        songComErr: `格式错误QAQ！\n格式：{prefix}com &lt;定数&gt; &lt;acc&gt;`,
         songNew1: `新曲速递：\n`,
         songNew2: `\n定数&谱面修改：\n`,
         songNewToLong: `新曲速递内容过长，请试图查阅其他途径！`,
