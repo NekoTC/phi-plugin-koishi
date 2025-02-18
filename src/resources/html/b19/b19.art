@@ -5,107 +5,78 @@
 {{/block}}
 
 {{block 'main'}}
-<div class="all">
-  <div class="bg"></div>
-  <div class="title">
-      <div class="l">
-          <div class="avatar-container">
-              <img src="{{_res_path}}html/avatar/{{gameuser.avatar}}.png" alt="{{gameuser.avatar}}" class="avatar">
-          </div>
-          <div class="doc">
-              <p>{{#gameuser.PlayerId}}</p>
-          </div>
-      </div>
-      <div class="right">
-          <div class="Challenge">
-              <div class="Challenge-r">
-                  <img src="{{_res_path}}html/otherimg/{{gameuser.ChallengeMode}}.png" alt="Challenge">
-                  <p>{{gameuser.ChallengeModeRank}}</p>
-              </div>
-          </div>
-          <div class="rks" style="text-align:center">
-              <p>{{gameuser.rks.toFixed(4)}}</p>
-          </div>
-          {{if gameuser.data}}
-          <div class="data">
-              <p>Data: {{gameuser.data}}</p>
-          </div>
-          {{/if}}
-      <div class="left">
-        <div class="stats-box">
-          <div class="line1">
-            <p>  \        EZ        HD        IN        AT  </p>
-          </div>
-          <div class="line15">
-            <p>------------------------------------------------------------------</p>
-          </div>
-          <div class="line2">
-            <span style="color:white"> C</span>
-            <span style="color:white">                     /                /                /      </span>
-          </div>
-          <div class="line2">
-            <span style="color:cornflowerblue"> FC</span>
-            <span style="color:white">                   /                /                /      </span>
-          </div>
-          <div class="line2">
-            <span style="color:gold"> Phi</span>
-            <span style="color:white">                  /                /                /      </span>
-          </div>
+
+<div class="title">
+    <div class="playerInfo">
+        <div class="blackBlock"></div>
+        <div class="avatar">
+            <img src="{{_res_path}}html/avatar/{{gameuser.avatar}}.png" alt="{{gameuser.avatar}}">
         </div>
-        <div class="stats-box-data">
-          {{each userstats e}}
-          <div class="EZ">
-            <div class="CEZ">
-              <p>{{e.clearned}}</p>
-            </div>
-            <div class="FEZ">
-              <p>{{e.fc}}</p>
-            </div>
-            <div class="PEZ">
-              <p>{{e.phi}}</p>
-            </div>
-          </div>
-          <div class="HD">
-            <div class="CHD">
-              <p>{{e.clearned}}</p>
-            </div>
-            <div class="FHD">
-              <p>{{e.fc}}</p>
-            </div>
-            <div class="PHD">
-              <p>{{e.phi}}</p>
-            </div>
-          </div>
-          <div class="IN">
-            <div class="CIN">
-              <p>{{e.clearned}}</p>
-            </div>
-            <div class="FIN">
-              <p>{{e.fc}}</p>
-            </div>
-            <div class="PIN">
-              <p>{{e.phi}}</p>
-            </div>
-          </div>
-          <div class="AT">
-            <div class="CAT">
-              <p>{{e.clearned}}</p>
-            </div>
-            <div class="FAT">
-              <p>{e.fc}}</p>
-            </div>
-            <div class="PAT">
-              <p>{{e.phi}}</p>
-            </div>
-          </div>
-          {{/each}}
+        <div class="playerId">
+            <p name="pvis">{{#gameuser.PlayerId}}</p>
         </div>
-      </div>
-      </div>
-  </div>
-  <div class="selfIntro">
-    <font color='white' id="profile">{{#gameuser.selfIntro.replace(/\n\r?/g,'<br>')}}</font>
-  </div>
+        <div class="rks">
+            <p>{{gameuser.rks.toFixed(4)}}</p>
+        </div>
+        <div class="clgBox">
+            <div class="Challenge">
+            <img src="{{_res_path}}html/otherimg/{{gameuser.ChallengeMode}}.png" alt="Challenge">
+            <p>{{gameuser.ChallengeModeRank}}</p>
+            </div>
+        </div>
+        <div class="date">
+            <p>{{Date}}</p>
+        </div>
+        <div class="dataBox">
+            <img src="{{_res_path}}html/otherimg/data.png" alt="data">
+            <p>{{gameuser.data}}</p>
+        </div>
+    </div>
+    <div class="recordInfo">
+        <div class="whiteLine"></div>
+        <div class="sheet">
+            <div class="row">
+                <div class="poz">
+                    <p>\</p>
+                </div>
+                {{each stats v i}}
+                <div class="poz">
+                    <p>{{v.title}}</p>
+                </div>
+                {{/each}}
+            </div>
+            <div class="row">
+                <div class="poz">
+                    <p>C</p>
+                </div>
+                {{each stats v i}}
+                <div class="poz">
+                    <p>{{v.cleared}}</p>
+                </div>
+                {{/each}}
+            </div>
+            <div class="row">
+                <div class="poz">
+                    <p>FC</p>
+                </div>
+                {{each stats v i}}
+                <div class="poz">
+                    <p>{{v.fc}}</p>
+                </div>
+                {{/each}}
+            </div>
+            <div class="row">
+                <div class="poz">
+                    <p>Phi</p>
+                </div>
+                {{each stats v i}}
+                <div class="poz">
+                    <p>{{v.phi}}</p>
+                </div>
+                {{/each}}
+            </div>
+        </div>
+    </div>
 </div>
 <div class="b19">
 
