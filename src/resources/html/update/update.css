@@ -1,5 +1,5 @@
 @import "../common/common.css";
-@import "../b19/b19title.css";
+@import "./b19title.css";
 
 body {
     flex-direction: column;
