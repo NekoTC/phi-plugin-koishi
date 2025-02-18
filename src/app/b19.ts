@@ -60,6 +60,7 @@ export default class phiB19 {
             }
 
             let save_b19 = await save.getB19(nnum)
+            let stats = await save.getStats()
 
             let money = save.gameProgress.money
             let gameuser = {
@@ -76,7 +77,6 @@ export default class phiB19 {
             let data = {
                 phi: save_b19.phi,
                 b19_list: save_b19.b19_list,
-                gameuser,
                 PlayerId: gameuser.PlayerId,
                 Rks: Number(save.saveInfo.summary.rankingScore).toFixed(4),
                 Date: save.saveInfo.updatedAt,
@@ -84,7 +84,9 @@ export default class phiB19 {
                 ChallengeModeRank: save.saveInfo.summary.challengeModeRank % 100,
                 background: getInfo.getill(getInfo.illlist[Number((Math.random() * (getInfo.illlist.length - 1)).toFixed(0))], 'blur'),
                 theme: plugin_data?.plugin_data?.theme || 'star',
-                nnum: nnum,
+                gameuser,
+                nnum,
+                stats,
             }
 
             send.send_with_At(session, await render(ctx, "b19", data) + (Math.abs(save_b19.com_rks - save.saveInfo.summary.rankingScore) > 0.1 ? `请注意，当前版本可能更改了计算规则\n计算rks: ${save_b19.com_rks}\n存档rks: ${save.saveInfo.summary.rankingScore}` : ''))
