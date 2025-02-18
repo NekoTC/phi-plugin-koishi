@@ -24,9 +24,6 @@
             <p>{{gameuser.ChallengeModeRank}}</p>
             </div>
         </div>
-        <div class="date">
-            <p>{{Date}}</p>
-        </div>
         <div class="dataBox">
             <img src="{{_res_path}}html/otherimg/data.png" alt="data">
             <p>{{gameuser.data}}</p>
@@ -76,6 +73,9 @@
                 {{/each}}
             </div>
         </div>
+    </div>
+    <div class="date">
+       <p>{{Date}}</p>
     </div>
 </div>
 <div class="b19">
