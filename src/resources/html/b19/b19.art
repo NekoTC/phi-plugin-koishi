@@ -34,22 +34,22 @@
       <div class="left">
         <div class="stats-box">
           <div class="line1">
-            <p>  \      EZ      HD      IN      AT  </p>
+            <p>  \        EZ        HD        IN        AT  </p>
           </div>
           <div class="line15">
-            <p>-----------------------------------------------------</p>
+            <p>------------------------------------------------------------------</p>
           </div>
           <div class="line2">
             <span style="color:white"> C</span>
-            <span style="color:white">                /            /            /      </span>
+            <span style="color:white">                     /                /                /      </span>
           </div>
           <div class="line2">
             <span style="color:cornflowerblue"> FC</span>
-            <span style="color:white">              /            /            /      </span>
+            <span style="color:white">                   /                /                /      </span>
           </div>
           <div class="line2">
             <span style="color:gold"> Phi</span>
-            <span style="color:white">             /            /            /      </span>
+            <span style="color:white">                  /                /                /      </span>
           </div>
         </div>
         <div class="stats-box-data">
