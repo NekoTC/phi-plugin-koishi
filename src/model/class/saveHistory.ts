@@ -161,7 +161,7 @@ export default class saveHistory {
         /**更新rks记录 */
         for (let i = this.rks.length - 1; i >= 0; i--) {
             if (new Date(save.modifiedAt) > new Date(this.rks[i].date)) {
-                if (this.rks[i].value != save.saveInfo.summary.rankingScore || this.rks[i + 1]?.value != save.saveInfo.summary.rankingScore) {
+                if (!this.rks[i + 1] || (this.rks[i].value != save.saveInfo.summary.rankingScore || this.rks[i + 1]?.value != save.saveInfo.summary.rankingScore)) {
                     this.rks.splice(i + 1, 0, {
                         date: new Date(save.modifiedAt),
                         value: save.saveInfo.summary.rankingScore
@@ -179,7 +179,7 @@ export default class saveHistory {
         /**更新data记录 */
         for (let i = this.data.length - 1; i >= 0; i--) {
             if (new Date(save.modifiedAt) > new Date(this.data[i].date)) {
-                if (checkValue(this.data[i].value, save.gameProgress.money) && checkValue(this.data[i + 1]?.value, save.gameProgress.money)) {
+                if (!this.data[i + 1] || (checkValue(this.data[i].value, save.gameProgress.money) && checkValue(this.data[i + 1]?.value, save.gameProgress.money))) {
                     this.data.splice(i + 1, 0, {
                         date: new Date(save.modifiedAt),
                         value: save.gameProgress.money
