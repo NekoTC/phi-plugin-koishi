@@ -178,7 +178,7 @@ export default class Save {
      * @param {boolean} [same=false] 是否筛选最高rks
      * @returns 按照rks排序的数组
      */
-    findAccRecord(acc: number, same: boolean = false) {
+    findAccRecord(acc: number, same: boolean = false):LevelRecordInfo[] {
         let record = []
         for (let id in this.gameRecord) {
             for (let level in this.gameRecord[id]) {
@@ -270,15 +270,15 @@ export default class Save {
 
         for (let i = 0; i < 3; ++i) {
             if (!phi[i]) {
-                phi[i] = false
+                phi[i] = false as any
                 continue
             }
             if (phi[i]?.rks) {
-                let tem = {}
+                let tem = {} as any
                 Object.assign(tem, phi[i])
                 phi[i] = tem
                 sum_rks += Number(phi[i].rks) //计算rks
-                phi[i].illustration = getInfo.getill(phi[i].song)
+                phi[i].illustration = getInfo.getill(phi[i].id)
                 phi[i].suggest = "无法推分"
             }
         }
