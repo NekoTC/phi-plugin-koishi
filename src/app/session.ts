@@ -355,6 +355,9 @@ async function build(ctx: Context, session: Session, sessionToken: string, confi
         }
     }
 
+    let user_data = await getSave.getHistory(session.userId)
+    let { rks_history, rks_date, rks_range } = user_data.getRksAndDataLine()
+
     let data = {
         PlayerId: fCompute.convertRichText(now.saveInfo.PlayerId),
         Rks: Number(now.saveInfo.summary.rankingScore).toFixed(4),
@@ -372,6 +375,8 @@ async function build(ctx: Context, session: Session, sessionToken: string, confi
         dan: await getSave.getDan(session.userId),
         added_rks_notes: added_rks_notes,
         theme: pluginData?.plugin_data?.theme || 'star',
+        rks_date: [fCompute.date_to_string(rks_date[0]), fCompute.date_to_string(rks_date[1])],
+        rks_history, rks_range,
     }
 
     send.send_with_At(session, `PlayerId: ${fCompute.convertRichText(now.saveInfo.PlayerId, true)}` + await render(ctx, 'update', data))

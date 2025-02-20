@@ -3,7 +3,6 @@ import { logger } from '../components/Logger'
 import { Session } from 'koishi'
 import { h } from 'koishi'
 import getInfo from './getInfo'
-import { title } from 'process'
 import { songString } from './type/type'
 
 export default class compute {
@@ -368,6 +367,20 @@ export default class compute {
             return 'C'
         } else {
             return 'F'
+        }
+    }
+
+    /**
+     * 计算百分比
+     * @param {Number} value 值
+     * @param {Array} range 区间数组 (0,..,1)
+     * @returns 百分数，单位%
+     */
+    static percentage(value: number, range: number[]): number {
+        if (range[0] == range[range.length - 1]) {
+            return 50
+        } else {
+            return (value - range[0]) / (range[range.length - 1] - range[0]) * 100
         }
     }
 
