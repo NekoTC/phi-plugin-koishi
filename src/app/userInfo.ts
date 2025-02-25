@@ -52,7 +52,7 @@ export default class phiUserInfo {
             if (!save) {
                 return;
             }
-            
+
             let stats = await save.getStats()
 
             let money = save.gameProgress.money
@@ -76,85 +76,7 @@ export default class phiUserInfo {
             }
 
             let user_data = await getSave.getHistory(session.userId)
-
-            let rks_history_ = []
-            let data_history_ = []
-            let user_rks_data = user_data.rks
-            let user_data_data = user_data.data
-            let rks_range = [17, 0]
-            let data_range = [1e9, 0]
-            let rks_date = [new Date(user_rks_data[0].date).getTime(), 0]
-            let data_date = [new Date(user_data_data[0].date).getTime(), 0]
-
-            for (let i in user_rks_data) {
-                user_rks_data[i].date = new Date(user_rks_data[i].date)
-                if (i as any <= 1 || user_rks_data[i].value != rks_history_[rks_history_.length - 2].value) {
-                    rks_history_.push(user_rks_data[i])
-                    rks_range[0] = Math.min(rks_range[0], user_rks_data[i].value)
-                    rks_range[1] = Math.max(rks_range[1], user_rks_data[i].value)
-                } else {
-                    rks_history_[rks_history_.length - 1].date = user_rks_data[i].date
-                }
-                rks_date[1] = user_rks_data[i].date.getTime()
-            }
-
-
-            for (let i in user_data_data) {
-                let value = user_data_data[i].value
-                let valueNum = (((value[4] * 1024 + value[3]) * 1024 + value[2]) * 1024 + value[1]) * 1024 + value[0]
-                user_data_data[i].date = new Date(user_data_data[i].date)
-                if (i as any <= 1 || user_data_data[i].value != data_history_[data_history_.length - 2].value) {
-                    data_history_.push(user_data_data[i])
-                    data_range[0] = Math.min(data_range[0], valueNum)
-                    data_range[1] = Math.max(data_range[1], valueNum)
-                } else {
-                    data_history_[data_history_.length - 1].date = user_data_data[i].date
-                }
-                data_date[1] = user_data_data[i].date.getTime()
-            }
-
-            let rks_history = []
-            let data_history = []
-
-            for (let i in rks_history_) {
-
-                let ni = Number(i)
-
-                if (!rks_history_[i + 1]) break
-                let x1 = range(rks_history_[ni].date, rks_date)
-                let y1 = range(rks_history_[ni].value, rks_range)
-                let x2 = range(rks_history_[ni + 1].date, rks_date)
-                let y2 = range(rks_history_[ni + 1].value, rks_range)
-                rks_history.push([x1, y1, x2, y2])
-            }
-
-            for (let i in data_history_) {
-
-                let ni = Number(i)
-
-                if (!data_history_[ni + 1]) break
-                let x1 = range(data_history_[ni].date, data_date)
-                let y1 = range(data_history_[ni].value, data_range)
-                let x2 = range(data_history_[ni + 1].date, data_date)
-                let y2 = range(data_history_[ni + 1].value, data_range)
-                data_history.push([x1, y1, x2, y2])
-            }
-
-
-            let unit = ["KiB", "MiB", "GiB", "TiB", "Pib"]
-
-            for (let i in [1, 2, 3, 4]) {
-                if (Math.floor(data_range[0] / (Math.pow(1024, Number(i)))) < 1024) {
-                    data_range[0] = `${Math.floor(data_range[0] / (Math.pow(1024, Number(i))))}${unit[i]}` as any
-                }
-            }
-
-            for (let i in [1, 2, 3, 4]) {
-                if (Math.floor(data_range[1] / (Math.pow(1024, Number(i)))) < 1024) {
-                    data_range[1] = `${Math.floor(data_range[1] / (Math.pow(1024, Number(i))))}${unit[i]}` as any
-                }
-            }
-
+            let { rks_history, data_history, rks_date, data_date, rks_range, data_range } = user_data.getRksAndDataLine()
 
             /**统计在要求acc>=i的前提下，玩家的rks为多少 */
             /**存档 */
@@ -207,9 +129,9 @@ export default class phiUserInfo {
 
             for (let i = 1; i < acc_rks_data.length; ++i) {
                 if (acc_rks_data_[0] && acc_rks_data[i - 1][1] == acc_rks_data[i][1]) {
-                    acc_rks_data_[acc_rks_data_.length - 1][2] = range(acc_rks_data[i][0], acc_rks_AccRange)
+                    acc_rks_data_[acc_rks_data_.length - 1][2] = fCompute.percentage(acc_rks_data[i][0], acc_rks_AccRange)
                 } else {
-                    acc_rks_data_.push([range(acc_rks_data[i - 1][0], acc_rks_AccRange), range(acc_rks_data[i - 1][1], acc_rks_range), range(acc_rks_data[i][0], acc_rks_AccRange), range(acc_rks_data[i][1], acc_rks_range)])
+                    acc_rks_data_.push([fCompute.percentage(acc_rks_data[i - 1][0], acc_rks_AccRange), fCompute.percentage(acc_rks_data[i - 1][1], acc_rks_range), fCompute.percentage(acc_rks_data[i][0], acc_rks_AccRange), fCompute.percentage(acc_rks_data[i][1], acc_rks_range)])
                 }
             }
             // console.info(acc_rks_data_)
@@ -501,17 +423,3 @@ export default class phiUserInfo {
     }
 }
 
-
-/**
- * 计算百分比
- * @param {Number} value 值
- * @param {Array} range 区间数组 (0,..,1)
- * @returns 百分数，单位%
- */
-function range(value: number, range: number[]): number {
-    if (range[0] == range[range.length - 1]) {
-        return 50
-    } else {
-        return (value - range[0]) / (range[range.length - 1] - range[0]) * 100
-    }
-}
